@@ -780,6 +780,7 @@
 		};
 		D8D191871BD2DC9B0069D9EF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8D1915F1BD27B400069D9EF /* UniversalFramework_Test.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -793,6 +794,7 @@
 		};
 		D8D191881BD2DC9B0069D9EF /* Test */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8D1915F1BD27B400069D9EF /* UniversalFramework_Test.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -806,6 +808,7 @@
 		};
 		D8D191891BD2DC9B0069D9EF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8D1915F1BD27B400069D9EF /* UniversalFramework_Test.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -819,6 +822,7 @@
 		};
 		D8D1918A1BD2DC9B0069D9EF /* Profile */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D8D1915F1BD27B400069D9EF /* UniversalFramework_Test.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
