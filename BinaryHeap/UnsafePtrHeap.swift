@@ -58,36 +58,6 @@ public struct UnsafePtrHeap<Element : Comparable> {
 
 }
 
-private func heapify<E : Comparable>(elements: UnsafeMutablePointer<E>, startIndex: Int, endIndex: Int) {
-    assert(startIndex >= 0)
-
-    var index = startIndex
-    while true {
-        assert(index >= startIndex)
-        assert(index < endIndex)
-
-        let leftIndex = leftChildIndex(index)
-        let rightIndex = rightChildIndex(index)
-
-        // Find the minimum among the element at 'index' and its children
-        var minIndex = index
-        if leftIndex < endIndex && (elements[leftIndex] < elements[index]) {
-            minIndex = leftIndex
-        }
-        if rightIndex < endIndex && (elements[rightIndex] < elements[minIndex]) {
-            minIndex = rightIndex
-        }
-
-        // Ensure the smallest element is at 'index' and recurse if neccessary
-        if minIndex != index {
-            swap(&elements[index], &elements[minIndex])
-            index = minIndex
-        } else {
-            return
-        }
-    }
-}
-
 // MARK: BinaryHeapType conformance
 extension UnsafePtrHeap : BinaryHeapType {
     public var count: Int {

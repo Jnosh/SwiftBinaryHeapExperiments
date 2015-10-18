@@ -15,37 +15,6 @@ public struct ArrayHeap<Element: Comparable> {
     private var storage: [Element]
 }
 
-// MARK: Helper functions
-extension ArrayHeap {
-    /// Checks heap conditions at the given index and restores if not currently valid.
-    private mutating func heapify(startIndex: Int) {
-        assert(startIndex >= 0)
-
-        let endIndex = count
-        var index = startIndex
-        while true {
-            assert(index >= startIndex)
-            assert(index < endIndex)
-
-            let left = leftChildIndex(index)
-            let right = rightChildIndex(index)
-
-            // Find the minimum among the element at 'index' and its children
-            var minIndex = left < endIndex && (storage[left] < storage[index]) ? left : index
-            minIndex = right < endIndex && (storage[right] < storage[minIndex]) ? right : minIndex
-
-            // Ensure the smallest element is at 'index' and recurse if neccessary
-            if minIndex != index {
-                swap(&storage[index], &storage[minIndex])
-                index = minIndex
-            } else {
-                return
-            }
-        }
-    }
-}
-
-
 // MARK: BinaryHeapType conformance
 extension ArrayHeap : BinaryHeapType {
     public init() {
@@ -90,19 +59,35 @@ extension ArrayHeap : BinaryHeapType {
     }
 }
 
-/*
+// MARK: Helper functions
 extension ArrayHeap {
-    public init<S: SequenceType where S.Generator.Element == Element>(elements: S) {
-        storage = Array(elements)
+    /// Checks heap conditions at the given index and restores if not currently valid.
+    private mutating func heapify(startIndex: Int) {
+        assert(startIndex >= 0)
 
-        // Heapify all non-leaves to create heap
-        let stride = (storage.count / 2).stride(to: 0, by: -1)
-        for index in stride {
-            heapify(index)
+        let endIndex = count
+        var index = startIndex
+        while true {
+            assert(index >= startIndex)
+            assert(index < endIndex)
+
+            let left = leftChildIndex(index)
+            let right = rightChildIndex(index)
+
+            // Find the minimum among the element at 'index' and its children
+            var minIndex = left < endIndex && (storage[left] < storage[index]) ? left : index
+            minIndex = right < endIndex && (storage[right] < storage[minIndex]) ? right : minIndex
+
+            // Ensure the smallest element is at 'index' and recurse if neccessary
+            if minIndex != index {
+                swap(&storage[index], &storage[minIndex])
+                index = minIndex
+            } else {
+                return
+            }
         }
     }
 }
-*/
 
 // MARK: Printing
 extension ArrayHeap: CustomDebugStringConvertible, CustomStringConvertible {

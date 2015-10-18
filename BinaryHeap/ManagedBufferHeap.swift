@@ -28,11 +28,11 @@ private final class HeapBuffer<Element>: ManagedBuffer<ValueWrapper, Element> {
 
     /// Create a new HeapBuffer and copy the contents from the given buffer
     static func createCopyOfBuffer(buffer: HeapBuffer<Element>, capacity: Int) -> HeapBuffer<Element> {
-        return buffer.withUnsafeMutablePointers{ (valuePtr, elementPtr) in
+        return buffer.withUnsafeMutablePointers{ (valuePtr, elementPtr) -> HeapBuffer<Element> in
             let value = valuePtr.memory
 
             let newBuffer = HeapBuffer.createBufferWithCapacity(capacity)
-            newBuffer.withUnsafeMutablePointers { (newValuePtr, newElementPtr) -> Void in
+            newBuffer.withUnsafeMutablePointers { (newValuePtr, newElementPtr) in
                 newValuePtr.memory.count = value.count
                 newElementPtr.initializeFrom(elementPtr, count: value.count)
             }
@@ -46,11 +46,11 @@ private final class HeapBuffer<Element>: ManagedBuffer<ValueWrapper, Element> {
     /// as it combines the initialization of the new buffer contents
     /// and destruction of the old buffer contents into a single move
     static func createReplacementBuffer(buffer: HeapBuffer<Element>, capacity: Int) -> HeapBuffer<Element> {
-        return buffer.withUnsafeMutablePointers{ (valuePtr, elementPtr) in
+        return buffer.withUnsafeMutablePointers { (valuePtr, elementPtr) -> HeapBuffer<Element> in
             let value = valuePtr.memory
 
             let newBuffer = HeapBuffer.createBufferWithCapacity(capacity)
-            newBuffer.withUnsafeMutablePointers { (newValuePtr, newElementPtr) -> Void in
+            newBuffer.withUnsafeMutablePointers { (newValuePtr, newElementPtr) in
                 newElementPtr.moveInitializeFrom(elementPtr, count: value.count)
                 valuePtr.memory.count = 0
                 newValuePtr.memory.count = value.count
@@ -95,37 +95,6 @@ public struct ManagedBufferHeap<Element : Comparable> {
     }
 }
 
-private func heapify<E : Comparable>(elements: UnsafeMutablePointer<E>, startIndex: Int, endIndex: Int) {
-    assert(startIndex >= 0)
-
-    var index = startIndex
-    while true {
-        assert(index >= startIndex)
-        assert(index < endIndex)
-
-        let leftIndex = leftChildIndex(index)
-        let rightIndex = rightChildIndex(index)
-
-        // Find the minimum among the element at 'index' and its children
-        var minIndex = index
-        if leftIndex < endIndex && (elements[leftIndex] < elements[index]) {
-            minIndex = leftIndex
-        }
-        if rightIndex < endIndex && (elements[rightIndex] < elements[minIndex]) {
-            minIndex = rightIndex
-        }
-
-        // Ensure the smallest element is at 'index' and recurse if neccessary
-        if minIndex != index {
-            swap(&elements[index], &elements[minIndex])
-            index = minIndex
-        } else {
-            return
-        }
-    }
-}
-
-
 // MARK: BinaryHeapType conformance
 extension ManagedBufferHeap : BinaryHeapType {
     public init() {
@@ -153,7 +122,7 @@ extension ManagedBufferHeap : BinaryHeapType {
             ensureUniquelyReferenced()
         }
 
-        buffer.withUnsafeMutablePointers { (valuePtr, elementPtr) -> Void in
+        buffer.withUnsafeMutablePointers { (valuePtr, elementPtr) in
             elementPtr.advancedBy(value.count).initialize(element)
             valuePtr.memory.count = value.count + 1
 
@@ -191,31 +160,6 @@ extension ManagedBufferHeap : BinaryHeapType {
         buffer = HeapBuffer.createBufferWithCapacity(newCapacity)
     }
 }
-
-// MARK: Initializers
-/*
-extension ManagedBufferHeap {
-    public init<C: CollectionType where C.Generator.Element == Element>(elements: C) {
-        let count = elements.underestimateCount()
-        buffer = HeapBuffer.createBufferWithCapacity(count)
-
-        buffer.withUnsafeMutablePointers { (valuePtr, elementPtr) -> Void in
-            elementPtr.initializeFrom(elements)
-            valuePtr.memory.count = count
-
-            // Heapify all non-leaves to create heap
-            let stride = (count / 2).stride(to: 0, by: -1)
-            for index in stride {
-                heapify(elementPtr, startIndex: index, endIndex: count)
-            }
-        }
-    }
-
-    public init<S: SequenceType where S.Generator.Element == Element>(elements: S) {
-        self.init(elements: Array(elements))
-    }
-}
-*/
 
 // MARK: Printing
 extension ManagedBufferHeap: CustomDebugStringConvertible, CustomStringConvertible {

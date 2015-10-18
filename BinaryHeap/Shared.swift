@@ -41,6 +41,40 @@ import Foundation
     return Int(x)
 }
 
+// TODO: alternative: just use UnsafeMutableBufferPointer (with already advanced start ptr)
+
+/// Restore heap condition
+internal func heapify<E : Comparable>(elements: UnsafeMutablePointer<E>, startIndex: Int, endIndex: Int) {
+    assert(startIndex >= 0)
+
+    var index = startIndex
+    while true {
+        assert(index >= startIndex)
+        assert(index < endIndex)
+
+        let leftIndex = leftChildIndex(index)
+        let rightIndex = rightChildIndex(index)
+
+        // Find the minimum among the element at 'index' and its children
+        var minIndex = index
+        if leftIndex < endIndex && (elements[leftIndex] < elements[index]) {
+            minIndex = leftIndex
+        }
+        if rightIndex < endIndex && (elements[rightIndex] < elements[minIndex]) {
+            minIndex = rightIndex
+        }
+
+        // Ensure the smallest element is at 'index' and recurse if neccessary
+        if minIndex != index {
+            swap(&elements[index], &elements[minIndex])
+            index = minIndex
+        } else {
+            return
+        }
+    }
+}
+
+
 
 internal func binaryHeapDescription<HeapType: BinaryHeapType>(heap: HeapType) -> String {
     // TODO: do this properly
