@@ -7,13 +7,18 @@
 //
 
 struct PtrElement<Element : Comparable> : Comparable {
-    let elementPtr: UnsafePointer<Element>
+    private let elementPtr: UnsafeMutablePointer<Element>
     
     init(_ element: Element) {
         let ptr = UnsafeMutablePointer<Element>.alloc(1)
         ptr.initialize(element)
         
-        self.elementPtr = UnsafePointer(ptr)
+        self.elementPtr = ptr
+    }
+
+    func destroy() {
+        elementPtr.destroy(1)
+        elementPtr.dealloc(1)
     }
 }
 

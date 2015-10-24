@@ -10,32 +10,8 @@ import Foundation
 import Chronos
 // import Framework
 
-struct Measurement {
-    let name: String
-    
-    let insert: Duration
-    let remove: Duration
 
-    var total: Duration {
-        return insert + remove
-    }
-}
-
-func printResult(base base: Measurement, measured: Measurement) {
-    print(measured.name)
-
-    let insertRatio = NSString(format: "%.2f", base.insert.seconds / measured.insert.seconds)
-    let removeRatio = NSString(format: "%.2f", base.remove.seconds / measured.remove.seconds)
-    let totalRatio = NSString(format: "%.2f", base.total.seconds / measured.total.seconds)
-
-    print("Insert: \(insertRatio) (\(measured.insert.description))")
-    print("Remove: \(removeRatio) (\(measured.remove.description))")
-    print("Total:  \(totalRatio) (\(measured.total.description))")
-    print("")
-}
-
-
-func timeHeap<Heap : BinaryHeapType, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, elements: [Element]) -> Measurement {
+func timeHeap<Heap : BinaryHeapType, Element : Comparable where Heap.Element == Element>(inout resultGroup: ResultSetGroup, heapType: Heap.Type, elements: [Element]) {
     var heap = heapType.init()
 
     // Add the elements
@@ -52,10 +28,15 @@ func timeHeap<Heap : BinaryHeapType, Element : Comparable where Heap.Element == 
     }
     let removeTime = sw2.elapsed()
 
-    return Measurement(name: String(heapType), insert: insertTime, remove: removeTime)
+    var name = String(heapType)
+    if let index = name.characters.indexOf("<") {
+        name = String(name.characters.prefixUpTo(index))
+    }
+
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeCFHeap<E: CFComparable>(elements: [E]) -> Measurement {
+func timeCFHeap<E: CFComparable>(elements: [E]) -> (insert: Duration, remove: Duration) {
     var heap = BinaryHeapCF<E>()
 
     // Add the elements
@@ -72,7 +53,7 @@ func timeCFHeap<E: CFComparable>(elements: [E]) -> Measurement {
     }
     let removeTime = sw2.elapsed()
 
-    return Measurement(name: String(BinaryHeapCF<E>.self), insert: insertTime, remove: removeTime)
+    return (insert: insertTime, remove: removeTime)
 }
 
 

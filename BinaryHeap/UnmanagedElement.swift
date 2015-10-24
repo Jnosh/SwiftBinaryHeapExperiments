@@ -13,6 +13,10 @@ struct UnmanagedElement<Element : protocol<Comparable, AnyObject>> : Comparable 
     init(_ element: Element) {
         self.element = Unmanaged.passRetained(element)
     }
+
+    func destroy() {
+        element.release()
+    }
 }
 
 func ==<Element>(lhs: UnmanagedElement<Element>, rhs: UnmanagedElement<Element>) -> Bool {

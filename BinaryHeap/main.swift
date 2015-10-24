@@ -18,6 +18,9 @@
 //          * -> Allocates ptrs for elements itself, moves there
 //          * -> maybe best to allocate buffer together with buffer for heap (same size)
 //          * -> in AnyObj case ideally just uses unsafeAddressOf with retain/release
+//          * Maybe store very small (sizeof) value types directly instead of ptrs (< ~2 word?)
+//          * Might be good idea to test basic idea with ManagedBufferHeap variant that uses
+//          * unmanaged els for AnyObjects
 
 // TODO: Also collect all tests when used with code in framework...
 // TODO: experiment with @transparent, etc... effect on framework (maybe put this in Swift?)
@@ -32,119 +35,85 @@
 //      Do we need to duplicate all or can we share some stuff?
 
 
-
 let count = 10000
+let iterations = 100
 
-// Generate nodes
-let refNodes = (0..<count).map { _ in RefElement() }
-
-let smallValNodes = (0..<count).map { _ in ValElementSmall() }
-let mediumValNodes = (0..<count).map { _ in ValElementMedium() }
-let largeValNodes = (0..<count).map { _ in ValElementLarge() }
-
-let ptrRefElements: [PtrElement<RefElement>] = refNodes.map { PtrElement($0) }
-let ptrValElements: [PtrElement<ValElementLarge>] = largeValNodes.map { PtrElement($0) }
-
-let unmanagedElements = refNodes.map { UnmanagedElement($0) }
+var resultsRef = ResultSetGroup(name: "RefElement")
+var resultsSmallVal = ResultSetGroup(name: "ValElement Small")
+var resultsMedVal = ResultSetGroup(name: "ValElement Medium")
+var resultsLargeVal = ResultSetGroup(name: "ValElement Large")
+var resultsPtrRef = ResultSetGroup(name: "PtrElement Ref")
+var resultsPtrVal = ResultSetGroup(name: "PtrElement Val")
+var resultsUnmanaged = ResultSetGroup(name: "UnmanagedElement")
 
 
+for _ in 0..<iterations {
+    let elementContainer = ElementContainer(count: count)
 
-let base = timeCFHeap(refNodes)
-printResult(base: base, measured: base)
+    let base = timeCFHeap(elementContainer.refElements)
+    resultsRef["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
+    resultsSmallVal["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
+    resultsMedVal["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
+    resultsLargeVal["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
+    resultsPtrRef["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
+    resultsPtrVal["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
+    resultsUnmanaged["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
 
+    do {
+        timeHeap(&resultsRef, heapType: ArrayHeap.self, elements: elementContainer.refElements)
+        timeHeap(&resultsSmallVal, heapType: ArrayHeap.self, elements: elementContainer.smallValElements)
+        timeHeap(&resultsMedVal, heapType: ArrayHeap.self, elements: elementContainer.mediumValElements)
+        timeHeap(&resultsLargeVal, heapType: ArrayHeap.self, elements: elementContainer.largeValElements)
+        timeHeap(&resultsPtrRef, heapType: ArrayHeap.self, elements: elementContainer.ptrRefElements)
+        timeHeap(&resultsPtrVal, heapType: ArrayHeap.self, elements: elementContainer.ptrValElements)
+        timeHeap(&resultsUnmanaged, heapType: ArrayHeap.self, elements: elementContainer.unmanagedElements)
+    }
 
-do {
-    let ref = timeHeap(ArrayHeap.self, elements: refNodes)
-    printResult(base: base, measured: ref)
+    do {
+        timeHeap(&resultsRef, heapType: ArrayPtrHeap.self, elements: elementContainer.refElements)
+        timeHeap(&resultsSmallVal, heapType: ArrayPtrHeap.self, elements: elementContainer.smallValElements)
+        timeHeap(&resultsMedVal, heapType: ArrayPtrHeap.self, elements: elementContainer.mediumValElements)
+        timeHeap(&resultsLargeVal, heapType: ArrayPtrHeap.self, elements: elementContainer.largeValElements)
+        timeHeap(&resultsPtrRef, heapType: ArrayPtrHeap.self, elements: elementContainer.ptrRefElements)
+        timeHeap(&resultsPtrVal, heapType: ArrayPtrHeap.self, elements: elementContainer.ptrValElements)
+        timeHeap(&resultsUnmanaged, heapType: ArrayPtrHeap.self, elements: elementContainer.unmanagedElements)
+    }
 
-    let small = timeHeap(ArrayHeap.self, elements: smallValNodes)
-    printResult(base: base, measured: small)
-    
-    let medium = timeHeap(ArrayHeap.self, elements: mediumValNodes)
-    printResult(base: base, measured: medium)
-    
-    let large = timeHeap(ArrayHeap.self, elements: largeValNodes)
-    printResult(base: base, measured: large)
-    
-    let ptrRef = timeHeap(ArrayHeap.self, elements: ptrRefElements)
-    printResult(base: base, measured: ptrRef)
-    
-    let ptrVal = timeHeap(ArrayHeap.self, elements: ptrValElements)
-    printResult(base: base, measured: ptrVal)
-    
-    let unmanaged = timeHeap(ArrayHeap.self, elements: unmanagedElements)
-    printResult(base: base, measured: unmanaged)
+    do {
+        timeHeap(&resultsRef, heapType: UnsafePtrHeap.self, elements: elementContainer.refElements)
+        timeHeap(&resultsSmallVal, heapType: UnsafePtrHeap.self, elements: elementContainer.smallValElements)
+        timeHeap(&resultsMedVal, heapType: UnsafePtrHeap.self, elements: elementContainer.mediumValElements)
+        timeHeap(&resultsLargeVal, heapType: UnsafePtrHeap.self, elements: elementContainer.largeValElements)
+        timeHeap(&resultsPtrRef, heapType: UnsafePtrHeap.self, elements: elementContainer.ptrRefElements)
+        timeHeap(&resultsPtrVal, heapType: UnsafePtrHeap.self, elements: elementContainer.ptrValElements)
+        timeHeap(&resultsUnmanaged, heapType: UnsafePtrHeap.self, elements: elementContainer.unmanagedElements)
+    }
+
+    do {
+        timeHeap(&resultsRef, heapType: ManagedBufferHeap.self, elements: elementContainer.refElements)
+        timeHeap(&resultsSmallVal, heapType: ManagedBufferHeap.self, elements: elementContainer.smallValElements)
+        timeHeap(&resultsMedVal, heapType: ManagedBufferHeap.self, elements: elementContainer.mediumValElements)
+        timeHeap(&resultsLargeVal, heapType: ManagedBufferHeap.self, elements: elementContainer.largeValElements)
+        timeHeap(&resultsPtrRef, heapType: ManagedBufferHeap.self, elements: elementContainer.ptrRefElements)
+        timeHeap(&resultsPtrVal, heapType: ManagedBufferHeap.self, elements: elementContainer.ptrValElements)
+        timeHeap(&resultsUnmanaged, heapType: ManagedBufferHeap.self, elements: elementContainer.unmanagedElements)
+    }
 }
 
+printResult(resultsRef)
+print("")
+printResult(resultsSmallVal)
+print("")
+printResult(resultsMedVal)
+print("")
+printResult(resultsLargeVal)
+print("")
+printResult(resultsPtrRef)
+print("")
+printResult(resultsPtrVal)
+print("")
+printResult(resultsUnmanaged)
 
-do {
-    let ref = timeHeap(ArrayPtrHeap.self, elements: refNodes)
-    printResult(base: base, measured: ref)
-    
-    let small = timeHeap(ArrayPtrHeap.self, elements: smallValNodes)
-    printResult(base: base, measured: small)
-    
-    let medium = timeHeap(ArrayPtrHeap.self, elements: mediumValNodes)
-    printResult(base: base, measured: medium)
-    
-    let large = timeHeap(ArrayPtrHeap.self, elements: largeValNodes)
-    printResult(base: base, measured: large)
-    
-    let ptrRef = timeHeap(ArrayPtrHeap.self, elements: ptrRefElements)
-    printResult(base: base, measured: ptrRef)
-    
-    let ptrVal = timeHeap(ArrayPtrHeap.self, elements: ptrValElements)
-    printResult(base: base, measured: ptrVal)
-    
-    let unmanaged = timeHeap(ArrayPtrHeap.self, elements: unmanagedElements)
-    printResult(base: base, measured: unmanaged)
-}
-
-do {
-    let ref = timeHeap(UnsafePtrHeap.self, elements: refNodes)
-    printResult(base: base, measured: ref)
-
-    let small = timeHeap(UnsafePtrHeap.self, elements: smallValNodes)
-    printResult(base: base, measured: small)
-
-    let medium = timeHeap(UnsafePtrHeap.self, elements: mediumValNodes)
-    printResult(base: base, measured: medium)
-
-    let large = timeHeap(UnsafePtrHeap.self, elements: largeValNodes)
-    printResult(base: base, measured: large)
-
-    let ptrRef = timeHeap(UnsafePtrHeap.self, elements: ptrRefElements)
-    printResult(base: base, measured: ptrRef)
-
-    let ptrVal = timeHeap(UnsafePtrHeap.self, elements: ptrValElements)
-    printResult(base: base, measured: ptrVal)
-
-    let unmanaged = timeHeap(UnsafePtrHeap.self, elements: unmanagedElements)
-    printResult(base: base, measured: unmanaged)
-}
-
-do {
-    let ref = timeHeap(ManagedBufferHeap.self, elements: refNodes)
-    printResult(base: base, measured: ref)
-    
-    let small = timeHeap(ManagedBufferHeap.self, elements: smallValNodes)
-    printResult(base: base, measured: small)
-    
-    let medium = timeHeap(ManagedBufferHeap.self, elements: mediumValNodes)
-    printResult(base: base, measured: medium)
-    
-    let large = timeHeap(ManagedBufferHeap.self, elements: largeValNodes)
-    printResult(base: base, measured: large)
-    
-    let ptrRef = timeHeap(ManagedBufferHeap.self, elements: ptrRefElements)
-    printResult(base: base, measured: ptrRef)
-    
-    let ptrVal = timeHeap(ManagedBufferHeap.self, elements: ptrValElements)
-    printResult(base: base, measured: ptrVal)
-    
-    let unmanaged = timeHeap(ManagedBufferHeap.self, elements: unmanagedElements)
-    printResult(base: base, measured: unmanaged)
-}
 
 
 
