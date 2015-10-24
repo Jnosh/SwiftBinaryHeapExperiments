@@ -1,5 +1,5 @@
 //
-//  Tests.swift
+//  ResultCollection.swift
 //  BinaryHeap
 //
 //  Created by Janosch Hildebrand on 18/10/15.
@@ -8,39 +8,6 @@
 
 import Foundation
 import Chronos
-
-class ElementContainer {
-    let refElements: [RefElement]
-
-    let smallValElements: [ValElementSmall]
-    let mediumValElements: [ValElementMedium]
-    let largeValElements: [ValElementLarge]
-
-    let ptrRefElements: [PtrElement<RefElement>]
-    let ptrValElements: [PtrElement<ValElementLarge>]
-
-    let unmanagedElements: [UnmanagedElement<RefElement>]
-
-    init(count: Int) {
-        // Generate nodes
-        refElements = (0..<count).map { _ in RefElement() }
-
-        smallValElements = (0..<count).map { _ in ValElementSmall() }
-        mediumValElements = (0..<count).map { _ in ValElementMedium() }
-        largeValElements = (0..<count).map { _ in ValElementLarge() }
-
-        ptrRefElements = refElements.map { PtrElement($0) }
-        ptrValElements = largeValElements.map { PtrElement($0) }
-
-        unmanagedElements = refElements.map { UnmanagedElement($0) }
-    }
-
-    deinit {
-        ptrRefElements.forEach { $0.destroy() }
-        ptrValElements.forEach { $0.destroy() }
-        unmanagedElements.forEach { $0.destroy() }
-    }
-}
 
 
 struct MeasurementSet {
@@ -98,7 +65,7 @@ struct ResultSet {
     }
 }
 
-struct ResultSetGroup {
+final class ResultSetGroup {
     let name: String
     private var resultSets: [String : ResultSet] = [:]
 
@@ -131,7 +98,11 @@ func printResult(resultGroup: ResultSetGroup) {
     let paddedTags = tags.map {
         String(count: 12 - $0.characters.count, repeatedValue: " " as Character) + $0
     }
-    print(name + "  " + paddedTags.joinWithSeparator("  "))
+
+    let titleRow = name + " | " + paddedTags.joinWithSeparator(" | ")
+    let titleUnderline = String(count: titleRow.characters.count, repeatedValue: "-" as Character)
+    print(titleRow)
+    print(titleUnderline)
 
 
     for resultSet in resultSets {
@@ -141,8 +112,11 @@ func printResult(resultGroup: ResultSetGroup) {
         let total = padDuration(resultSet.totals.mean)
         let stddev = padDuration(resultSet.totals.stddev)
 
-        print([name, insert, remove, total, stddev].joinWithSeparator("  "))
+        print([name, insert, remove, total, stddev].joinWithSeparator(" | "))
     }
+
+    print(titleUnderline)
+    print("")
 }
 
 
