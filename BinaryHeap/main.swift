@@ -25,19 +25,23 @@
 // TODO: Variants (where possible) that use comparison closure instead of Comparable
 //      Do we need to duplicate all or can we share some stuff?
 
+
 import Framework
 
 let count = 10000
 let iterations = 10
 
 
-var resultsRef = ResultSetGroup(name: "RefElement")
-var resultsSmallVal = ResultSetGroup(name: "ValElement Small")
-var resultsMedVal = ResultSetGroup(name: "ValElement Medium")
-var resultsLargeVal = ResultSetGroup(name: "ValElement Large")
-var resultsPtrRef = ResultSetGroup(name: "PtrElement Ref")
-var resultsPtrVal = ResultSetGroup(name: "PtrElement Val")
-var resultsUnmanaged = ResultSetGroup(name: "UnmanagedElement")
+let resultsRef = ResultSetGroup(name: "RefElement")
+let resultsSmallVal = ResultSetGroup(name: "ValElement Small")
+let resultsMedVal = ResultSetGroup(name: "ValElement Medium")
+let resultsLargeVal = ResultSetGroup(name: "ValElement Large")
+let resultsPtrRef = ResultSetGroup(name: "PtrElement Ref")
+let resultsPtrVal = ResultSetGroup(name: "PtrElement Val")
+let resultsUnmanaged = ResultSetGroup(name: "UnmanagedElement")
+
+let allResultGroups = [resultsRef, resultsSmallVal, resultsMedVal, resultsLargeVal, resultsPtrRef, resultsPtrVal, resultsUnmanaged]
+
 
 // TODO: Maybe split this into several functions
 //      Split by heap type or element type?
@@ -45,14 +49,12 @@ var resultsUnmanaged = ResultSetGroup(name: "UnmanagedElement")
 for _ in 0..<iterations {
     let elementContainer = ElementContainer(count: count)
 
-    let base = timeCFHeap(elementContainer.refElements)
-    resultsRef["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
-    resultsSmallVal["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
-    resultsMedVal["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
-    resultsLargeVal["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
-    resultsPtrRef["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
-    resultsPtrVal["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
-    resultsUnmanaged["CFBinaryHeap"].addMeasurement(base.insert, remove: base.remove)
+
+    timeCFHeap(allResultGroups, elements: elementContainer.refElements)
+    timeCFHeap(allResultGroups, elements: elementContainer.refElements)
+
+    timeFrameworkCFHeap(allResultGroups, elements: elementContainer.refElements)
+    timeFrameworkCFHeap(allResultGroups, elements: elementContainer.refElements)
 
     do {
         timeHeap(resultsRef, heapType: ArrayHeap.self, elements: elementContainer.refElements)
@@ -134,8 +136,6 @@ printResult(resultsLargeVal)
 printResult(resultsPtrRef)
 printResult(resultsPtrVal)
 printResult(resultsUnmanaged)
-
-
 
 
 

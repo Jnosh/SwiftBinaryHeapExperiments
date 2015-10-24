@@ -10,7 +10,7 @@ import Chronos
 import Framework
 
 
-func timeCFHeap<E: CFComparable>(elements: [E]) -> (insert: Duration, remove: Duration) {
+func timeCFHeap<E: CFComparable>(resultGroups: [ResultSetGroup], elements: [E]) {
     var heap = BinaryHeapCF<E>()
 
     // Add the elements
@@ -27,8 +27,45 @@ func timeCFHeap<E: CFComparable>(elements: [E]) -> (insert: Duration, remove: Du
     }
     let removeTime = sw2.elapsed()
 
-    return (insert: insertTime, remove: removeTime)
+    var name = String(BinaryHeapCF<E>.self)
+    if let index = name.characters.indexOf("<") {
+        name = String(name.characters.prefixUpTo(index))
+    }
+
+    for resultGroup in resultGroups {
+        resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+    }
 }
+
+
+func timeFrameworkCFHeap<E: Framework.CFComparable>(resultGroups: [ResultSetGroup], elements: [E]) {
+    var heap = Framework.BinaryHeapCF<E>()
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while heap.count != 0 {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+    var name = String(reflecting: Framework.BinaryHeapCF<E>.self)
+    if let index = name.characters.indexOf("<") {
+        name = String(name.characters.prefixUpTo(index))
+    }
+
+    for resultGroup in resultGroups {
+        resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+    }
+}
+
+
 
 
 func timeHeap<Heap : BinaryHeapType, Element : Comparable where Heap.Element == Element>(resultGroup: ResultSetGroup, heapType: Heap.Type, elements: [Element]) {
@@ -81,29 +118,5 @@ func timeFrameworkHeap<Heap : Framework.BinaryHeapType, Element : Comparable whe
 
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
-
-/*
-
-func timeFrameworkCFHeap<E: Framework.CFComparable>(elements: [E]) -> Measurement {
-    var heap = Framework.BinaryHeapCF<E>()
-
-    // Add the elements
-    let sw1 = Stopwatch()
-    for element in elements {
-        heap.insert(element)
-    }
-    let insertTime = sw1.elapsed()
-
-    // Retrieve the elements in order
-    let sw2 = Stopwatch()
-    while heap.count != 0 {
-        heap.removeFirst()
-    }
-    let removeTime = sw2.elapsed()
-
-    return Measurement(name: String(Framework.BinaryHeapCF<E>.self), insert: insertTime, remove: removeTime)
-}
-
-*/
 
 
