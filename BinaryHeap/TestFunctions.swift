@@ -63,7 +63,7 @@ func timeFrameworkCFHeap<E: Framework.CFComparable>(resultGroups: [ResultSetGrou
     }
 }
 
-func timeComparisonHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
+func timePtrElementHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
     let elementPtr = UnsafeMutablePointer<E>.alloc(elements.count)
     elementPtr.initializeFrom(elements)
     defer {
@@ -92,7 +92,7 @@ func timeComparisonHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, 
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeFrameworkComparisonHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
+func timeFrameworkPtrElementHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
     let elementPtr = UnsafeMutablePointer<E>.alloc(elements.count)
     elementPtr.initializeFrom(elements)
     defer {

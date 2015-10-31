@@ -84,22 +84,22 @@ func timeManagedBufferHeap(results results: ResultContainer, elements: ElementCo
     timeFrameworkHeap(Framework.ManagedBufferHeap.self, resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
 }
 
-func timeComparisonHeap(results results: ResultContainer, elements: ElementContainer) {
-    timeComparisonHeap(resultGroup: results.refResults, elements: elements.refElements)
-    timeComparisonHeap(resultGroup: results.smallValResults, elements: elements.smallValElements)
-    timeComparisonHeap(resultGroup: results.medValResults, elements: elements.mediumValElements)
-    timeComparisonHeap(resultGroup: results.largeValResults, elements: elements.largeValElements)
-    timeComparisonHeap(resultGroup: results.ptrRefResults, elements: elements.ptrRefElements)
-    timeComparisonHeap(resultGroup: results.ptrValResults, elements: elements.ptrValElements)
-    timeComparisonHeap(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
+func timePtrElementHeap(results results: ResultContainer, elements: ElementContainer) {
+    timePtrElementHeap(resultGroup: results.refResults, elements: elements.refElements)
+    timePtrElementHeap(resultGroup: results.smallValResults, elements: elements.smallValElements)
+    timePtrElementHeap(resultGroup: results.medValResults, elements: elements.mediumValElements)
+    timePtrElementHeap(resultGroup: results.largeValResults, elements: elements.largeValElements)
+    timePtrElementHeap(resultGroup: results.ptrRefResults, elements: elements.ptrRefElements)
+    timePtrElementHeap(resultGroup: results.ptrValResults, elements: elements.ptrValElements)
+    timePtrElementHeap(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
 
-    timeFrameworkComparisonHeap(resultGroup: results.refResults, elements: elements.refElements)
-    timeFrameworkComparisonHeap(resultGroup: results.smallValResults, elements: elements.smallValElements)
-    timeFrameworkComparisonHeap(resultGroup: results.medValResults, elements: elements.mediumValElements)
-    timeFrameworkComparisonHeap(resultGroup: results.largeValResults, elements: elements.largeValElements)
-    timeFrameworkComparisonHeap(resultGroup: results.ptrRefResults, elements: elements.ptrRefElements)
-    timeFrameworkComparisonHeap(resultGroup: results.ptrValResults, elements: elements.ptrValElements)
-    timeFrameworkComparisonHeap(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
+    timeFrameworkPtrElementHeap(resultGroup: results.refResults, elements: elements.refElements)
+    timeFrameworkPtrElementHeap(resultGroup: results.smallValResults, elements: elements.smallValElements)
+    timeFrameworkPtrElementHeap(resultGroup: results.medValResults, elements: elements.mediumValElements)
+    timeFrameworkPtrElementHeap(resultGroup: results.largeValResults, elements: elements.largeValElements)
+    timeFrameworkPtrElementHeap(resultGroup: results.ptrRefResults, elements: elements.ptrRefElements)
+    timeFrameworkPtrElementHeap(resultGroup: results.ptrValResults, elements: elements.ptrValElements)
+    timeFrameworkPtrElementHeap(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
 }
 
 func timeClosureHeap(results results: ResultContainer, elements: ElementContainer) {

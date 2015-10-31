@@ -82,6 +82,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D84620261BE5722E0086DBDF /* Current Results.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Current Results.txt"; sourceTree = "<group>"; };
+		D84620271BE5722E0086DBDF /* Old Project Results.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Old Project Results.txt"; sourceTree = "<group>"; };
 		D8937A9D1BD2F1500041999A /* SharedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedTests.swift; sourceTree = "<group>"; };
 		D8937A9F1BD2F8620041999A /* ArrayHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayHeap_Tests.swift; sourceTree = "<group>"; };
 		D8937AA11BD2FBD30041999A /* ArrayPtrHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayPtrHeap_Tests.swift; sourceTree = "<group>"; };
@@ -135,8 +137,6 @@
 		D8D191631BD27B400069D9EF /* watchOS-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-Framework.xcconfig"; sourceTree = "<group>"; };
 		D8D191641BD27B400069D9EF /* watchOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		D8D191651BD2BC9B0069D9EF /* Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
-		D8D191681BD2D0A70069D9EF /* Current Results.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Current Results.txt"; sourceTree = "<group>"; };
-		D8D191691BD2D0A70069D9EF /* Old Results.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Old Results.txt"; sourceTree = "<group>"; };
 		D8D1917E1BD2DC9B0069D9EF /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8D191801BD2DC9B0069D9EF /* BinaryHeapCF_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryHeapCF_Tests.swift; sourceTree = "<group>"; };
 		D8D191821BD2DC9B0069D9EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,6 +181,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D84620251BE5722E0086DBDF /* Results */ = {
+			isa = PBXGroup;
+			children = (
+				D84620261BE5722E0086DBDF /* Current Results.txt */,
+				D84620271BE5722E0086DBDF /* Old Project Results.txt */,
+			);
+			path = Results;
+			sourceTree = "<group>";
+		};
 		D8B255CB1BB051AD002ED631 /* Element Types */ = {
 			isa = PBXGroup;
 			children = (
@@ -367,8 +376,7 @@
 		D8EF8D251B9B2DA6003B0B37 = {
 			isa = PBXGroup;
 			children = (
-				D8D191681BD2D0A70069D9EF /* Current Results.txt */,
-				D8D191691BD2D0A70069D9EF /* Old Results.txt */,
+				D84620251BE5722E0086DBDF /* Results */,
 				D8EF8D301B9B2DA6003B0B37 /* Profiling */,
 				D8EF8D641B9B2ED0003B0B37 /* BinaryHeap Variants */,
 				D8B255DC1BB06BF9002ED631 /* Framework Target */,

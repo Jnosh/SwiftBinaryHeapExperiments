@@ -35,15 +35,15 @@ for _ in 0..<iterations {
     timeCFHeap(resultContainer.allResultGroups, elements: elementContainer.refElements)
     timeFrameworkCFHeap(resultContainer.allResultGroups, elements: elementContainer.refElements)
 
-    timeHeap(ClassElementHeap.self, resultGroup: resultContainer.refResults, elements: elementContainer.refElements)
-    timeFrameworkHeap(Framework.ClassElementHeap.self, resultGroup: resultContainer.refResults, elements: elementContainer.refElements)
-
     timeArrayHeap(results: resultContainer, elements: elementContainer)
     timeArrayPtrHeap(results: resultContainer, elements: elementContainer)
     timeUnsafePtrHeap(results: resultContainer, elements: elementContainer)
     timeManagedBufferHeap(results: resultContainer, elements: elementContainer)
 
-    timeComparisonHeap(results: resultContainer, elements: elementContainer)
+    timeHeap(ClassElementHeap.self, resultGroup: resultContainer.refResults, elements: elementContainer.refElements)
+    timeFrameworkHeap(Framework.ClassElementHeap.self, resultGroup: resultContainer.refResults, elements: elementContainer.refElements)
+
+    timePtrElementHeap(results: resultContainer, elements: elementContainer)
 
     timeClosureHeap(results: resultContainer, elements: elementContainer)
 }

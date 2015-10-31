@@ -1,0 +1,171 @@
+RefElement                            |       Insert |       Remove |        Total |            σ
+-------------------------------------------------------------------------------------------------
+PtrElementHeap                        |    0.09528ms |     0.9556ms |      1.051ms |    0.03905ms
+ClassElementHeap                      |     0.3013ms |      1.228ms |      1.529ms |    0.06707ms
+ClosureHeap (local literal)           |     0.4553ms |      1.461ms |      1.916ms |    0.06812ms
+ManagedBufferHeap                     |       0.58ms |      1.343ms |      1.923ms |     0.1065ms
+UnsafePtrHeap                         |     0.4344ms |      1.632ms |      2.066ms |      0.126ms
+ArrayHeap (@transparent)              |     0.4509ms |      2.482ms |      2.933ms |     0.1061ms
+ArrayPtrHeap (@transparent)           |     0.9108ms |      2.188ms |      3.098ms |      0.165ms
+BinaryHeapCF                          |     0.6734ms |      2.574ms |      3.248ms |     0.1459ms
+Framework.BinaryHeapCF                |     0.7502ms |      3.028ms |      3.778ms |    0.05177ms
+ArrayPtrHeap                          |     0.9477ms |      4.286ms |      5.234ms |     0.2668ms
+ArrayHeap                             |      1.294ms |      9.914ms |      11.21ms |     0.3548ms
+ClosureHeapargument literal           |      1.369ms |      10.23ms |       11.6ms |     0.3982ms
+ClosureHeapargument <                 |      1.407ms |      10.36ms |      11.77ms |     0.7976ms
+Framework.ClosureHeapargument literal |      1.758ms |      11.65ms |      13.41ms |     0.2151ms
+Framework.ClosureHeapargument <       |       1.77ms |       11.8ms |      13.57ms |     0.3266ms
+ClosureHeap (local <)                 |      1.251ms |      12.61ms |      13.86ms |     0.2535ms
+Framework.ClosureHeap (local literal) |      1.829ms |      12.81ms |      14.64ms |     0.3094ms
+Framework.UnsafePtrHeap               |      1.883ms |      13.23ms |      15.12ms |     0.5135ms
+Framework.ClassElementHeap            |      2.271ms |      14.32ms |      16.59ms |     0.2867ms
+Framework.ClosureHeap (local <)       |      2.151ms |      18.17ms |      20.32ms |      1.751ms
+Framework.ManagedBufferHeap           |      9.249ms |      21.15ms |       30.4ms |     0.6099ms
+Framework.ArrayPtrHeap                |      11.86ms |      29.91ms |      41.77ms |      1.329ms
+Framework.PtrElementHeap              |      4.324ms |      112.7ms |      117.1ms |      2.419ms
+Framework.ArrayHeap                   |      14.06ms |      138.1ms |      152.2ms |      3.367ms
+-------------------------------------------------------------------------------------------------
+
+ValElement Small                      |       Insert |       Remove |        Total |            σ
+-------------------------------------------------------------------------------------------------
+PtrElementHeap                        |    0.08152ms |     0.9476ms |      1.029ms |    0.01799ms
+ClosureHeap (local literal)           |     0.2273ms |     0.9147ms |      1.142ms |    0.02962ms
+ManagedBufferHeap                     |     0.2917ms |      0.942ms |      1.234ms |    0.03395ms
+UnsafePtrHeap                         |     0.2715ms |      0.965ms |      1.236ms |     0.0856ms
+ArrayHeap                             |     0.2029ms |      1.139ms |      1.342ms |    0.06422ms
+ArrayPtrHeap                          |     0.3467ms |      2.895ms |      3.242ms |     0.2034ms
+BinaryHeapCF                          |     0.6734ms |      2.574ms |      3.248ms |     0.1459ms
+ClosureHeapargument literal           |      0.373ms |      3.397ms |       3.77ms |    0.04915ms
+Framework.BinaryHeapCF                |     0.7502ms |      3.028ms |      3.778ms |    0.05177ms
+ClosureHeapargument <                 |     0.3644ms |      3.513ms |      3.877ms |     0.1922ms
+ClosureHeap (local <)                 |     0.2938ms |      4.683ms |      4.977ms |     0.1839ms
+Framework.UnsafePtrHeap               |     0.9749ms |      5.409ms |      6.384ms |     0.1164ms
+Framework.ClosureHeap (local literal) |     0.9445ms |      5.743ms |      6.688ms |     0.1279ms
+Framework.ClosureHeapargument <       |     0.9743ms |      6.183ms |      7.158ms |     0.2744ms
+Framework.ClosureHeapargument literal |      0.966ms |      6.244ms |      7.209ms |     0.2396ms
+Framework.ClosureHeap (local <)       |      1.141ms |      10.25ms |      11.39ms |     0.8592ms
+Framework.ManagedBufferHeap           |      8.031ms |      14.36ms |      22.39ms |     0.4083ms
+Framework.ArrayPtrHeap                |      10.01ms |      22.09ms |       32.1ms |     0.8109ms
+Framework.PtrElementHeap              |      4.315ms |        112ms |      116.3ms |      2.162ms
+Framework.ArrayHeap                   |      11.19ms |        112ms |      123.2ms |      2.974ms
+-------------------------------------------------------------------------------------------------
+
+ValElement Medium                     |       Insert |       Remove |        Total |            σ
+-------------------------------------------------------------------------------------------------
+PtrElementHeap                        |    0.07393ms |     0.9398ms |      1.014ms |    0.01357ms
+ClosureHeap (local literal)           |     0.3496ms |      1.214ms |      1.564ms |    0.09022ms
+ManagedBufferHeap                     |     0.3901ms |      1.273ms |      1.663ms |    0.08303ms
+UnsafePtrHeap                         |     0.3764ms |      1.296ms |      1.672ms |      0.101ms
+ArrayHeap                             |     0.3808ms |      1.462ms |      1.843ms |    0.08917ms
+BinaryHeapCF                          |     0.6734ms |      2.574ms |      3.248ms |     0.1459ms
+Framework.BinaryHeapCF                |     0.7502ms |      3.028ms |      3.778ms |    0.05177ms
+ArrayPtrHeap                          |     0.4519ms |       3.44ms |      3.892ms |     0.3271ms
+ClosureHeapargument literal           |     0.4932ms |      3.622ms |      4.115ms |     0.1818ms
+ClosureHeapargument <                 |     0.5274ms |      3.643ms |       4.17ms |     0.2311ms
+ClosureHeap (local <)                 |     0.4277ms |      5.379ms |      5.807ms |     0.1884ms
+Framework.ClosureHeap (local literal) |      5.523ms |      39.38ms |       44.9ms |     0.5879ms
+Framework.ClosureHeapargument literal |      5.506ms |      39.41ms |      44.92ms |     0.8345ms
+Framework.ClosureHeapargument <       |      5.724ms |      40.06ms |      45.78ms |      1.549ms
+Framework.UnsafePtrHeap               |      5.481ms |      41.37ms |      46.85ms |      2.272ms
+Framework.ClosureHeap (local <)       |      5.624ms |      44.18ms |      49.81ms |      1.095ms
+Framework.ManagedBufferHeap           |      12.34ms |      48.88ms |      61.22ms |      1.137ms
+Framework.ArrayPtrHeap                |      18.26ms |      59.72ms |      77.97ms |      1.652ms
+Framework.PtrElementHeap              |      4.332ms |      112.2ms |      116.5ms |      2.252ms
+Framework.ArrayHeap                   |      15.39ms |      151.6ms |        167ms |      7.533ms
+-------------------------------------------------------------------------------------------------
+
+ValElement Large                      |       Insert |       Remove |        Total |            σ
+-------------------------------------------------------------------------------------------------
+PtrElementHeap                        |    0.08197ms |     0.9518ms |      1.034ms |    0.03198ms
+UnsafePtrHeap                         |     0.9682ms |      1.872ms |      2.841ms |     0.1684ms
+ArrayHeap                             |     0.9238ms |      2.121ms |      3.045ms |    0.09411ms
+ClosureHeap (local literal)           |      1.278ms |      1.785ms |      3.063ms |    0.05376ms
+BinaryHeapCF                          |     0.6734ms |      2.574ms |      3.248ms |     0.1459ms
+ManagedBufferHeap                     |      1.405ms |      2.027ms |      3.432ms |      0.171ms
+Framework.BinaryHeapCF                |     0.7502ms |      3.028ms |      3.778ms |    0.05177ms
+ArrayPtrHeap                          |     0.8144ms |      4.207ms |      5.022ms |     0.4297ms
+ClosureHeapargument literal           |      1.433ms |      4.114ms |      5.547ms |      0.142ms
+ClosureHeapargument <                 |      1.478ms |      4.159ms |      5.637ms |     0.2476ms
+ClosureHeap (local <)                 |     0.8106ms |      6.678ms |      7.488ms |     0.2392ms
+Framework.ClosureHeap (local literal) |      6.986ms |      44.41ms |       51.4ms |      0.857ms
+Framework.ClosureHeapargument literal |      6.915ms |      46.16ms |      53.08ms |      1.332ms
+Framework.UnsafePtrHeap               |      7.323ms |      45.81ms |      53.14ms |       1.98ms
+Framework.ClosureHeapargument <       |      7.003ms |      47.03ms |      54.03ms |      3.413ms
+Framework.ClosureHeap (local <)       |      7.117ms |      49.37ms |      56.49ms |      1.459ms
+Framework.ManagedBufferHeap           |      13.52ms |      54.45ms |      67.97ms |     0.9026ms
+Framework.ArrayPtrHeap                |      19.53ms |      66.71ms |      86.24ms |      3.464ms
+Framework.PtrElementHeap              |      4.295ms |      111.9ms |      116.2ms |      1.736ms
+Framework.ArrayHeap                   |      16.65ms |        156ms |      172.6ms |      14.85ms
+-------------------------------------------------------------------------------------------------
+
+PtrElement Ref                        |       Insert |       Remove |        Total |            σ
+-------------------------------------------------------------------------------------------------
+PtrElementHeap                        |    0.08024ms |     0.9529ms |      1.033ms |    0.01616ms
+UnsafePtrHeap                         |     0.2868ms |      1.536ms |      1.823ms |    0.08399ms
+ClosureHeap (local literal)           |     0.2565ms |      1.588ms |      1.845ms |    0.03676ms
+ManagedBufferHeap                     |     0.3742ms |      1.723ms |      2.097ms |       0.17ms
+ArrayHeap                             |     0.2749ms |      1.882ms |      2.157ms |        0.1ms
+BinaryHeapCF                          |     0.6734ms |      2.574ms |      3.248ms |     0.1459ms
+Framework.BinaryHeapCF                |     0.7502ms |      3.028ms |      3.778ms |    0.05177ms
+ArrayPtrHeap                          |     0.4773ms |      3.902ms |       4.38ms |     0.7182ms
+ClosureHeapargument <                 |     0.3903ms |      4.008ms |      4.398ms |     0.2268ms
+ClosureHeapargument literal           |      0.404ms |      4.044ms |      4.448ms |     0.2512ms
+Framework.ClosureHeap (local literal) |     0.9349ms |      6.172ms |      7.107ms |     0.2221ms
+Framework.ClosureHeapargument <       |     0.9525ms |      6.376ms |      7.329ms |     0.2373ms
+Framework.ClosureHeapargument literal |     0.9731ms |      6.469ms |      7.442ms |     0.4393ms
+ClosureHeap (local <)                 |      1.282ms |      14.27ms |      15.55ms |     0.2753ms
+Framework.UnsafePtrHeap               |      2.014ms |      15.21ms |      17.22ms |     0.7369ms
+Framework.ClosureHeap (local <)       |      2.201ms |      20.67ms |      22.87ms |     0.6939ms
+Framework.ManagedBufferHeap           |      9.246ms |      23.89ms |      33.13ms |      1.144ms
+Framework.ArrayPtrHeap                |      11.35ms |      32.12ms |      43.47ms |      1.305ms
+Framework.PtrElementHeap              |      4.236ms |      112.1ms |      116.4ms |      1.157ms
+Framework.ArrayHeap                   |      12.73ms |      126.7ms |      139.4ms |      13.85ms
+-------------------------------------------------------------------------------------------------
+
+PtrElement Val                        |       Insert |       Remove |        Total |            σ
+-------------------------------------------------------------------------------------------------
+PtrElementHeap                        |    0.08555ms |     0.9592ms |      1.045ms |    0.03467ms
+ClosureHeap (local literal)           |     0.2327ms |      1.355ms |      1.588ms |    0.03617ms
+UnsafePtrHeap                         |     0.2636ms |      1.346ms |       1.61ms |    0.03565ms
+ManagedBufferHeap                     |     0.3691ms |      1.448ms |      1.817ms |     0.1099ms
+ArrayHeap                             |     0.2627ms |      1.626ms |      1.889ms |     0.1391ms
+BinaryHeapCF                          |     0.6734ms |      2.574ms |      3.248ms |     0.1459ms
+Framework.BinaryHeapCF                |     0.7502ms |      3.028ms |      3.778ms |    0.05177ms
+ArrayPtrHeap                          |     0.4152ms |      3.555ms |      3.971ms |     0.2388ms
+ClosureHeapargument <                 |     0.3785ms |      3.636ms |      4.015ms |     0.1325ms
+ClosureHeapargument literal           |     0.3842ms |      3.668ms |      4.052ms |     0.2351ms
+Framework.ClosureHeap (local literal) |     0.9301ms |      5.794ms |      6.724ms |      0.163ms
+Framework.ClosureHeapargument <       |      1.003ms |      6.005ms |      7.008ms |     0.2903ms
+Framework.ClosureHeapargument literal |     0.9908ms |      6.205ms |      7.196ms |      0.582ms
+ClosureHeap (local <)                 |      3.694ms |      37.73ms |      41.42ms |      0.739ms
+Framework.UnsafePtrHeap               |      4.506ms |       38.5ms |      43.01ms |     0.9815ms
+Framework.ClosureHeap (local <)       |      4.888ms |      44.32ms |       49.2ms |     0.9309ms
+Framework.ManagedBufferHeap           |      11.99ms |      48.51ms |      60.51ms |      2.947ms
+Framework.ArrayPtrHeap                |      13.81ms |      56.75ms |      70.56ms |      2.036ms
+Framework.PtrElementHeap              |      4.356ms |      112.8ms |      117.1ms |       2.21ms
+Framework.ArrayHeap                   |      15.08ms |      149.9ms |        165ms |       11.3ms
+-------------------------------------------------------------------------------------------------
+
+UnmanagedElement                      |       Insert |       Remove |        Total |            σ
+-------------------------------------------------------------------------------------------------
+PtrElementHeap                        |     0.0729ms |     0.9771ms |       1.05ms |    0.07052ms
+UnsafePtrHeap                         |     0.2783ms |      1.156ms |      1.434ms |    0.05701ms
+ClosureHeap (local literal)           |     0.2604ms |      1.245ms |      1.506ms |    0.04457ms
+ManagedBufferHeap                     |     0.3255ms |      1.247ms |      1.573ms |    0.05042ms
+ArrayHeap                             |     0.2443ms |      1.475ms |      1.719ms |     0.1248ms
+BinaryHeapCF                          |     0.6734ms |      2.574ms |      3.248ms |     0.1459ms
+Framework.BinaryHeapCF                |     0.7502ms |      3.028ms |      3.778ms |    0.05177ms
+ArrayPtrHeap                          |     0.4355ms |      3.392ms |      3.828ms |     0.3551ms
+ClosureHeapargument literal           |     0.4099ms |      3.649ms |      4.059ms |    0.07983ms
+ClosureHeapargument <                 |     0.4009ms |      3.706ms |      4.107ms |     0.1571ms
+Framework.ClosureHeap (local literal) |     0.9661ms |      5.909ms |      6.875ms |     0.1969ms
+Framework.ClosureHeapargument <       |      1.006ms |      6.071ms |      7.076ms |      0.271ms
+Framework.ClosureHeapargument literal |      1.033ms |      6.255ms |      7.287ms |     0.3354ms
+ClosureHeap (local <)                 |       1.27ms |      13.67ms |      14.94ms |      0.167ms
+Framework.UnsafePtrHeap               |      1.865ms |      14.16ms |      16.02ms |     0.4323ms
+Framework.ClosureHeap (local <)       |      2.121ms |      19.51ms |      21.63ms |     0.7769ms
+Framework.ManagedBufferHeap           |      9.005ms |      22.67ms |      31.68ms |     0.6938ms
+Framework.ArrayPtrHeap                |      11.45ms |      31.14ms |      42.59ms |      1.661ms
+Framework.PtrElementHeap              |      4.331ms |      112.1ms |      116.4ms |      2.093ms
+Framework.ArrayHeap                   |      12.26ms |      124.5ms |      136.8ms |      10.32ms
+-------------------------------------------------------------------------------------------------
