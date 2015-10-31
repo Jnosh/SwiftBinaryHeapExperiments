@@ -17,6 +17,8 @@ func timeArrayHeap(results results: ResultContainer, elements: ElementContainer)
     timeHeap(ArrayHeap.self, resultGroup: results.ptrValResults, elements: elements.ptrValElements)
     timeHeap(ArrayHeap.self, resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
 
+    timeHeapTransparent(ArrayHeap.self, resultGroup: results.refResults, elements: elements.refElements)
+
     timeFrameworkHeap(Framework.ArrayHeap.self, resultGroup: results.refResults, elements: elements.refElements)
     timeFrameworkHeap(Framework.ArrayHeap.self, resultGroup: results.smallValResults, elements: elements.smallValElements)
     timeFrameworkHeap(Framework.ArrayHeap.self, resultGroup: results.medValResults, elements: elements.mediumValElements)
@@ -34,6 +36,8 @@ func timeArrayPtrHeap(results results: ResultContainer, elements: ElementContain
     timeHeap(ArrayPtrHeap.self, resultGroup: results.ptrRefResults, elements: elements.ptrRefElements)
     timeHeap(ArrayPtrHeap.self, resultGroup: results.ptrValResults, elements: elements.ptrValElements)
     timeHeap(ArrayPtrHeap.self, resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
+
+    timeHeapTransparent(ArrayPtrHeap.self, resultGroup: results.refResults, elements: elements.refElements)
 
     timeFrameworkHeap(Framework.ArrayPtrHeap.self, resultGroup: results.refResults, elements: elements.refElements)
     timeFrameworkHeap(Framework.ArrayPtrHeap.self, resultGroup: results.smallValResults, elements: elements.smallValElements)
@@ -114,23 +118,54 @@ func timeClosureHeap(results results: ResultContainer, elements: ElementContaine
     timeFrameworkClosureHeap(resultGroup: results.ptrRefResults, elements: elements.ptrRefElements)
     timeFrameworkClosureHeap(resultGroup: results.ptrValResults, elements: elements.ptrValElements)
     timeFrameworkClosureHeap(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
-}
 
-func timeClosureHeapAlt(results results: ResultContainer, elements: ElementContainer) {
-    timeClosureHeapAlt(resultGroup: results.refResults, elements: elements.refElements)
-    timeClosureHeapAlt(resultGroup: results.smallValResults, elements: elements.smallValElements)
-    timeClosureHeapAlt(resultGroup: results.medValResults, elements: elements.mediumValElements)
-    timeClosureHeapAlt(resultGroup: results.largeValResults, elements: elements.largeValElements)
-    timeClosureHeapAlt(resultGroup: results.ptrRefResults, elements: elements.ptrRefElements)
-    timeClosureHeapAlt(resultGroup: results.ptrValResults, elements: elements.ptrValElements)
-    timeClosureHeapAlt(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
+    timeClosureHeapLocalLiteral(resultGroup: results.refResults, elements: elements.refElements)
+    timeClosureHeapLocalLiteral(resultGroup: results.smallValResults, elements: elements.smallValElements)
+    timeClosureHeapLocalLiteral(resultGroup: results.medValResults, elements: elements.mediumValElements)
+    timeClosureHeapLocalLiteral(resultGroup: results.largeValResults, elements: elements.largeValElements)
+    timeClosureHeapLocalLiteral(resultGroup: results.ptrRefResults, elements: elements.ptrRefElements)
+    timeClosureHeapLocalLiteral(resultGroup: results.ptrValResults, elements: elements.ptrValElements)
+    timeClosureHeapLocalLiteral(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
 
-    timeFrameworkClosureHeapAlt(resultGroup: results.refResults, elements: elements.refElements)
-    timeFrameworkClosureHeapAlt(resultGroup: results.smallValResults, elements: elements.smallValElements)
-    timeFrameworkClosureHeapAlt(resultGroup: results.medValResults, elements: elements.mediumValElements)
-    timeFrameworkClosureHeapAlt(resultGroup: results.largeValResults, elements: elements.largeValElements)
-    timeFrameworkClosureHeapAlt(resultGroup: results.ptrRefResults, elements: elements.ptrRefElements)
-    timeFrameworkClosureHeapAlt(resultGroup: results.ptrValResults, elements: elements.ptrValElements)
-    timeFrameworkClosureHeapAlt(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
+    timeFrameworkClosureHeapLocalLiteral(resultGroup: results.refResults, elements: elements.refElements)
+    timeFrameworkClosureHeapLocalLiteral(resultGroup: results.smallValResults, elements: elements.smallValElements)
+    timeFrameworkClosureHeapLocalLiteral(resultGroup: results.medValResults, elements: elements.mediumValElements)
+    timeFrameworkClosureHeapLocalLiteral(resultGroup: results.largeValResults, elements: elements.largeValElements)
+    timeFrameworkClosureHeapLocalLiteral(resultGroup: results.ptrRefResults, elements: elements.ptrRefElements)
+    timeFrameworkClosureHeapLocalLiteral(resultGroup: results.ptrValResults, elements: elements.ptrValElements)
+    timeFrameworkClosureHeapLocalLiteral(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
 
-}
+    let literal = "argument literal"
+    timeClosureHeapArg(resultGroup: results.refResults, elements: elements.refElements, name: literal) { $0 < $1 }
+    timeClosureHeapArg(resultGroup: results.smallValResults, elements: elements.smallValElements, name: literal) { $0 < $1 }
+    timeClosureHeapArg(resultGroup: results.medValResults, elements: elements.mediumValElements, name: literal) { $0 < $1 }
+    timeClosureHeapArg(resultGroup: results.largeValResults, elements: elements.largeValElements, name: literal) { $0 < $1 }
+    timeClosureHeapArg(resultGroup: results.ptrRefResults, elements: elements.ptrRefElements, name: literal) { $0 < $1 }
+    timeClosureHeapArg(resultGroup: results.ptrValResults, elements: elements.ptrValElements, name: literal) { $0 < $1 }
+    timeClosureHeapArg(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements, name: literal) { $0 < $1 }
+
+    timeFrameworkClosureHeapArg(resultGroup: results.refResults, elements: elements.refElements, name: literal) { $0 < $1 }
+    timeFrameworkClosureHeapArg(resultGroup: results.smallValResults, elements: elements.smallValElements, name: literal) { $0 < $1 }
+    timeFrameworkClosureHeapArg(resultGroup: results.medValResults, elements: elements.mediumValElements, name: literal) { $0 < $1 }
+    timeFrameworkClosureHeapArg(resultGroup: results.largeValResults, elements: elements.largeValElements, name: literal) { $0 < $1 }
+    timeFrameworkClosureHeapArg(resultGroup: results.ptrRefResults, elements: elements.ptrRefElements, name: literal) { $0 < $1 }
+    timeFrameworkClosureHeapArg(resultGroup: results.ptrValResults, elements: elements.ptrValElements, name: literal) { $0 < $1 }
+    timeFrameworkClosureHeapArg(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements, name: literal) { $0 < $1 }
+
+    let function = "argument <"
+    timeClosureHeapArg(resultGroup: results.refResults, elements: elements.refElements, name: function, isOrderedBefore: <)
+    timeClosureHeapArg(resultGroup: results.smallValResults, elements: elements.smallValElements, name: function, isOrderedBefore: <)
+    timeClosureHeapArg(resultGroup: results.medValResults, elements: elements.mediumValElements, name: function, isOrderedBefore: <)
+    timeClosureHeapArg(resultGroup: results.largeValResults, elements: elements.largeValElements, name: function, isOrderedBefore: <)
+    timeClosureHeapArg(resultGroup: results.ptrRefResults, elements: elements.ptrRefElements, name: function, isOrderedBefore: <)
+    timeClosureHeapArg(resultGroup: results.ptrValResults, elements: elements.ptrValElements, name: function, isOrderedBefore: <)
+    timeClosureHeapArg(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements, name: function, isOrderedBefore: <)
+
+    timeFrameworkClosureHeapArg(resultGroup: results.refResults, elements: elements.refElements, name: function, isOrderedBefore: <)
+    timeFrameworkClosureHeapArg(resultGroup: results.smallValResults, elements: elements.smallValElements, name: function, isOrderedBefore: <)
+    timeFrameworkClosureHeapArg(resultGroup: results.medValResults, elements: elements.mediumValElements, name: function, isOrderedBefore: <)
+    timeFrameworkClosureHeapArg(resultGroup: results.largeValResults, elements: elements.largeValElements, name: function, isOrderedBefore: <)
+    timeFrameworkClosureHeapArg(resultGroup: results.ptrRefResults, elements: elements.ptrRefElements, name: function, isOrderedBefore: <)
+    timeFrameworkClosureHeapArg(resultGroup: results.ptrValResults, elements: elements.ptrValElements, name: function, isOrderedBefore: <)
+    timeFrameworkClosureHeapArg(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements, name: function, isOrderedBefore: <)}
+

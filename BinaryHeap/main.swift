@@ -46,7 +46,6 @@ for _ in 0..<iterations {
     timeComparisonHeap(results: resultContainer, elements: elementContainer)
 
     timeClosureHeap(results: resultContainer, elements: elementContainer)
-    timeClosureHeapAlt(results: resultContainer, elements: elementContainer)
 }
 
 

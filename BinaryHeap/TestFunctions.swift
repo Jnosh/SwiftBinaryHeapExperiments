@@ -122,50 +122,6 @@ func timeFrameworkComparisonHeap<E: Comparable>(resultGroup resultGroup: ResultS
 }
 
 func timeClosureHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
-    var heap = ClosureHeap<E>() { $0 < $1 }
-
-    // Add the elements
-    let sw1 = Stopwatch()
-    for element in elements {
-        heap.insert(element)
-    }
-    let insertTime = sw1.elapsed()
-
-    // Retrieve the elements in order
-    let sw2 = Stopwatch()
-    while !heap.isEmpty {
-        heap.removeFirst()
-    }
-    let removeTime = sw2.elapsed()
-
-
-    let name = removeGenerics(String(ClosureHeap<E>.self))
-    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
-}
-
-func timeFrameworkClosureHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
-    var heap = Framework.ClosureHeap<E>() { $0 < $1 }
-
-    // Add the elements
-    let sw1 = Stopwatch()
-    for element in elements {
-        heap.insert(element)
-    }
-    let insertTime = sw1.elapsed()
-
-    // Retrieve the elements in order
-    let sw2 = Stopwatch()
-    while !heap.isEmpty {
-        heap.removeFirst()
-    }
-    let removeTime = sw2.elapsed()
-
-
-    let name = removeGenerics(String(reflecting: Framework.ClosureHeap<E>.self))
-    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
-}
-
-func timeClosureHeapAlt<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
     var heap = ClosureHeap<E>(isOrderedBefore: <)
 
     // Add the elements
@@ -183,11 +139,11 @@ func timeClosureHeapAlt<E: Comparable>(resultGroup resultGroup: ResultSetGroup, 
     let removeTime = sw2.elapsed()
 
 
-    let name = removeGenerics(String(ClosureHeap<E>.self)) + " Alt"
+    let name = removeGenerics(String(ClosureHeap<E>.self)) + " (local <)"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeFrameworkClosureHeapAlt<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
+func timeFrameworkClosureHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
     var heap = Framework.ClosureHeap<E>(isOrderedBefore: <)
     // Add the elements
     let sw1 = Stopwatch()
@@ -204,7 +160,96 @@ func timeFrameworkClosureHeapAlt<E: Comparable>(resultGroup resultGroup: ResultS
     let removeTime = sw2.elapsed()
 
 
-    let name = removeGenerics(String(reflecting: Framework.ClosureHeap<E>.self)) + " Alt"
+    let name = removeGenerics(String(reflecting: Framework.ClosureHeap<E>.self)) + " (local <)"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+func timeClosureHeapLocalLiteral<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
+    var heap = ClosureHeap<E>() { $0 < $1 }
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+
+    let name = removeGenerics(String(ClosureHeap<E>.self)) + " (local literal)"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+func timeFrameworkClosureHeapLocalLiteral<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
+    var heap = Framework.ClosureHeap<E>() { $0 < $1 }
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+
+    let name = removeGenerics(String(reflecting: Framework.ClosureHeap<E>.self)) + " (local literal)"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+
+func timeClosureHeapArg<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E], name variantName: String, isOrderedBefore: (E, E) -> Bool) {
+    var heap = ClosureHeap<E>(isOrderedBefore: isOrderedBefore)
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+
+    let name = removeGenerics(String(ClosureHeap<E>.self)) + " " + variantName
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+func timeFrameworkClosureHeapArg<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E], name variantName: String, isOrderedBefore: (E, E) -> Bool) {
+    var heap = Framework.ClosureHeap<E>(isOrderedBefore: isOrderedBefore)
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+
+    let name = removeGenerics(String(reflecting: Framework.ClosureHeap<E>.self)) + " " + variantName
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
@@ -226,6 +271,27 @@ func timeHeap<Heap : BinaryHeapType, Element : Comparable where Heap.Element == 
     let removeTime = sw2.elapsed()
 
     let name = removeGenerics(String(heapType))
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+@transparent func timeHeapTransparent<Heap : BinaryHeapType, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, resultGroup: ResultSetGroup, elements: [Element]) {
+    var heap = heapType.init()
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+    let name = removeGenerics(String(heapType)) + " (@transparent)"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
