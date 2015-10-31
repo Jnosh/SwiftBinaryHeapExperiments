@@ -1,12 +1,14 @@
 //
-//  ClassHeap.swift
+//  ClassElementHeap.swift
 //  BinaryHeap
 //
 //  Created by Janosch Hildebrand on 25/10/15.
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
-private struct Wrapper<Element: protocol<AnyObject, Comparable>> : Comparable {
+public typealias AnyComparableObject = protocol<AnyObject, Comparable>
+
+private struct Wrapper<Element: AnyComparableObject> : Comparable {
     let wrapped: Unmanaged<Element>
 
     init(_ element: Element) {
@@ -35,7 +37,7 @@ private func <<Element>(lhs: Wrapper<Element>, rhs: Wrapper<Element>) -> Bool {
 }
 
 
-public struct ClassHeap<Element: protocol<AnyObject, Comparable>> {
+public struct ClassElementHeap<Element: AnyComparableObject> {
     private var heap: UnsafePtrHeap<Wrapper<Element>>
 
     public init() {
@@ -44,7 +46,7 @@ public struct ClassHeap<Element: protocol<AnyObject, Comparable>> {
 }
 
 // MARK: BinaryHeapType conformance
-extension ClassHeap : BinaryHeapType {
+extension ClassElementHeap : BinaryHeapType {
     public var count: Int {
         return heap.count
     }
@@ -68,7 +70,7 @@ extension ClassHeap : BinaryHeapType {
 }
 
 // MARK: Printing
-extension ClassHeap: CustomDebugStringConvertible, CustomStringConvertible {
+extension ClassElementHeap: CustomDebugStringConvertible, CustomStringConvertible {
     public var debugDescription: String {
         return heap.debugDescription
     }
@@ -78,7 +80,7 @@ extension ClassHeap: CustomDebugStringConvertible, CustomStringConvertible {
     }
 }
 
-extension ClassHeap: _DestructorSafeContainer { }
+extension ClassElementHeap: _DestructorSafeContainer { }
 
 
 

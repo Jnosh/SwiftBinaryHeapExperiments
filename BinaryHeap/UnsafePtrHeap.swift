@@ -116,6 +116,17 @@ extension UnsafePtrHeap : BinaryHeapType {
     }
 }
 
+extension UnsafePtrHeap {
+    internal mutating func apply(@noescape f: (Element) throws -> Void) rethrows {
+        ensureUniquelyReferenced()
+
+        let buffer = storage.buffer
+        for element in UnsafeBufferPointer(start: buffer, count: count) {
+            try f(element)
+        }
+    }
+}
+
 // MARK: Printing
 extension UnsafePtrHeap: CustomDebugStringConvertible, CustomStringConvertible {
     public var debugDescription: String {
