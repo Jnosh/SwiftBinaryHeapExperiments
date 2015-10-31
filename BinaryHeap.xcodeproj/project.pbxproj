@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D837DA1A1BDC096E0020FF37 /* ElementContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D837DA191BDC096E0020FF37 /* ElementContainer.swift */; };
-		D83CC92A1BB2E8E700AB790E /* BinaryHeapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FF7DB41BA98500003D6F18 /* BinaryHeapType.swift */; };
+		D846200C1BE5503C0086DBDF /* BinaryHeapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FF7DB41BA98500003D6F18 /* BinaryHeapType.swift */; };
+		D846200D1BE550620086DBDF /* BinaryHeapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FF7DB41BA98500003D6F18 /* BinaryHeapType.swift */; };
 		D8937A9E1BD2F1500041999A /* SharedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937A9D1BD2F1500041999A /* SharedTests.swift */; };
 		D8937AA01BD2F8620041999A /* ArrayHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937A9F1BD2F8620041999A /* ArrayHeap_Tests.swift */; };
 		D8937AA21BD2FBD30041999A /* ArrayPtrHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937AA11BD2FBD30041999A /* ArrayPtrHeap_Tests.swift */; };
@@ -16,7 +16,6 @@
 		D8937AA61BD2FC0F0041999A /* UnsafePtrHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937AA51BD2FC0F0041999A /* UnsafePtrHeap_Tests.swift */; };
 		D8937AA81BD403700041999A /* ResultCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937AA71BD403700041999A /* ResultCollection.swift */; };
 		D8B255DE1BB06BF9002ED631 /* Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = D8B255DD1BB06BF9002ED631 /* Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D8B255E51BB06CB9002ED631 /* BinaryHeapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FF7DB41BA98500003D6F18 /* BinaryHeapType.swift */; };
 		D8B255E71BB06CC0002ED631 /* CFBinaryHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF8D661B9B2F44003B0B37 /* CFBinaryHeap.swift */; };
 		D8B255E81BB06CC3002ED631 /* ArrayHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FF7DCF1BA9D9C2003D6F18 /* ArrayHeap.swift */; };
 		D8B255E91BB06CC6002ED631 /* ArrayPtrHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C21BB014A1002ED631 /* ArrayPtrHeap.swift */; };
@@ -41,6 +40,14 @@
 		D8D191811BD2DC9B0069D9EF /* BinaryHeapCF_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D191801BD2DC9B0069D9EF /* BinaryHeapCF_Tests.swift */; };
 		D8D191831BD2DC9B0069D9EF /* Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B255DB1BB06BF9002ED631 /* Framework.framework */; };
 		D8D191901BD2E0A80069D9EF /* TestElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D1918F1BD2E0A80069D9EF /* TestElements.swift */; };
+		D8EF16271BDC1CE900B3A52C /* PtrElementHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF16261BDC1CE900B3A52C /* PtrElementHeap.swift */; };
+		D8EF16281BDC1CE900B3A52C /* PtrElementHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF16261BDC1CE900B3A52C /* PtrElementHeap.swift */; };
+		D8EF16351BDCEE3400B3A52C /* ClassElementHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF16341BDCEE3400B3A52C /* ClassElementHeap.swift */; };
+		D8EF16361BDCEE3400B3A52C /* ClassElementHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF16341BDCEE3400B3A52C /* ClassElementHeap.swift */; };
+		D8EF163B1BDD1CC400B3A52C /* ClosureHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF163A1BDD1CC400B3A52C /* ClosureHeap.swift */; };
+		D8EF163C1BDD1CC400B3A52C /* ClosureHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF163A1BDD1CC400B3A52C /* ClosureHeap.swift */; };
+		D8EF163E1BDD679200B3A52C /* TestDataContainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF163D1BDD679200B3A52C /* TestDataContainers.swift */; };
+		D8EF16401BDD685900B3A52C /* TestGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF163F1BDD685900B3A52C /* TestGroups.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,7 +82,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D837DA191BDC096E0020FF37 /* ElementContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementContainer.swift; sourceTree = "<group>"; };
 		D8937A9D1BD2F1500041999A /* SharedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedTests.swift; sourceTree = "<group>"; };
 		D8937A9F1BD2F8620041999A /* ArrayHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayHeap_Tests.swift; sourceTree = "<group>"; };
 		D8937AA11BD2FBD30041999A /* ArrayPtrHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayPtrHeap_Tests.swift; sourceTree = "<group>"; };
@@ -135,6 +141,11 @@
 		D8D191801BD2DC9B0069D9EF /* BinaryHeapCF_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryHeapCF_Tests.swift; sourceTree = "<group>"; };
 		D8D191821BD2DC9B0069D9EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8D1918F1BD2E0A80069D9EF /* TestElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestElements.swift; sourceTree = "<group>"; };
+		D8EF16261BDC1CE900B3A52C /* PtrElementHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PtrElementHeap.swift; sourceTree = "<group>"; };
+		D8EF16341BDCEE3400B3A52C /* ClassElementHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassElementHeap.swift; sourceTree = "<group>"; };
+		D8EF163A1BDD1CC400B3A52C /* ClosureHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureHeap.swift; sourceTree = "<group>"; };
+		D8EF163D1BDD679200B3A52C /* TestDataContainers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDataContainers.swift; sourceTree = "<group>"; };
+		D8EF163F1BDD685900B3A52C /* TestGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestGroups.swift; sourceTree = "<group>"; };
 		D8EF8D311B9B2DA6003B0B37 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		D8EF8D661B9B2F44003B0B37 /* CFBinaryHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CFBinaryHeap.swift; path = CFBinaryHeap/CFBinaryHeap.swift; sourceTree = "<group>"; };
 		D8EF8D6A1B9B6F28003B0B37 /* TestFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestFunctions.swift; sourceTree = "<group>"; };
@@ -170,7 +181,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D8B255CB1BB051AD002ED631 /* Elements */ = {
+		D8B255CB1BB051AD002ED631 /* Element Types */ = {
 			isa = PBXGroup;
 			children = (
 				D8B255CC1BB051D1002ED631 /* RefElement.swift */,
@@ -178,7 +189,7 @@
 				D8B255D21BB05A45002ED631 /* PtrElement.swift */,
 				D8B255D41BB06178002ED631 /* UnmanagedElement.swift */,
 			);
-			name = Elements;
+			name = "Element Types";
 			sourceTree = "<group>";
 		};
 		D8B255DC1BB06BF9002ED631 /* Framework Target */ = {
@@ -343,6 +354,16 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		D8EF16331BDCEE1300B3A52C /* Special */ = {
+			isa = PBXGroup;
+			children = (
+				D8EF16261BDC1CE900B3A52C /* PtrElementHeap.swift */,
+				D8EF16341BDCEE3400B3A52C /* ClassElementHeap.swift */,
+				D8EF163A1BDD1CC400B3A52C /* ClosureHeap.swift */,
+			);
+			name = Special;
+			sourceTree = "<group>";
+		};
 		D8EF8D251B9B2DA6003B0B37 = {
 			isa = PBXGroup;
 			children = (
@@ -372,10 +393,11 @@
 			isa = PBXGroup;
 			children = (
 				D8EF8D311B9B2DA6003B0B37 /* main.swift */,
+				D8EF163D1BDD679200B3A52C /* TestDataContainers.swift */,
 				D8937AA71BD403700041999A /* ResultCollection.swift */,
 				D8EF8D6A1B9B6F28003B0B37 /* TestFunctions.swift */,
-				D837DA191BDC096E0020FF37 /* ElementContainer.swift */,
-				D8B255CB1BB051AD002ED631 /* Elements */,
+				D8EF163F1BDD685900B3A52C /* TestGroups.swift */,
+				D8B255CB1BB051AD002ED631 /* Element Types */,
 				D8B255FE1BB08605002ED631 /* Info.plist */,
 			);
 			name = Profiling;
@@ -389,6 +411,7 @@
 				D8D191651BD2BC9B0069D9EF /* Shared.swift */,
 				D8EF8D651B9B2EF4003B0B37 /* CFBinaryHeap Wrapper */,
 				D8FF7DB31BA984B1003D6F18 /* Standard */,
+				D8EF16331BDCEE1300B3A52C /* Special */,
 			);
 			name = "BinaryHeap Variants";
 			path = BinaryHeap;
@@ -555,9 +578,12 @@
 				D8D191671BD2BC9B0069D9EF /* Shared.swift in Sources */,
 				D8B255E91BB06CC6002ED631 /* ArrayPtrHeap.swift in Sources */,
 				D8B255EA1BB06CC8002ED631 /* ManagedBufferHeap.swift in Sources */,
+				D8EF163C1BDD1CC400B3A52C /* ClosureHeap.swift in Sources */,
+				D846200C1BE5503C0086DBDF /* BinaryHeapType.swift in Sources */,
 				D8B255EB1BB06CCB002ED631 /* UnsafePtrHeap.swift in Sources */,
-				D8B255E51BB06CB9002ED631 /* BinaryHeapType.swift in Sources */,
 				D8B255E71BB06CC0002ED631 /* CFBinaryHeap.swift in Sources */,
+				D8EF16361BDCEE3400B3A52C /* ClassElementHeap.swift in Sources */,
+				D8EF16281BDC1CE900B3A52C /* PtrElementHeap.swift in Sources */,
 				D8B255E81BB06CC3002ED631 /* ArrayHeap.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -566,16 +592,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8EF163E1BDD679200B3A52C /* TestDataContainers.swift in Sources */,
 				D8D191661BD2BC9B0069D9EF /* Shared.swift in Sources */,
+				D8EF16351BDCEE3400B3A52C /* ClassElementHeap.swift in Sources */,
+				D846200D1BE550620086DBDF /* BinaryHeapType.swift in Sources */,
+				D8EF16401BDD685900B3A52C /* TestGroups.swift in Sources */,
 				D8B256051BB086C6002ED631 /* main.swift in Sources */,
 				D8B2560F1BB086D2002ED631 /* CFBinaryHeap.swift in Sources */,
 				D8B256091BB086C9002ED631 /* RefElement.swift in Sources */,
 				D8B256111BB086D4002ED631 /* ArrayPtrHeap.swift in Sources */,
 				D8B2560C1BB086C9002ED631 /* UnmanagedElement.swift in Sources */,
+				D8EF16271BDC1CE900B3A52C /* PtrElementHeap.swift in Sources */,
 				D8B256131BB086D4002ED631 /* UnsafePtrHeap.swift in Sources */,
+				D8EF163B1BDD1CC400B3A52C /* ClosureHeap.swift in Sources */,
 				D8937AA81BD403700041999A /* ResultCollection.swift in Sources */,
-				D837DA1A1BDC096E0020FF37 /* ElementContainer.swift in Sources */,
-				D83CC92A1BB2E8E700AB790E /* BinaryHeapType.swift in Sources */,
 				D8B256071BB086C6002ED631 /* TestFunctions.swift in Sources */,
 				D8B2560A1BB086C9002ED631 /* ValElement.swift in Sources */,
 				D8B256121BB086D4002ED631 /* ManagedBufferHeap.swift in Sources */,

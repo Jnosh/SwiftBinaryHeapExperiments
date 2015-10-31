@@ -1,8 +1,8 @@
 //
-//  ElementContainer.swift
+//  TestDataContainers.swift
 //  BinaryHeap
 //
-//  Created by Janosch Hildebrand on 24/10/15.
+//  Created by Janosch Hildebrand on 25/10/15.
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
@@ -39,3 +39,29 @@ class ElementContainer {
     }
 }
 
+
+class ResultContainer {
+    let refResults = ResultSetGroup(name: "RefElement")
+    let smallValResults = ResultSetGroup(name: "ValElement Small")
+    let medValResults = ResultSetGroup(name: "ValElement Medium")
+    let largeValResults = ResultSetGroup(name: "ValElement Large")
+    let ptrRefResults = ResultSetGroup(name: "PtrElement Ref")
+    let ptrValResults = ResultSetGroup(name: "PtrElement Val")
+    let unmanagedResults = ResultSetGroup(name: "UnmanagedElement")
+
+    let allResultGroups: [ResultSetGroup]
+
+    init() {
+        allResultGroups = [refResults, smallValResults, medValResults, largeValResults, ptrRefResults, ptrValResults, unmanagedResults]
+    }
+
+    func print() {
+        refResults.printResults()
+        smallValResults.printResults()
+        medValResults.printResults()
+        largeValResults.printResults()
+        ptrRefResults.printResults()
+        ptrValResults.printResults()
+        unmanagedResults.printResults()
+    }
+}

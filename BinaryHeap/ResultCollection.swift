@@ -81,42 +81,41 @@ final class ResultSetGroup {
             resultSets[resultSet] = newValue
         }
     }
-}
 
 
+    func printResults() {
+        let tags = ["Insert", "Remove", "Total", "σ"]
 
-func printResult(resultGroup: ResultSetGroup) {
-    let tags = ["Insert", "Remove", "Total", "σ"]
+        let soretedResultSets = Array(resultSets.values).sort { $0.totals.mean < $1.totals.mean }
 
-    let resultSets = Array(resultGroup.resultSets.values).sort { $0.totals.mean < $1.totals.mean }
+        let maxLenght = resultSets.keys.reduce(0) {
+            return max($1.characters.count, $0)
+        }
 
-    let maxLenght = resultGroup.resultSets.keys.reduce(0) {
-        return max($1.characters.count, $0)
+        let name = self.name.stringByPaddingToLength(maxLenght, withString: " ", startingAtIndex: 0)
+        let paddedTags = tags.map {
+            String(count: 12 - $0.characters.count, repeatedValue: " " as Character) + $0
+        }
+
+        let titleRow = name + " | " + paddedTags.joinWithSeparator(" | ")
+        let titleUnderline = String(count: titleRow.characters.count, repeatedValue: "-" as Character)
+        print(titleRow)
+        print(titleUnderline)
+
+
+        for resultSet in soretedResultSets {
+            let paddedName = resultSet.name.stringByPaddingToLength(maxLenght, withString: " ", startingAtIndex: 0)
+            let insert = padDuration(resultSet.inserts.mean)
+            let remove = padDuration(resultSet.removes.mean)
+            let total = padDuration(resultSet.totals.mean)
+            let stddev = padDuration(resultSet.totals.stddev)
+            
+            print([paddedName, insert, remove, total, stddev].joinWithSeparator(" | "))
+        }
+        
+        print(titleUnderline)
+        print("")
     }
-
-    let name = resultGroup.name.stringByPaddingToLength(maxLenght, withString: " ", startingAtIndex: 0)
-    let paddedTags = tags.map {
-        String(count: 12 - $0.characters.count, repeatedValue: " " as Character) + $0
-    }
-
-    let titleRow = name + " | " + paddedTags.joinWithSeparator(" | ")
-    let titleUnderline = String(count: titleRow.characters.count, repeatedValue: "-" as Character)
-    print(titleRow)
-    print(titleUnderline)
-
-
-    for resultSet in resultSets {
-        let name = resultSet.name.stringByPaddingToLength(maxLenght, withString: " ", startingAtIndex: 0)
-        let insert = padDuration(resultSet.inserts.mean)
-        let remove = padDuration(resultSet.removes.mean)
-        let total = padDuration(resultSet.totals.mean)
-        let stddev = padDuration(resultSet.totals.stddev)
-
-        print([name, insert, remove, total, stddev].joinWithSeparator(" | "))
-    }
-
-    print(titleUnderline)
-    print("")
 }
 
 
