@@ -25,22 +25,22 @@ public protocol BinaryHeapType  {
 
     typealias Element: Comparable
 
+    
+    // Alternatively, could use closure for comparsion instead of Comparable
+    //
+    // we'd like to have both versions i.e. init with comparable element
+    // or with comparison func
+    // however this is hard to really support "well" in the same protocol/type
+    //
+    // We cannot easily build closure variant based on Comparable variant
+    // and while doing the reverse is pretty easy, it is slower in many cases than doing
+    // 'native' Comparable-bases implementations
+    //
+    // And "specializing" for each case at compile time isn't really possible in Swift
+    // init(isOrderedBefore: (Element, Element) -> Bool)
+
     /// Initialize an empty heap
     init()
-
-    // TODO: how do we want to handle this?
-    // ultimately we'd like to have both versions i.e. init with comparable element
-    // or with comparison func
-    //
-    // Problem right now is that we cannot really easily specialize types that way
-    // We can support init() with extension below based on init(isOrderedBefore:)
-    // but that is *much* slower than having an implementation that relies on Comparable
-    // 
-    // In Comparable case compiler specializes generic type & potentially inlines comparison
-    // check
-    // Whereas in other case we always need to store a closure & run that which needs a bit of
-    // extra memory and contents aren't really inlined so we have to pay function call overhead
-    // init(isOrderedBefore: (Element, Element) -> Bool)
 
     /// The number of values contained in this heap
     var count: Int { get }
@@ -79,14 +79,6 @@ extension BinaryHeapType {
     }
 }
 
-/*
-extension BinaryHeapType where Element : Comparable {
-    init() {
-        self.init(isOrderedBefore: <)
-    }
-}
-*/
-
 public struct BinaryHeapGenerator<BinaryHeap : BinaryHeapType> : GeneratorType {
     private var heap: BinaryHeap
 
@@ -100,5 +92,3 @@ public struct BinaryHeapGenerator<BinaryHeap : BinaryHeapType> : GeneratorType {
         return heap.removeFirst()
     }
 }
-
-

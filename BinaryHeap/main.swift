@@ -6,15 +6,6 @@
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
-// Doesn't seem to be doable: (probably doable with closure for comparison instead of Comparable)
-//      * Heap variant that internally uses unmanaged els for AnyObjects
-//      * Not really doable well but might be able to if we use closure for comparison instead of Comparable
-//      * -> get type in init
-//         if Element.self is AnyObject { ... }
-
-
-// TODO: experiment with @transparent, etc... effect on framework (maybe put this in perf testing project?)
-
 // TODO: Why is ManagedBufferHeap slower than UnsafePtrHeap? Should be faster... Can we improve?
 
 // Obviously, what kills perf for Framework cases is Generics...
