@@ -28,8 +28,7 @@ public protocol BinaryHeapType  {
     
     // Alternatively, could use closure for comparsion instead of Comparable
     //
-    // we'd like to have both versions i.e. init with comparable element
-    // or with comparison func
+    // we'd like to have both versions i.e. init with comparable element or with comparison func
     // however this is hard to really support "well" in the same protocol/type
     //
     // We cannot easily build closure variant based on Comparable variant
@@ -37,6 +36,7 @@ public protocol BinaryHeapType  {
     // 'native' Comparable-bases implementations
     //
     // And "specializing" for each case at compile time isn't really possible in Swift
+    // i.e. specialized generics
     // init(isOrderedBefore: (Element, Element) -> Bool)
 
     /// Initialize an empty heap
@@ -58,7 +58,6 @@ public protocol BinaryHeapType  {
     mutating func removeAll(keepCapacity keepCapacity: Bool)
 }
 
-
 extension BinaryHeapType {
     public var isEmpty: Bool {
         return count == 0
@@ -78,6 +77,12 @@ extension BinaryHeapType {
         return BinaryHeapGenerator(heap: self)
     }
 }
+
+public protocol BinaryHeapType_Fast : BinaryHeapType {
+    mutating func fastInsert(element: Element)
+    mutating func fastRemoveFirst() -> Element
+}
+
 
 public struct BinaryHeapGenerator<BinaryHeap : BinaryHeapType> : GeneratorType {
     private var heap: BinaryHeap

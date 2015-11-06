@@ -14,27 +14,29 @@ private struct ValueWrapper {
 
 /// Our ManagedBuffer subclass that stores our instance variables and live elements
 ///
-/// Some testing shows that as expected, ManagedBuffer stores the elements inline
+/// Some testing shows that as expected, ManagedBuffer elements store the elements inline
 /// to prevent a second pointer indirection
 /// <class> <padding> <ValueWrapper> <padding> <elements>
 private final class HeapBuffer<Element>: ManagedBuffer<ValueWrapper, Element> {
     /// Create a new HeapBuffer
     static func createBufferWithCapacity(capacity: Int) -> HeapBuffer<Element> {
-        return HeapBuffer.create(capacity) {
-            let capacity = $0.allocatedElementCount
-            return ValueWrapper(count: 0, capacity: capacity)
-        } as! HeapBuffer
+        let buffer = HeapBuffer.create(capacity) {
+            let effectiveCapacity = $0.allocatedElementCount
+            return ValueWrapper(count: 0, capacity: effectiveCapacity)
+        }
+        
+        return buffer as! HeapBuffer
     }
 
     /// Create a new HeapBuffer and copy the contents from the given buffer
     static func createCopyOfBuffer(buffer: HeapBuffer<Element>, capacity: Int) -> HeapBuffer<Element> {
-        return buffer.withUnsafeMutablePointers{ (valuePtr, elementPtr) -> HeapBuffer<Element> in
-            let value = valuePtr.memory
-
-            let newBuffer = HeapBuffer.createBufferWithCapacity(capacity)
+        return buffer.withUnsafeMutablePointers{ (valuePtr, elementPtr) in
+            let currentCount = valuePtr.memory.count
+            
+            let newBuffer = HeapBuffer<Element>.createBufferWithCapacity(capacity)
             newBuffer.withUnsafeMutablePointers { (newValuePtr, newElementPtr) in
-                newValuePtr.memory.count = value.count
-                newElementPtr.initializeFrom(elementPtr, count: value.count)
+                newElementPtr.initializeFrom(elementPtr, count: currentCount)
+                newValuePtr.memory.count = currentCount
             }
             return newBuffer
         }
@@ -46,14 +48,14 @@ private final class HeapBuffer<Element>: ManagedBuffer<ValueWrapper, Element> {
     /// as it combines the initialization of the new buffer contents
     /// and destruction of the old buffer contents into a single move
     static func createReplacementBuffer(buffer: HeapBuffer<Element>, capacity: Int) -> HeapBuffer<Element> {
-        return buffer.withUnsafeMutablePointers { (valuePtr, elementPtr) -> HeapBuffer<Element> in
-            let value = valuePtr.memory
+        return buffer.withUnsafeMutablePointers { (valuePtr, elementPtr) in
+            let currentCount = valuePtr.memory.count
 
             let newBuffer = HeapBuffer.createBufferWithCapacity(capacity)
             newBuffer.withUnsafeMutablePointers { (newValuePtr, newElementPtr) in
-                newElementPtr.moveInitializeFrom(elementPtr, count: value.count)
+                newElementPtr.moveInitializeFrom(elementPtr, count: currentCount)
                 valuePtr.memory.count = 0
-                newValuePtr.memory.count = value.count
+                newValuePtr.memory.count = currentCount
             }
             return newBuffer
         }
@@ -61,7 +63,7 @@ private final class HeapBuffer<Element>: ManagedBuffer<ValueWrapper, Element> {
 
     deinit {
         // We own the elements in the buffer - destroy them
-        withUnsafeMutablePointers { (valuePtr, elementPtr) -> Void in
+        withUnsafeMutablePointers { (valuePtr, elementPtr) in
             elementPtr.destroy(valuePtr.memory.count)
         }
     }
@@ -85,7 +87,7 @@ public struct ManagedBufferHeap<Element : Comparable> {
 
     private mutating func reserveCapacity(minimumCapacity: Int) {
         if capacity < minimumCapacity {
-            let newCapacity = max(nextPoW2(minimumCapacity), 16)
+            let newCapacity = max(16, nextPoW2(minimumCapacity))
             if isUniquelyReferenced(&buffer) {
                 buffer = HeapBuffer.createReplacementBuffer(buffer, capacity: newCapacity)
             } else {
@@ -96,7 +98,7 @@ public struct ManagedBufferHeap<Element : Comparable> {
 }
 
 // MARK: BinaryHeapType conformance
-extension ManagedBufferHeap : BinaryHeapType {
+extension ManagedBufferHeap : BinaryHeapType, BinaryHeapType_Fast {
     public init() {
         buffer = HeapBuffer.createBufferWithCapacity(0)
     }
@@ -121,11 +123,11 @@ extension ManagedBufferHeap : BinaryHeapType {
         } else {
             ensureUniquelyReferenced()
         }
-
+        
         buffer.withUnsafeMutablePointers { (valuePtr, elementPtr) in
             elementPtr.advancedBy(value.count).initialize(element)
             valuePtr.memory.count = value.count + 1
-
+            
             var index = value.count
             while index > 0 && (element < elementPtr[parentIndex(index)]) {
                 swap(&elementPtr[index], &elementPtr[parentIndex(index)])
@@ -134,21 +136,69 @@ extension ManagedBufferHeap : BinaryHeapType {
         }
     }
 
+    public mutating func fastInsert(element: Element) {
+        let value = buffer.value
+        // Optimization to prevent uneccessary copy
+        // If we need to resize our element buffer we are guaranteed to have a unique copy afterwards
+        if value.count == value.capacity {
+            reserveCapacity(value.count + 1)
+        } else {
+            ensureUniquelyReferenced()
+        }
+        
+        // FIXME: Workaround for rdar://23412050
+        // Essentially buffer is retained for the closure call which costs us quite a bit of perf.
+        var elementPtr: UnsafeMutablePointer<Element> = nil
+        buffer.withUnsafeMutablePointers { (valuePtr, ptr) in
+            elementPtr = ptr
+            elementPtr.advancedBy(value.count).initialize(element)
+            valuePtr.memory.count = value.count + 1
+        }
+        
+        var index = value.count
+        while index > 0 && (element < elementPtr[parentIndex(index)]) {
+            swap(&elementPtr[index], &elementPtr[parentIndex(index)])
+            index = parentIndex(index)
+        }
+    }
+
     public mutating func removeFirst() -> Element {
         precondition(!isEmpty, "Heap may not be empty.")
         ensureUniquelyReferenced()
 
-        return buffer.withUnsafeMutablePointers { (valuePtr, elementPtr) -> Element in
+        return buffer.withUnsafeMutablePointers { (valuePtr, elementPtr) in
             let value = valuePtr.memory
             valuePtr.memory.count = value.count - 1
-
+            
             if value.count > 1 {
                 swap(&elementPtr[0], &elementPtr[value.count - 1])
                 heapify(elementPtr, startIndex: 0, endIndex: value.count - 1)
             }
-
+            
             return elementPtr.advancedBy(value.count - 1).move()
         }
+    }
+    
+    public mutating func fastRemoveFirst() -> Element {
+        precondition(!isEmpty, "Heap may not be empty.")
+        ensureUniquelyReferenced()
+        
+        var elementPtr: UnsafeMutablePointer<Element> = nil
+        var count = 0
+        buffer.withUnsafeMutablePointers { (valuePtr, ptr) in
+            let value = valuePtr.memory
+            valuePtr.memory.count = value.count - 1
+            
+            count = value.count
+            elementPtr = ptr
+        }
+        
+        if count > 1 {
+            swap(&elementPtr[0], &elementPtr[count - 1])
+            heapify(elementPtr, startIndex: 0, endIndex: count - 1)
+        }
+        
+        return elementPtr.advancedBy(count - 1).move()
     }
 
     public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {

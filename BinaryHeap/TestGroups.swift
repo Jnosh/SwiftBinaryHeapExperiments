@@ -38,6 +38,15 @@ func timeArrayPtrHeap(results results: ResultContainer, elements: ElementContain
     timeHeap(ArrayPtrHeap.self, resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
 
     timeHeapTransparent(ArrayPtrHeap.self, resultGroup: results.refResults, elements: elements.refElements)
+    timeHeapFastTransparent(ArrayPtrHeap.self, resultGroup: results.refResults, elements: elements.refElements)
+
+    timeHeapFast(ArrayPtrHeap.self, resultGroup: results.refResults, elements: elements.refElements)
+    timeHeapFast(ArrayPtrHeap.self, resultGroup: results.smallValResults, elements: elements.smallValElements)
+    timeHeapFast(ArrayPtrHeap.self, resultGroup: results.medValResults, elements: elements.mediumValElements)
+    timeHeapFast(ArrayPtrHeap.self, resultGroup: results.largeValResults, elements: elements.largeValElements)
+    timeHeapFast(ArrayPtrHeap.self, resultGroup: results.ptrRefResults, elements: elements.ptrRefElements)
+    timeHeapFast(ArrayPtrHeap.self, resultGroup: results.ptrValResults, elements: elements.ptrValElements)
+    timeHeapFast(ArrayPtrHeap.self, resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
 
     timeFrameworkHeap(Framework.ArrayPtrHeap.self, resultGroup: results.refResults, elements: elements.refElements)
     timeFrameworkHeap(Framework.ArrayPtrHeap.self, resultGroup: results.smallValResults, elements: elements.smallValElements)
@@ -75,6 +84,14 @@ func timeManagedBufferHeap(results results: ResultContainer, elements: ElementCo
     timeHeap(ManagedBufferHeap.self, resultGroup: results.ptrValResults, elements: elements.ptrValElements)
     timeHeap(ManagedBufferHeap.self, resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
 
+    timeHeapFast(ManagedBufferHeap.self, resultGroup: results.refResults, elements: elements.refElements)
+    timeHeapFast(ManagedBufferHeap.self, resultGroup: results.smallValResults, elements: elements.smallValElements)
+    timeHeapFast(ManagedBufferHeap.self, resultGroup: results.medValResults, elements: elements.mediumValElements)
+    timeHeapFast(ManagedBufferHeap.self, resultGroup: results.largeValResults, elements: elements.largeValElements)
+    timeHeapFast(ManagedBufferHeap.self, resultGroup: results.ptrRefResults, elements: elements.ptrRefElements)
+    timeHeapFast(ManagedBufferHeap.self, resultGroup: results.ptrValResults, elements: elements.ptrValElements)
+    timeHeapFast(ManagedBufferHeap.self, resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
+    
     timeFrameworkHeap(Framework.ManagedBufferHeap.self, resultGroup: results.refResults, elements: elements.refElements)
     timeFrameworkHeap(Framework.ManagedBufferHeap.self, resultGroup: results.smallValResults, elements: elements.smallValElements)
     timeFrameworkHeap(Framework.ManagedBufferHeap.self, resultGroup: results.medValResults, elements: elements.mediumValElements)
@@ -135,7 +152,7 @@ func timeClosureHeap(results results: ResultContainer, elements: ElementContaine
     timeFrameworkClosureHeapLocalLiteral(resultGroup: results.ptrValResults, elements: elements.ptrValElements)
     timeFrameworkClosureHeapLocalLiteral(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements)
 
-    let literal = "argument literal"
+    let literal = "(argument literal)"
     timeClosureHeapArg(resultGroup: results.refResults, elements: elements.refElements, name: literal) { $0 < $1 }
     timeClosureHeapArg(resultGroup: results.smallValResults, elements: elements.smallValElements, name: literal) { $0 < $1 }
     timeClosureHeapArg(resultGroup: results.medValResults, elements: elements.mediumValElements, name: literal) { $0 < $1 }
@@ -152,7 +169,7 @@ func timeClosureHeap(results results: ResultContainer, elements: ElementContaine
     timeFrameworkClosureHeapArg(resultGroup: results.ptrValResults, elements: elements.ptrValElements, name: literal) { $0 < $1 }
     timeFrameworkClosureHeapArg(resultGroup: results.unmanagedResults, elements: elements.unmanagedElements, name: literal) { $0 < $1 }
 
-    let function = "argument <"
+    let function = "(argument <)"
     timeClosureHeapArg(resultGroup: results.refResults, elements: elements.refElements, name: function, isOrderedBefore: <)
     timeClosureHeapArg(resultGroup: results.smallValResults, elements: elements.smallValElements, name: function, isOrderedBefore: <)
     timeClosureHeapArg(resultGroup: results.medValResults, elements: elements.mediumValElements, name: function, isOrderedBefore: <)

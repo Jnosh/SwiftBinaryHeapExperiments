@@ -27,7 +27,7 @@ public struct UnsafePtrHeap<Element : Comparable> {
 
     private mutating func reserveCapacity(minimumCapacity: Int) {
         if storage.capacity < minimumCapacity {
-            let newCapacity = nextPoW2(minimumCapacity)
+            let newCapacity = max(nextPoW2(minimumCapacity), 16)
             let newBuffer = UnsafeMutablePointer<Element>.alloc(newCapacity)
 
             if isUniquelyReferenced(&storage) {
@@ -69,7 +69,6 @@ extension UnsafePtrHeap : BinaryHeapType {
     }
 
     public mutating func insert(value: Element) {
-        var index = count
         // Optimization to prevent uneccessary copy
         // If we need to resize our element buffer we are guaranteed to have a unique copy afterwards
         if count == storage.capacity {
@@ -81,7 +80,7 @@ extension UnsafePtrHeap : BinaryHeapType {
         storage.buffer.advancedBy(count).initialize(value)
         storage.count++
 
-
+        var index = count - 1
         while index > 0 && (value < storage.buffer[parentIndex(index)]) {
             swap(&storage.buffer[index], &storage.buffer[parentIndex(index)])
             index = parentIndex(index)

@@ -6,7 +6,9 @@
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
-// TODO: Why is ManagedBufferHeap slower than UnsafePtrHeap? Should be faster... Can we improve?
+// TODO: Maybe do one combo heap based on UnsafePtrHeap?
+
+// Maybe retry VariantHeap using ManagedBufferPtr
 
 // Obviously, what kills perf for Framework cases is Generics...
 // Perf diff there is mostly a question of how optimized non-specialized code is
@@ -23,8 +25,8 @@ let resultContainer = ResultContainer()
 for _ in 0..<iterations {
     let elementContainer = ElementContainer(count: elementCount)
 
-    timeCFHeap(resultContainer.allResultGroups, elements: elementContainer.refElements)
-    timeFrameworkCFHeap(resultContainer.allResultGroups, elements: elementContainer.refElements)
+    timeCFHeap(resultContainer.refResults, elements: elementContainer.refElements)
+    timeFrameworkCFHeap(resultContainer.refResults, elements: elementContainer.refElements)
 
     timeArrayHeap(results: resultContainer, elements: elementContainer)
     timeArrayPtrHeap(results: resultContainer, elements: elementContainer)

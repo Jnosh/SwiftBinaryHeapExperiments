@@ -16,7 +16,7 @@ public struct ArrayPtrHeap<Element : Comparable> {
 }
 
 // MARK: BinaryHeapType conformance
-extension ArrayPtrHeap : BinaryHeapType {
+extension ArrayPtrHeap : BinaryHeapType, BinaryHeapType_Fast {
     public init() {
         storage = Array()
     }
@@ -41,6 +41,23 @@ extension ArrayPtrHeap : BinaryHeapType {
         }
     }
 
+    public mutating func fastInsert(value: Element) {
+        var index = count
+        storage.append(value)
+        
+        // FIXME: Workaround for rdar://23412050
+        // Essentially buffer is retained for the closure call which costs us quite a bit of perf.
+        var elementPtr: UnsafeMutablePointer<Element> = nil
+        storage.withUnsafeMutableBufferPointer { (inout buffer: UnsafeMutableBufferPointer<Element>) in
+            elementPtr = buffer.baseAddress
+        }
+        
+        while index > 0 && (value < elementPtr[parentIndex(index)]) {
+            swap(&elementPtr[index], &elementPtr[parentIndex(index)])
+            index = parentIndex(index)
+        }
+    }
+    
     public mutating func removeFirst() -> Element {
         precondition(!isEmpty, "Heap may not be empty.")
 
@@ -54,6 +71,24 @@ extension ArrayPtrHeap : BinaryHeapType {
 
         return storage.removeLast()
     }
+    
+    public mutating func fastRemoveFirst() -> Element {
+        precondition(!isEmpty, "Heap may not be empty.")
+        
+        let count = storage.count
+        if count > 1 {
+            var elementPtr: UnsafeMutablePointer<Element> = nil
+            storage.withUnsafeMutableBufferPointer { (inout buffer: UnsafeMutableBufferPointer<Element>) in
+                elementPtr = buffer.baseAddress
+            }
+            
+            swap(&elementPtr[0], &elementPtr[count - 1])
+            heapify(elementPtr, startIndex: 0, endIndex: count - 1)
+        }
+        
+        return storage.removeLast()
+    }
+
 
     public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {
         storage.removeAll(keepCapacity: keepCapacity)
