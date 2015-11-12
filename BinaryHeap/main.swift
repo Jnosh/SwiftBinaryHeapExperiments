@@ -28,8 +28,8 @@ for _ in 0..<iterations {
 
     // Time standard variants
     timeArrayHeap(elementContainer)
-    timeArrayPtrHeap(elementContainer)
-    timeUnsafePtrHeap(elementContainer)
+    timeArrayPointerHeap(elementContainer)
+    timeUnsafePointerHeap(elementContainer)
     timeManagedBufferHeap(elementContainer)
 
     // Time ClosureHeap

@@ -16,12 +16,14 @@
 		D8937AA41BD2FBFA0041999A /* ManagedBufferHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937AA31BD2FBFA0041999A /* ManagedBufferHeap_Tests.swift */; };
 		D8937AA61BD2FC0F0041999A /* UnsafePtrHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937AA51BD2FC0F0041999A /* UnsafePtrHeap_Tests.swift */; };
 		D8937AA81BD403700041999A /* MeasurementCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937AA71BD403700041999A /* MeasurementCollection.swift */; };
+		D8AEF43A1BF5351600D5F781 /* HeapBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AEF4391BF5351600D5F781 /* HeapBuffer.swift */; };
+		D8AEF43B1BF5351600D5F781 /* HeapBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8AEF4391BF5351600D5F781 /* HeapBuffer.swift */; };
 		D8B255DE1BB06BF9002ED631 /* Framework.h in Headers */ = {isa = PBXBuildFile; fileRef = D8B255DD1BB06BF9002ED631 /* Framework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8B255E71BB06CC0002ED631 /* CFBinaryHeapWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF8D661B9B2F44003B0B37 /* CFBinaryHeapWrapper.swift */; };
 		D8B255E81BB06CC3002ED631 /* ArrayHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FF7DCF1BA9D9C2003D6F18 /* ArrayHeap.swift */; };
-		D8B255E91BB06CC6002ED631 /* ArrayPtrHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C21BB014A1002ED631 /* ArrayPtrHeap.swift */; };
+		D8B255E91BB06CC6002ED631 /* ArrayPointerHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C21BB014A1002ED631 /* ArrayPointerHeap.swift */; };
 		D8B255EA1BB06CC8002ED631 /* ManagedBufferHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C31BB014A1002ED631 /* ManagedBufferHeap.swift */; };
-		D8B255EB1BB06CCB002ED631 /* UnsafePtrHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C41BB014A1002ED631 /* UnsafePtrHeap.swift */; };
+		D8B255EB1BB06CCB002ED631 /* UnsafePointerHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C41BB014A1002ED631 /* UnsafePointerHeap.swift */; };
 		D8B256041BB0860C002ED631 /* Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B255DB1BB06BF9002ED631 /* Framework.framework */; };
 		D8B256051BB086C6002ED631 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF8D311B9B2DA6003B0B37 /* main.swift */; };
 		D8B256071BB086C6002ED631 /* TestFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF8D6A1B9B6F28003B0B37 /* TestFunctions.swift */; };
@@ -31,9 +33,9 @@
 		D8B2560C1BB086C9002ED631 /* UnmanagedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255D41BB06178002ED631 /* UnmanagedElement.swift */; };
 		D8B2560F1BB086D2002ED631 /* CFBinaryHeapWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF8D661B9B2F44003B0B37 /* CFBinaryHeapWrapper.swift */; };
 		D8B256101BB086D4002ED631 /* ArrayHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FF7DCF1BA9D9C2003D6F18 /* ArrayHeap.swift */; };
-		D8B256111BB086D4002ED631 /* ArrayPtrHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C21BB014A1002ED631 /* ArrayPtrHeap.swift */; };
+		D8B256111BB086D4002ED631 /* ArrayPointerHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C21BB014A1002ED631 /* ArrayPointerHeap.swift */; };
 		D8B256121BB086D4002ED631 /* ManagedBufferHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C31BB014A1002ED631 /* ManagedBufferHeap.swift */; };
-		D8B256131BB086D4002ED631 /* UnsafePtrHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C41BB014A1002ED631 /* UnsafePtrHeap.swift */; };
+		D8B256131BB086D4002ED631 /* UnsafePointerHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C41BB014A1002ED631 /* UnsafePointerHeap.swift */; };
 		D8D191161BD2795F0069D9EF /* Chronos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D191151BD2795F0069D9EF /* Chronos.framework */; };
 		D8D191171BD2795F0069D9EF /* Chronos.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8D191151BD2795F0069D9EF /* Chronos.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8D191661BD2BC9B0069D9EF /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D191651BD2BC9B0069D9EF /* Shared.swift */; };
@@ -83,7 +85,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D84620261BE5722E0086DBDF /* Current Results.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Current Results.txt"; sourceTree = "<group>"; };
+		D84620261BE5722E0086DBDF /* Current Results (iMac).txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Current Results (iMac).txt"; sourceTree = "<group>"; };
 		D84B83621BED58760009DC50 /* MeasurementPrinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementPrinting.swift; sourceTree = "<group>"; };
 		D8937A9D1BD2F1500041999A /* SharedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedTests.swift; sourceTree = "<group>"; };
 		D8937A9F1BD2F8620041999A /* ArrayHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayHeap_Tests.swift; sourceTree = "<group>"; };
@@ -95,9 +97,11 @@
 		D8AEF4341BF3EDC200D5F781 /* Results.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Results.txt; sourceTree = "<group>"; };
 		D8AEF4361BF3EDC200D5F781 /* Results.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Results.txt; sourceTree = "<group>"; };
 		D8AEF4371BF3EDC200D5F781 /* Swift 2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Swift 2.txt"; sourceTree = "<group>"; };
-		D8B255C21BB014A1002ED631 /* ArrayPtrHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayPtrHeap.swift; sourceTree = "<group>"; };
+		D8AEF4381BF5003F00D5F781 /* Current Results (Mac Pro).txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Current Results (Mac Pro).txt"; sourceTree = "<group>"; };
+		D8AEF4391BF5351600D5F781 /* HeapBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeapBuffer.swift; sourceTree = "<group>"; };
+		D8B255C21BB014A1002ED631 /* ArrayPointerHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayPointerHeap.swift; sourceTree = "<group>"; };
 		D8B255C31BB014A1002ED631 /* ManagedBufferHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedBufferHeap.swift; sourceTree = "<group>"; };
-		D8B255C41BB014A1002ED631 /* UnsafePtrHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafePtrHeap.swift; sourceTree = "<group>"; };
+		D8B255C41BB014A1002ED631 /* UnsafePointerHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafePointerHeap.swift; sourceTree = "<group>"; };
 		D8B255CC1BB051D1002ED631 /* RefElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefElement.swift; sourceTree = "<group>"; };
 		D8B255CE1BB0520C002ED631 /* ValElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValElement.swift; sourceTree = "<group>"; };
 		D8B255D21BB05A45002ED631 /* PtrElement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PtrElement.swift; sourceTree = "<group>"; };
@@ -189,7 +193,8 @@
 		D84620251BE5722E0086DBDF /* Results */ = {
 			isa = PBXGroup;
 			children = (
-				D84620261BE5722E0086DBDF /* Current Results.txt */,
+				D84620261BE5722E0086DBDF /* Current Results (iMac).txt */,
+				D8AEF4381BF5003F00D5F781 /* Current Results (Mac Pro).txt */,
 				D8AEF42F1BF3EDC200D5F781 /* Old */,
 			);
 			path = Results;
@@ -466,6 +471,7 @@
 			children = (
 				D8FF7DB41BA98500003D6F18 /* BinaryHeapType.swift */,
 				D8D191651BD2BC9B0069D9EF /* Shared.swift */,
+				D8AEF4391BF5351600D5F781 /* HeapBuffer.swift */,
 				D8EF8D651B9B2EF4003B0B37 /* CFBinaryHeap Wrapper */,
 				D8FF7DB31BA984B1003D6F18 /* Standard */,
 				D8EF16331BDCEE1300B3A52C /* Special */,
@@ -486,8 +492,8 @@
 			isa = PBXGroup;
 			children = (
 				D8FF7DCF1BA9D9C2003D6F18 /* ArrayHeap.swift */,
-				D8B255C21BB014A1002ED631 /* ArrayPtrHeap.swift */,
-				D8B255C41BB014A1002ED631 /* UnsafePtrHeap.swift */,
+				D8B255C21BB014A1002ED631 /* ArrayPointerHeap.swift */,
+				D8B255C41BB014A1002ED631 /* UnsafePointerHeap.swift */,
 				D8B255C31BB014A1002ED631 /* ManagedBufferHeap.swift */,
 			);
 			name = Standard;
@@ -633,11 +639,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8D191671BD2BC9B0069D9EF /* Shared.swift in Sources */,
-				D8B255E91BB06CC6002ED631 /* ArrayPtrHeap.swift in Sources */,
+				D8AEF43B1BF5351600D5F781 /* HeapBuffer.swift in Sources */,
+				D8B255E91BB06CC6002ED631 /* ArrayPointerHeap.swift in Sources */,
 				D8B255EA1BB06CC8002ED631 /* ManagedBufferHeap.swift in Sources */,
 				D8EF163C1BDD1CC400B3A52C /* ClosureHeap.swift in Sources */,
 				D846200C1BE5503C0086DBDF /* BinaryHeapType.swift in Sources */,
-				D8B255EB1BB06CCB002ED631 /* UnsafePtrHeap.swift in Sources */,
+				D8B255EB1BB06CCB002ED631 /* UnsafePointerHeap.swift in Sources */,
 				D8B255E71BB06CC0002ED631 /* CFBinaryHeapWrapper.swift in Sources */,
 				D8EF16361BDCEE3400B3A52C /* ClassElementHeap.swift in Sources */,
 				D8EF16281BDC1CE900B3A52C /* PtrElementHeap.swift in Sources */,
@@ -655,12 +662,13 @@
 				D846200D1BE550620086DBDF /* BinaryHeapType.swift in Sources */,
 				D8EF16401BDD685900B3A52C /* TestGroups.swift in Sources */,
 				D8B256051BB086C6002ED631 /* main.swift in Sources */,
+				D8AEF43A1BF5351600D5F781 /* HeapBuffer.swift in Sources */,
 				D8B2560F1BB086D2002ED631 /* CFBinaryHeapWrapper.swift in Sources */,
 				D8B256091BB086C9002ED631 /* RefElement.swift in Sources */,
-				D8B256111BB086D4002ED631 /* ArrayPtrHeap.swift in Sources */,
+				D8B256111BB086D4002ED631 /* ArrayPointerHeap.swift in Sources */,
 				D8B2560C1BB086C9002ED631 /* UnmanagedElement.swift in Sources */,
 				D8EF16271BDC1CE900B3A52C /* PtrElementHeap.swift in Sources */,
-				D8B256131BB086D4002ED631 /* UnsafePtrHeap.swift in Sources */,
+				D8B256131BB086D4002ED631 /* UnsafePointerHeap.swift in Sources */,
 				D8EF163B1BDD1CC400B3A52C /* ClosureHeap.swift in Sources */,
 				D84B83631BED58760009DC50 /* MeasurementPrinting.swift in Sources */,
 				D8937AA81BD403700041999A /* MeasurementCollection.swift in Sources */,

@@ -38,10 +38,10 @@ private func <<Element>(lhs: Wrapper<Element>, rhs: Wrapper<Element>) -> Bool {
 
 
 public struct ClassElementHeap<Element: AnyComparableObject> {
-    private var heap: UnsafePtrHeap<Wrapper<Element>>
+    private var heap: UnsafePointerHeap<Wrapper<Element>>
 
     public init() {
-        heap = UnsafePtrHeap()
+        heap = UnsafePointerHeap()
     }
 }
 

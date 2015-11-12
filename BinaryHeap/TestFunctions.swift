@@ -118,6 +118,7 @@ func timeFrameworkPtrElementHeap<E: Comparable>(resultGroup resultGroup: Measure
 }
 
 func timeClosureHeap<E: Comparable>(resultGroup resultGroup: MeasurementGroup, elements: [E]) {
+    // http://www.openradar.me/23428804
     var heap = ClosureHeap<E>(isOrderedBefore: <)
 
     // Add the elements

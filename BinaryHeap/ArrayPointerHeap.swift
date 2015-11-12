@@ -1,13 +1,13 @@
 //
-//  ArrayPtrHeap.swift
+//  ArrayPointerHeap.swift
 //  BinaryHeap
 //
 //  Created by Janosch Hildebrand on 02/04/15.
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
-/// Binary heap backed by an array but accessing the contents using withUnsafeMutableBufferPointer()
-public struct ArrayPtrHeap<Element : Comparable> {
+/// Binary heap backed by an array but accessing the contents using `withUnsafeMutableBufferPointer`
+public struct ArrayPointerHeap<Element : Comparable> {
     // MARK: Instance variables
 
     /// Heap is stored in an array
@@ -16,7 +16,7 @@ public struct ArrayPtrHeap<Element : Comparable> {
 }
 
 // MARK: BinaryHeapType conformance
-extension ArrayPtrHeap : BinaryHeapType, BinaryHeapType_Fast {
+extension ArrayPointerHeap : BinaryHeapType, BinaryHeapType_Fast {
     public init() {
         storage = Array()
     }
@@ -45,7 +45,7 @@ extension ArrayPtrHeap : BinaryHeapType, BinaryHeapType_Fast {
         var index = count
         storage.append(value)
         
-        // FIXME: Workaround for rdar://23412050
+        // FIXME: Workaround for http://www.openradar.me/23412050
         // Essentially buffer is retained for the closure call which costs us quite a bit of perf.
         var elementPtr: UnsafeMutablePointer<Element> = nil
         storage.withUnsafeMutableBufferPointer { (inout buffer: UnsafeMutableBufferPointer<Element>) in
@@ -97,7 +97,7 @@ extension ArrayPtrHeap : BinaryHeapType, BinaryHeapType_Fast {
 }
 
 // MARK: Printing
-extension ArrayPtrHeap: CustomDebugStringConvertible, CustomStringConvertible {
+extension ArrayPointerHeap: CustomDebugStringConvertible, CustomStringConvertible {
     public var debugDescription: String {
         return binaryHeapDescription(self)
     }
@@ -107,4 +107,4 @@ extension ArrayPtrHeap: CustomDebugStringConvertible, CustomStringConvertible {
     }
 }
 
-extension ArrayPtrHeap: _DestructorSafeContainer { }
+extension ArrayPointerHeap: _DestructorSafeContainer { }

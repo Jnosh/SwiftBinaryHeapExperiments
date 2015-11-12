@@ -21,7 +21,7 @@
 /// **See also:**
 ///     [Wikipedia](https://en.wikipedia.org/wiki/Binary_heap)
 public protocol BinaryHeapType  {
-    // FIXME: SequenceType -> radars 22720220 & 22720512
+    // FIXME: SequenceType -> http://www.openradar.me/22720220 & http://www.openradar.me/22720512
 
     typealias Element: Comparable
 
