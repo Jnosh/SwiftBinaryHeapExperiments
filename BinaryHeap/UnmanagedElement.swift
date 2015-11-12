@@ -6,23 +6,27 @@
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
-
+/// An element that wraps an Unmanaged reference type
 struct UnmanagedElement<Element : protocol<Comparable, AnyObject>> : Comparable {
-    let element: Unmanaged<Element>
+    private let wrapped: Unmanaged<Element>
+    
+    var element: Element {
+        return wrapped.takeUnretainedValue()
+    }
     
     init(_ element: Element) {
-        self.element = Unmanaged.passRetained(element)
+        wrapped = Unmanaged.passRetained(element)
     }
 
     func destroy() {
-        element.release()
+        wrapped.release()
     }
 }
 
 func ==<Element>(lhs: UnmanagedElement<Element>, rhs: UnmanagedElement<Element>) -> Bool {
-    return lhs.element.takeUnretainedValue() == rhs.element.takeUnretainedValue()
+    return lhs.wrapped.takeUnretainedValue() == rhs.wrapped.takeUnretainedValue()
 }
 
 func <<Element>(lhs: UnmanagedElement<Element>, rhs: UnmanagedElement<Element>) -> Bool {
-    return lhs.element.takeUnretainedValue() < rhs.element.takeUnretainedValue()
+    return lhs.wrapped.takeUnretainedValue() < rhs.wrapped.takeUnretainedValue()
 }

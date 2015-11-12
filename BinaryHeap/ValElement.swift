@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A small value type element
 struct ValElementSmall : Comparable {
     var value: Int = Int(arc4random())
 }
@@ -20,7 +21,7 @@ func <(lhs: ValElementSmall, rhs: ValElementSmall) -> Bool {
     return lhs.value < rhs.value
 }
 
-
+/// A medium value type element
 struct ValElementMedium : Comparable {
     var value: Int = Int(arc4random())
     
@@ -37,7 +38,7 @@ func <(lhs: ValElementMedium, rhs: ValElementMedium) -> Bool {
     return lhs.value < rhs.value
 }
 
-
+/// A large value type element
 struct ValElementLarge : Comparable {
     var value: Int = Int(arc4random())
     

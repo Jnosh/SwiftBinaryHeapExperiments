@@ -64,6 +64,7 @@ private final class HeapBuffer<Element>: ManagedBuffer<ValueWrapper, Element> {
     deinit {
         // We own the elements in the buffer - destroy them
         withUnsafeMutablePointers { (valuePtr, elementPtr) in
+            valuePtr.destroy()
             elementPtr.destroy(valuePtr.memory.count)
         }
     }

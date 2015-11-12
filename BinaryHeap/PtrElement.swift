@@ -6,8 +6,13 @@
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
+/// An element that wraps an UnsafePointer to an Element
 struct PtrElement<Element : Comparable> : Comparable {
     private let elementPtr: UnsafeMutablePointer<Element>
+    
+    var element: Element {
+        return elementPtr.memory
+    }
     
     init(_ element: Element) {
         let ptr = UnsafeMutablePointer<Element>.alloc(1)

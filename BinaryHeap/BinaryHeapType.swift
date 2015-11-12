@@ -33,7 +33,7 @@ public protocol BinaryHeapType  {
     //
     // We cannot easily build closure variant based on Comparable variant
     // and while doing the reverse is pretty easy, it is slower in many cases than doing
-    // 'native' Comparable-bases implementations
+    // 'native' Comparable-based implementations
     //
     // And "specializing" for each case at compile time isn't really possible in Swift
     // i.e. specialized generics
@@ -51,39 +51,44 @@ public protocol BinaryHeapType  {
     /// Insert a new element into the heap.
     mutating func insert(element: Element)
 
-    /// Remove the root element (the smallest element) from the heap and return it
+    /// Remove the root element (the smallest element) from the heap and return it.
     mutating func removeFirst() -> Element
 
-    /// Remove all elements from the heap
+    /// Remove all elements.
     mutating func removeAll(keepCapacity keepCapacity: Bool)
 }
 
+// Default implementations
 extension BinaryHeapType {
+    /// Returns true iff `self` is empty.
     public var isEmpty: Bool {
         return count == 0
+    }
+    
+    /// If `!self.isEmpty`, remove the first element and return it, otherwise return `nil`.
+    public mutating func popFirst() -> Element? {
+        guard !isEmpty else { return nil }
+        
+        return removeFirst()
     }
     
     public func underestimateCount() -> Int {
         return count
     }
     
-    public mutating func popFirst() -> Element? {
-        guard !isEmpty else { return nil }
-        
-        return removeFirst()
-    }
-
     public func generate() -> BinaryHeapGenerator<Self> {
         return BinaryHeapGenerator(heap: self)
     }
 }
 
+/// Extension to BinaryHeapType that offers alternative (unsafe) insertion and removal methods
+/// to work around current optimizer limitations.
 public protocol BinaryHeapType_Fast : BinaryHeapType {
     mutating func fastInsert(element: Element)
     mutating func fastRemoveFirst() -> Element
 }
 
-
+/// Basic generator that works with all `BinaryHeapType`s.
 public struct BinaryHeapGenerator<BinaryHeap : BinaryHeapType> : GeneratorType {
     private var heap: BinaryHeap
 

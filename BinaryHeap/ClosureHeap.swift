@@ -17,6 +17,11 @@ private final class ClosureHeapStorage<Element> : NonObjectiveCBase {
         count = 0
         capacity = 0
     }
+    
+    deinit {
+        buffer.destroy(count)
+        buffer.dealloc(capacity)
+    }
 }
 
 public struct ClosureHeap<Element> {
@@ -129,17 +134,13 @@ extension ClosureHeap {
         precondition(!isEmpty, "Heap may not be empty.")
         ensureUniquelyReferenced()
 
-        if count > 1 {
-            let root = storage.buffer[0]
-
-            storage.buffer[0] = storage.buffer[--storage.count]
+        storage.count = storage.count - 1
+        if count > 0 {
+            swap(&storage.buffer[0], &storage.buffer[count])
             heapify(storage.buffer, startIndex: 0, endIndex: count)
-
-            return root
-        } else {
-            storage.count = 0
-            return storage.buffer.move()
         }
+        
+        return storage.buffer.advancedBy(count).move()
     }
 
     public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {
@@ -166,4 +167,5 @@ extension ClosureHeap: CustomDebugStringConvertible, CustomStringConvertible {
     }
 }
 */
+
 extension ClosureHeap: _DestructorSafeContainer { }

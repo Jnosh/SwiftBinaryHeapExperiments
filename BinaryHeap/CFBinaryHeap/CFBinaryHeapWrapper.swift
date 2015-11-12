@@ -1,5 +1,5 @@
 //
-//  CFBinaryHeap.swift
+//  CFBinaryHeapWrapper.swift
 //  BinaryHeap
 //
 //  Created by Janosch Hildebrand on 05/09/15.
@@ -7,6 +7,16 @@
 //
 
 import Foundation
+
+// MARK: CFComparable
+
+/// Comparable for @objc-land
+@objc public protocol CFComparable {
+    /// Compare `self` to `other`.
+    func compare(other: AnyObject) -> CFComparisonResult
+}
+
+// MARK: Callbacks
 
 private func retainCallback(allocator: CFAllocator!, pointer: UnsafePointer<Void>) -> UnsafePointer<Void> {
     let opaque = COpaquePointer(pointer)
@@ -34,38 +44,38 @@ private func compareCallback(lhsPtr: UnsafePointer<Void>, rhsPtr: UnsafePointer<
     return lhs.compare(rhs)
 }
 
+// MARK: Wrapper
+
+/// Internal wrapper around CFBinaryHeap to enable CoW support
 private final class CFBinaryHeapStorage {
-    private var heap: CFBinaryHeap
+    var heap: CFBinaryHeap
 
-    private init(heap: CFBinaryHeap) {
-        self.heap = heap
-    }
-}
-
-
-@objc public protocol CFComparable {
-    func compare(other: AnyObject) -> CFComparisonResult
-}
-
-public struct BinaryHeapCF<Element: CFComparable> {
-    private var storage: CFBinaryHeapStorage
-
-    public init() {
+    init() {
         var callbacks = CFBinaryHeapCallBacks(version: 0,
             retain: retainCallback,
             release: releaseCallback,
             copyDescription: nil,
             compare: compareCallback)
+        
+        heap = CFBinaryHeapCreate(kCFAllocatorDefault, 0, &callbacks, nil)
+    }
+    
+    init(copy: CFBinaryHeapStorage) {
+        self.heap = CFBinaryHeapCreateCopy(kCFAllocatorDefault, 0, copy.heap)
+    }
+}
 
-        let heap = CFBinaryHeapCreate(kCFAllocatorDefault, 0, &callbacks, nil)
+/// Generic Swift wrapper for CFBinaryHeap with CoW support
+public struct CFBinaryHeapWrapper<Element: CFComparable> {
+    private var storage: CFBinaryHeapStorage
 
-        storage = CFBinaryHeapStorage(heap: heap)
+    public init() {
+        storage = CFBinaryHeapStorage()
     }
 
     private mutating func ensureUniquelyReferenced() -> Void {
         if !isUniquelyReferencedNonObjC(&storage) {
-            let copy = CFBinaryHeapCreateCopy(kCFAllocatorDefault, 0, storage.heap)
-            storage = CFBinaryHeapStorage(heap: copy)
+            storage = CFBinaryHeapStorage(copy: storage)
         }
     }
 
@@ -83,6 +93,7 @@ public struct BinaryHeapCF<Element: CFComparable> {
         let ptr = COpaquePointer(CFBinaryHeapGetMinimum(storage.heap))
         let value = Unmanaged<CFComparable>.fromOpaque(ptr).takeUnretainedValue()
 
+        // Safe as we can only insert `Element`s and typechecking every element is expensive
         return unsafeDowncast(value) as Element
     }
 
@@ -99,6 +110,7 @@ public struct BinaryHeapCF<Element: CFComparable> {
         CFBinaryHeapRemoveMinimumValue(storage.heap)
 
         let value = Unmanaged<CFComparable>.fromOpaque(ptr).takeUnretainedValue()
+        // Safe as we can only insert `Element`s and typechecking every element is expensive
         return unsafeDowncast(value)
     }
 

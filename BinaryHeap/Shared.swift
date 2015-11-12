@@ -41,8 +41,6 @@ import Foundation
     return Int(x)
 }
 
-// TODO: alternative: just use UnsafeMutableBufferPointer (with already advanced start ptr)
-
 /// Restore heap condition
 internal func heapify<E : Comparable>(elements: UnsafeMutablePointer<E>, startIndex: Int, endIndex: Int) {
     assert(startIndex >= 0)
@@ -64,7 +62,8 @@ internal func heapify<E : Comparable>(elements: UnsafeMutablePointer<E>, startIn
             minIndex = rightIndex
         }
 
-        // Ensure the smallest element is at 'index' and recurse if neccessary
+        // Ensure the smallest element is at 'index' and recurs if neccessary
+        // Using loop since we don't have guaranteed tail recursion
         if minIndex != index {
             swap(&elements[index], &elements[minIndex])
             index = minIndex
@@ -74,36 +73,20 @@ internal func heapify<E : Comparable>(elements: UnsafeMutablePointer<E>, startIn
     }
 }
 
-
-
+/// Create a description for a `BinaryHeapType`
 internal func binaryHeapDescription<HeapType: BinaryHeapType>(heap: HeapType) -> String {
-    // TODO: do this properly
-
-    var result = "["
-    for element in GeneratorSequence(heap.generate()) {
-        result += String(element)
-    }
-    result += "]"
-
-    return result
+    let sequence = GeneratorSequence(heap.generate())
+    let joinedElements = sequence.map { return String($0) }.joinWithSeparator(", ")
+    
+    return "[" + joinedElements + "]"
 }
 
-// TODO: traversal / printing functions
-//      * Depth first (pre-order, in-order, post-order)
-//      * Breadth-first search
-//
-// Problem: need access at tree level...
-// Either provide internal hooks or maybe internal protocol
-// Maybe sub-protocol to BinaryHeapType 
-//
-// Might also get by by getting heap as array out of type (which we could put in BinaryHeapType)
 
-
-
-// Might also think about potential extra features where possible
+// Potential extra features
 //  * Give access to array with elements
 //  * capacity / reserveCapacity()
-//  * elements in reverse order (should be possible faster using internal knowledge)
+//  * elements in reverse order
+//  * Init from existing sequence/collection
 
 /*
 public var reverseSortedArray: [Element] {
@@ -122,5 +105,17 @@ public var reverseSortedArray: [Element] {
 }
 */
 
+/*
+public init<S: SequenceType where S.Generator.Element == Element>(elements: S, isOrderedBefore: (Element, Element) -> Bool) {
+    storage = Array(elements)
+    self.isOrderedBefore = isOrderedBefore
+
+    // Heapify all non-leaves to create heap
+    let stride = (storage.count / 2).stride(to: 0, by: -1)
+    for index in stride {
+        heapify(index)
+    }
+}
+*/
 
 

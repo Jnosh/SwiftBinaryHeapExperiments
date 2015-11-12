@@ -17,8 +17,8 @@ func removeGenerics(name: String) -> String {
     return name
 }
 
-func timeCFHeap<E: CFComparable>(resultGroup: ResultSetGroup, elements: [E]) {
-    var heap = BinaryHeapCF<E>()
+func timeCFHeap<E: CFComparable>(resultGroup resultGroup: MeasurementGroup, elements: [E]) {
+    var heap = CFBinaryHeapWrapper<E>()
 
     // Add the elements
     let sw1 = Stopwatch()
@@ -26,7 +26,7 @@ func timeCFHeap<E: CFComparable>(resultGroup: ResultSetGroup, elements: [E]) {
         heap.insert(element)
     }
     let insertTime = sw1.elapsed()
-
+    
     // Retrieve the elements in order
     let sw2 = Stopwatch()
     while !heap.isEmpty {
@@ -34,12 +34,12 @@ func timeCFHeap<E: CFComparable>(resultGroup: ResultSetGroup, elements: [E]) {
     }
     let removeTime = sw2.elapsed()
 
-    let name = removeGenerics(String(BinaryHeapCF<E>.self))
+    let name = removeGenerics(String(CFBinaryHeapWrapper<E>.self))
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeFrameworkCFHeap<E: Framework.CFComparable>(resultGroup: ResultSetGroup, elements: [E]) {
-    var heap = Framework.BinaryHeapCF<E>()
+func timeFrameworkCFHeap<E: Framework.CFComparable>(resultGroup resultGroup: MeasurementGroup, elements: [E]) {
+    var heap = Framework.CFBinaryHeapWrapper<E>()
 
     // Add the elements
     let sw1 = Stopwatch()
@@ -55,11 +55,11 @@ func timeFrameworkCFHeap<E: Framework.CFComparable>(resultGroup: ResultSetGroup,
     }
     let removeTime = sw2.elapsed()
 
-    let name = removeGenerics(String(reflecting: Framework.BinaryHeapCF<E>.self))
+    let name = removeGenerics(String(reflecting: Framework.CFBinaryHeapWrapper<E>.self))
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timePtrElementHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
+func timePtrElementHeap<E: Comparable>(resultGroup resultGroup: MeasurementGroup, elements: [E]) {
     let elementPtr = UnsafeMutablePointer<E>.alloc(elements.count)
     elementPtr.initializeFrom(elements)
     defer {
@@ -88,7 +88,7 @@ func timePtrElementHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, 
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeFrameworkPtrElementHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
+func timeFrameworkPtrElementHeap<E: Comparable>(resultGroup resultGroup: MeasurementGroup, elements: [E]) {
     let elementPtr = UnsafeMutablePointer<E>.alloc(elements.count)
     elementPtr.initializeFrom(elements)
     defer {
@@ -117,7 +117,7 @@ func timeFrameworkPtrElementHeap<E: Comparable>(resultGroup resultGroup: ResultS
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeClosureHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
+func timeClosureHeap<E: Comparable>(resultGroup resultGroup: MeasurementGroup, elements: [E]) {
     var heap = ClosureHeap<E>(isOrderedBefore: <)
 
     // Add the elements
@@ -139,7 +139,7 @@ func timeClosureHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, ele
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeFrameworkClosureHeap<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
+func timeFrameworkClosureHeap<E: Comparable>(resultGroup resultGroup: MeasurementGroup, elements: [E]) {
     var heap = Framework.ClosureHeap<E>(isOrderedBefore: <)
     // Add the elements
     let sw1 = Stopwatch()
@@ -160,7 +160,7 @@ func timeFrameworkClosureHeap<E: Comparable>(resultGroup resultGroup: ResultSetG
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeClosureHeapLocalLiteral<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
+func timeClosureHeapLocalLiteral<E: Comparable>(resultGroup resultGroup: MeasurementGroup, elements: [E]) {
     var heap = ClosureHeap<E>() { $0 < $1 }
 
     // Add the elements
@@ -182,7 +182,7 @@ func timeClosureHeapLocalLiteral<E: Comparable>(resultGroup resultGroup: ResultS
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeFrameworkClosureHeapLocalLiteral<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E]) {
+func timeFrameworkClosureHeapLocalLiteral<E: Comparable>(resultGroup resultGroup: MeasurementGroup, elements: [E]) {
     var heap = Framework.ClosureHeap<E>() { $0 < $1 }
 
     // Add the elements
@@ -205,7 +205,7 @@ func timeFrameworkClosureHeapLocalLiteral<E: Comparable>(resultGroup resultGroup
 }
 
 
-func timeClosureHeapArg<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E], name variantName: String, isOrderedBefore: (E, E) -> Bool) {
+func timeClosureHeapArg<E: Comparable>(resultGroup resultGroup: MeasurementGroup, elements: [E], name variantName: String, isOrderedBefore: (E, E) -> Bool) {
     var heap = ClosureHeap<E>(isOrderedBefore: isOrderedBefore)
 
     // Add the elements
@@ -214,7 +214,7 @@ func timeClosureHeapArg<E: Comparable>(resultGroup resultGroup: ResultSetGroup, 
         heap.insert(element)
     }
     let insertTime = sw1.elapsed()
-
+    
     // Retrieve the elements in order
     let sw2 = Stopwatch()
     while !heap.isEmpty {
@@ -227,7 +227,7 @@ func timeClosureHeapArg<E: Comparable>(resultGroup resultGroup: ResultSetGroup, 
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeFrameworkClosureHeapArg<E: Comparable>(resultGroup resultGroup: ResultSetGroup, elements: [E], name variantName: String, isOrderedBefore: (E, E) -> Bool) {
+func timeFrameworkClosureHeapArg<E: Comparable>(resultGroup resultGroup: MeasurementGroup, elements: [E], name variantName: String, isOrderedBefore: (E, E) -> Bool) {
     var heap = Framework.ClosureHeap<E>(isOrderedBefore: isOrderedBefore)
 
     // Add the elements
@@ -249,7 +249,7 @@ func timeFrameworkClosureHeapArg<E: Comparable>(resultGroup resultGroup: ResultS
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeHeap<Heap : BinaryHeapType, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, resultGroup: ResultSetGroup, elements: [Element]) {
+func timeHeap<Heap : BinaryHeapType, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
     var heap = heapType.init()
 
     // Add the elements
@@ -270,7 +270,7 @@ func timeHeap<Heap : BinaryHeapType, Element : Comparable where Heap.Element == 
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-@transparent func timeHeapTransparent<Heap : BinaryHeapType, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, resultGroup: ResultSetGroup, elements: [Element]) {
+@transparent func timeHeapTransparent<Heap : BinaryHeapType, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
     var heap = heapType.init()
 
     // Add the elements
@@ -291,7 +291,7 @@ func timeHeap<Heap : BinaryHeapType, Element : Comparable where Heap.Element == 
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeHeapFast<Heap : BinaryHeapType_Fast, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, resultGroup: ResultSetGroup, elements: [Element]) {
+func timeHeapFast<Heap : BinaryHeapType_Fast, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
     var heap = heapType.init()
     
     // Add the elements
@@ -312,7 +312,7 @@ func timeHeapFast<Heap : BinaryHeapType_Fast, Element : Comparable where Heap.El
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-@transparent func timeHeapFastTransparent<Heap : BinaryHeapType_Fast, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, resultGroup: ResultSetGroup, elements: [Element]) {
+@transparent func timeHeapFastTransparent<Heap : BinaryHeapType_Fast, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
     var heap = heapType.init()
     
     // Add the elements
@@ -334,7 +334,7 @@ func timeHeapFast<Heap : BinaryHeapType_Fast, Element : Comparable where Heap.El
 }
 
 
-func timeFrameworkHeap<Heap : Framework.BinaryHeapType, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, resultGroup: ResultSetGroup, elements: [Element]) {
+func timeFrameworkHeap<Heap : Framework.BinaryHeapType, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
     var heap = heapType.init()
 
     // Add the elements
@@ -343,7 +343,7 @@ func timeFrameworkHeap<Heap : Framework.BinaryHeapType, Element : Comparable whe
     heap.insert(element)
     }
     let insertTime = sw1.elapsed()
-
+    
     // Retrieve the elements in order
     let sw2 = Stopwatch()
     while !heap.isEmpty {

@@ -9,10 +9,10 @@
 import Foundation
 import Framework
 
+/// A reference type element
 final class RefElement: NSObject {
     var value: Int = Int(arc4random())
 }
-
 
 extension RefElement: Comparable {
 }

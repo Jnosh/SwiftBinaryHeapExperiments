@@ -6,6 +6,7 @@
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
+/// Storage class used to provide CoW
 private final class UnsafePtrHeapStorage<Element : Comparable> : NonObjectiveCBase {
     private var buffer: UnsafeMutablePointer<Element>
     private var capacity: Int
@@ -16,8 +17,14 @@ private final class UnsafePtrHeapStorage<Element : Comparable> : NonObjectiveCBa
         count = 0
         capacity = 0
     }
+    
+    deinit {
+        buffer.destroy(count)
+        buffer.dealloc(capacity)
+    }
 }
 
+/// Binary heap backed by an UnsafeMutablePointer to a buffer
 public struct UnsafePtrHeap<Element : Comparable> {
     private var storage: UnsafePtrHeapStorage<Element>
 
@@ -27,9 +34,12 @@ public struct UnsafePtrHeap<Element : Comparable> {
 
     private mutating func reserveCapacity(minimumCapacity: Int) {
         if storage.capacity < minimumCapacity {
-            let newCapacity = max(nextPoW2(minimumCapacity), 16)
+            // Allocate a new buffer
+            let newCapacity = nextPoW2(minimumCapacity)
             let newBuffer = UnsafeMutablePointer<Element>.alloc(newCapacity)
 
+            // Copy the contents to the new buffer
+            // Destroy the old buffer in the process if we hold the only reference
             if isUniquelyReferenced(&storage) {
                 newBuffer.moveInitializeFrom(storage.buffer, count: count)
                 storage.buffer.dealloc(storage.capacity)
@@ -46,11 +56,12 @@ public struct UnsafePtrHeap<Element : Comparable> {
     private mutating func ensureUniquelyReferenced() {
         if !isUniquelyReferenced(&storage) {
             let newStorage = UnsafePtrHeapStorage<Element>()
+            
+            newStorage.buffer = UnsafeMutablePointer.alloc(storage.capacity)
             newStorage.capacity = storage.capacity
-            newStorage.count = storage.count
 
-            newStorage.buffer = UnsafeMutablePointer.alloc(newStorage.capacity)
             newStorage.buffer.initializeFrom(storage.buffer, count: storage.count)
+            newStorage.count = storage.count
 
             storage = newStorage
         }
@@ -91,37 +102,45 @@ extension UnsafePtrHeap : BinaryHeapType {
         precondition(!isEmpty, "Heap may not be empty.")
         ensureUniquelyReferenced()
 
-        if count > 1 {
-            let root = storage.buffer[0]
-
-            storage.buffer[0] = storage.buffer[--storage.count]
+        storage.count = storage.count - 1
+        if count > 0 {
+            swap(&storage.buffer[0], &storage.buffer[count])
             heapify(storage.buffer, startIndex: 0, endIndex: count)
-
-            return root
-        } else {
-            storage.count = 0
-            return storage.buffer.move()
         }
+        
+        return storage.buffer.advancedBy(count).move()
     }
 
     public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {
-        ensureUniquelyReferenced()
-
-        storage.buffer.destroy(storage.count)
-        storage.buffer.dealloc(storage.capacity)
-        storage.count = 0
-        storage.capacity = 0
-        storage.buffer = nil
+        if isUniquelyReferenced(&storage) {
+            // Destroy the elements & reuse storage
+            storage.buffer.destroy(storage.count)
+            
+            if (!keepCapacity) {
+                storage.buffer.dealloc(storage.capacity)
+                storage.count = 0
+                storage.capacity = 0
+                storage.buffer = nil
+            }
+        } else {
+            // Create new empty storage
+            let currentCapacity = storage.capacity
+            
+            storage = UnsafePtrHeapStorage()
+            if (keepCapacity) {
+                reserveCapacity(currentCapacity)
+            }
+        }
     }
 }
 
 extension UnsafePtrHeap {
-    internal mutating func apply(@noescape f: (Element) throws -> Void) rethrows {
+    internal mutating func forEach(@noescape body: (Element) throws -> Void) rethrows {
         ensureUniquelyReferenced()
 
         let buffer = storage.buffer
         for element in UnsafeBufferPointer(start: buffer, count: count) {
-            try f(element)
+            try body(element)
         }
     }
 }

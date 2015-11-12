@@ -78,7 +78,8 @@ extension ArrayHeap {
             var minIndex = left < endIndex && (storage[left] < storage[index]) ? left : index
             minIndex = right < endIndex && (storage[right] < storage[minIndex]) ? right : minIndex
 
-            // Ensure the smallest element is at 'index' and recurse if neccessary
+            // Ensure the smallest element is at 'index' and recurs if neccessary
+            // Using loop since we don't have guaranteed tail recursion
             if minIndex != index {
                 swap(&storage[index], &storage[minIndex])
                 index = minIndex

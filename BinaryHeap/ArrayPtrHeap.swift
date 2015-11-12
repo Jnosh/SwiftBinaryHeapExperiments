@@ -6,7 +6,7 @@
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
-/// Binary heap backed by an array but operating on the raw memory contents
+/// Binary heap backed by an array but accessing the contents using withUnsafeMutableBufferPointer()
 public struct ArrayPtrHeap<Element : Comparable> {
     // MARK: Instance variables
 
@@ -75,6 +75,7 @@ extension ArrayPtrHeap : BinaryHeapType, BinaryHeapType_Fast {
     public mutating func fastRemoveFirst() -> Element {
         precondition(!isEmpty, "Heap may not be empty.")
         
+        // See fastInsert()
         let count = storage.count
         if count > 1 {
             var elementPtr: UnsafeMutablePointer<Element> = nil

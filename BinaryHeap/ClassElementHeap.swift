@@ -64,7 +64,7 @@ extension ClassElementHeap : BinaryHeapType {
     }
 
     public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {
-        heap.apply { $0.destroy() }
+        heap.forEach { $0.destroy() }
         heap.removeAll(keepCapacity: keepCapacity)
     }
 }
