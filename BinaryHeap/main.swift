@@ -10,7 +10,7 @@ import Framework
 
 // Constants
 let elementCount = 10000
-let iterations = 10
+let iterations = 20
 
 // Measurements
 let measurements = MeasurementContainer()

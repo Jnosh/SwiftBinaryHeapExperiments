@@ -8,7 +8,7 @@
 
 /// Binary heap backed by a ManagedBuffer
 public struct ManagedBufferHeap<Element : Comparable> {
-    private var buffer: HeapBuffer<Element>
+    private var buffer: ManagedArrayBuffer<Element>
 
     private mutating func reserveCapacity(minimumCapacity: Int) {
         buffer.reserveCapacity(minimumCapacity)
@@ -18,7 +18,7 @@ public struct ManagedBufferHeap<Element : Comparable> {
 // MARK: BinaryHeapType conformance
 extension ManagedBufferHeap : BinaryHeapType, BinaryHeapType_Fast {
     public init() {
-        buffer = HeapBuffer()
+        buffer = ManagedArrayBuffer()
     }
 
     public var count: Int {
@@ -112,29 +112,24 @@ extension ManagedBufferHeap : BinaryHeapType, BinaryHeapType_Fast {
     }
     
     public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {
-        if buffer.holdsUniqueReference() && keepCapacity {
-            // Destroy the elements but keep the buffer
-            let count = self.count
-            buffer.count = 0
-            buffer.withUnsafeMutablePointer { $0.destroy(count) }
-        } else {
-            // Create a new buffer
-            let newCapacity = keepCapacity ? buffer.capacity : 0
-            buffer = HeapBuffer(minimumCapacity: newCapacity)
+        buffer.removeAll(keepCapacity: keepCapacity)
+    }
+}
+
+extension ManagedBufferHeap {
+    internal mutating func forEach(body: (Element) -> Void) {
+        buffer.ensureHoldsUniqueReference()
+
+        let count = self.count
+        buffer.withUnsafeMutablePointer { elements in
+            for element in UnsafeBufferPointer(start: elements, count: count) {
+                body(element)
+            }
         }
     }
 }
 
-// MARK: Printing
-extension ManagedBufferHeap: CustomDebugStringConvertible, CustomStringConvertible {
-    public var debugDescription: String {
-        return binaryHeapDescription(self)
-    }
 
-    public var description: String {
-        return binaryHeapDescription(self)
-    }
-}
-
-extension ManagedBufferHeap: _DestructorSafeContainer { }
+extension ManagedBufferHeap : CustomDebugStringConvertible, CustomStringConvertible { }
+extension ManagedBufferHeap : _DestructorSafeContainer { }
 

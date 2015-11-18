@@ -96,15 +96,6 @@ extension ArrayPointerHeap : BinaryHeapType, BinaryHeapType_Fast {
     }
 }
 
-// MARK: Printing
-extension ArrayPointerHeap: CustomDebugStringConvertible, CustomStringConvertible {
-    public var debugDescription: String {
-        return binaryHeapDescription(self)
-    }
 
-    public var description: String {
-        return binaryHeapDescription(self)
-    }
-}
-
-extension ArrayPointerHeap: _DestructorSafeContainer { }
+extension ArrayPointerHeap : CustomDebugStringConvertible, CustomStringConvertible { }
+extension ArrayPointerHeap : _DestructorSafeContainer { }

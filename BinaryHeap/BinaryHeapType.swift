@@ -20,27 +20,10 @@
 ///
 /// **See also:**
 ///     [Wikipedia](https://en.wikipedia.org/wiki/Binary_heap)
-public protocol BinaryHeapType  {
+public protocol _BinaryHeapType  {
     // FIXME: SequenceType -> http://www.openradar.me/22720220 & http://www.openradar.me/22720512
 
-    typealias Element: Comparable
-
-    
-    // Alternatively, could use closure for comparsion instead of Comparable
-    //
-    // we'd like to have both versions i.e. init with comparable element or with comparison func
-    // however this is hard to really support "well" in the same protocol/type
-    //
-    // We cannot easily build closure variant based on Comparable variant
-    // and while doing the reverse is pretty easy, it is slower in many cases than doing
-    // 'native' Comparable-based implementations
-    //
-    // And "specializing" for each case at compile time isn't really possible in Swift
-    // i.e. specialized generics
-    // init(isOrderedBefore: (Element, Element) -> Bool)
-
-    /// Initialize an empty heap
-    init()
+    typealias Element
 
     /// The number of values contained in this heap
     var count: Int { get }
@@ -59,7 +42,7 @@ public protocol BinaryHeapType  {
 }
 
 // Default implementations
-extension BinaryHeapType {
+extension _BinaryHeapType {
     /// Returns true iff `self` is empty.
     public var isEmpty: Bool {
         return count == 0
@@ -81,6 +64,42 @@ extension BinaryHeapType {
     }
 }
 
+extension _BinaryHeapType {
+    public var debugDescription: String {
+        return binaryHeapDescription(self)
+    }
+
+    public var description: String {
+        return binaryHeapDescription(self)
+    }
+}
+
+public protocol BinaryHeapType : _BinaryHeapType {
+    /// Initialize an empty heap
+    init()
+}
+
+public protocol BinaryHeapType_Alt : _BinaryHeapType {
+    // Alternatively, could use closure for comparsion instead of Comparable
+    //
+    // we'd like to have both versions i.e. init with comparable element or with comparison func
+    // however this is hard to really support "well" in the same protocol/type
+    //
+    // We cannot easily build closure variant based on Comparable variant
+    // and while doing the reverse is pretty easy, it is slower in many cases than doing
+    // 'native' Comparable-based implementations
+    //
+    // And "specializing" for each case at compile time isn't really possible in Swift
+    // i.e. specialized generics
+    init(isOrderedBefore: (Element, Element) -> Bool)
+}
+
+extension BinaryHeapType_Alt where Element : Comparable {
+    init() {
+        self.init(isOrderedBefore: <)
+    }
+}
+
 /// Extension to BinaryHeapType that offers alternative (unsafe) insertion and removal methods
 /// to work around current optimizer limitations.
 public protocol BinaryHeapType_Fast : BinaryHeapType {
@@ -89,7 +108,7 @@ public protocol BinaryHeapType_Fast : BinaryHeapType {
 }
 
 /// Basic generator that works with all `BinaryHeapType`s.
-public struct BinaryHeapGenerator<BinaryHeap : BinaryHeapType> : GeneratorType {
+public struct BinaryHeapGenerator<BinaryHeap : _BinaryHeapType> : GeneratorType {
     private var heap: BinaryHeap
 
     public init(heap: BinaryHeap) {

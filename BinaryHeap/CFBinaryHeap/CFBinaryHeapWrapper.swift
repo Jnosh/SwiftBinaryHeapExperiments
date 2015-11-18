@@ -66,7 +66,7 @@ private final class CFBinaryHeapStorage {
 }
 
 /// Generic Swift wrapper for CFBinaryHeap with CoW support
-public struct CFBinaryHeapWrapper<Element: CFComparable> {
+public struct CFBinaryHeapWrapper<Element: CFComparable> : BinaryHeapType {
     private var storage: CFBinaryHeapStorage
 
     public init() {
@@ -83,17 +83,13 @@ public struct CFBinaryHeapWrapper<Element: CFComparable> {
         return Int(CFBinaryHeapGetCount(storage.heap))
     }
 
-    public var isEmpty: Bool {
-        return count == 0
-    }
-
     public var first: Element? {
         guard count > 0 else { return nil }
 
         let ptr = COpaquePointer(CFBinaryHeapGetMinimum(storage.heap))
         let value = Unmanaged<CFComparable>.fromOpaque(ptr).takeUnretainedValue()
 
-        // Safe as we can only insert `Element`s and typechecking every element is expensive
+        // Safe as we can only insert Elements and typechecking every element is somewhat expensive
         return unsafeDowncast(value) as Element
     }
 
@@ -110,19 +106,15 @@ public struct CFBinaryHeapWrapper<Element: CFComparable> {
         CFBinaryHeapRemoveMinimumValue(storage.heap)
 
         let value = Unmanaged<CFComparable>.fromOpaque(ptr).takeUnretainedValue()
-        // Safe as we can only insert `Element`s and typechecking every element is expensive
+        // Safe as we can only insert Elements and typechecking every element is somewhat expensive
         return unsafeDowncast(value)
     }
 
-    public mutating func popFirst() -> Element? {
-        guard !isEmpty else { return nil }
-
-        return removeFirst()
-    }
-
-    public mutating func removeAll(keepCapacity: Bool = false) {
+    public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {
         ensureUniquelyReferenced()
         CFBinaryHeapRemoveAllValues(storage.heap)
     }
 }
+
+extension CFBinaryHeapWrapper : CustomStringConvertible, CustomDebugStringConvertible { }
 

@@ -6,8 +6,6 @@
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
-import Foundation
-
 
 /// Returns the index for the left child of the given index
 @transparent internal func leftChildIndex(index: Int) -> Int {
@@ -74,7 +72,7 @@ internal func heapify<E : Comparable>(elements: UnsafeMutablePointer<E>, startIn
 }
 
 /// Create a description for a `BinaryHeapType`
-internal func binaryHeapDescription<HeapType: BinaryHeapType>(heap: HeapType) -> String {
+internal func binaryHeapDescription<HeapType: _BinaryHeapType>(heap: HeapType) -> String {
     let sequence = GeneratorSequence(heap.generate())
     let joinedElements = sequence.map { return String($0) }.joinWithSeparator(", ")
     

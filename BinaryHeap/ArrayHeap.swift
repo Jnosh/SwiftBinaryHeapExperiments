@@ -90,15 +90,5 @@ extension ArrayHeap {
     }
 }
 
-// MARK: Printing
-extension ArrayHeap: CustomDebugStringConvertible, CustomStringConvertible {
-    public var debugDescription: String {
-        return binaryHeapDescription(self)
-    }
-
-    public var description: String {
-        return binaryHeapDescription(self)
-    }
-}
-
-extension ArrayHeap: _DestructorSafeContainer { }
+extension ArrayHeap : CustomDebugStringConvertible, CustomStringConvertible { }
+extension ArrayHeap : _DestructorSafeContainer { }

@@ -42,7 +42,7 @@ extension PtrElementHeap {
 
 
 // MARK: Public Properties
-extension PtrElementHeap {
+extension PtrElementHeap : BinaryHeapType {
     /// The number of values contained in this heap
     public var count: Int {
         return storage.count
@@ -100,7 +100,7 @@ extension PtrElementHeap {
     }
 
     /// Remove all elements from the heap
-    public mutating func removeAll(keepCapacity: Bool = false) {
+    public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {
         storage.removeAll(keepCapacity: keepCapacity)
     }
 }
@@ -113,15 +113,5 @@ extension PtrElementHeap {
     }
 }
 
-// MARK: Printing
-extension PtrElementHeap: CustomDebugStringConvertible, CustomStringConvertible {
-    public var debugDescription: String {
-        return storage.debugDescription
-    }
-
-    public var description: String {
-        return storage.description
-    }
-}
-
-extension PtrElementHeap: _DestructorSafeContainer { }
+extension PtrElementHeap : CustomDebugStringConvertible, CustomStringConvertible { }
+extension PtrElementHeap : _DestructorSafeContainer { }

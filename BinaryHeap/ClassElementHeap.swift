@@ -1,8 +1,8 @@
 //
-//  ClassElementHeap.swift
+//  ClassElementHeap2.swift
 //  BinaryHeap
 //
-//  Created by Janosch Hildebrand on 25/10/15.
+//  Created by Janosch Hildebrand on 14/11/15.
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
@@ -38,10 +38,10 @@ private func <<Element>(lhs: Wrapper<Element>, rhs: Wrapper<Element>) -> Bool {
 
 
 public struct ClassElementHeap<Element: AnyComparableObject> {
-    private var heap: UnsafePointerHeap<Wrapper<Element>>
+    private var heap: ManagedBufferHeap<Wrapper<Element>>
 
     public init() {
-        heap = UnsafePointerHeap()
+        heap = ManagedBufferHeap()
     }
 }
 
@@ -56,11 +56,11 @@ extension ClassElementHeap : BinaryHeapType {
     }
 
     public mutating func insert(value: Element) {
-        heap.insert(Wrapper(value))
+        heap.fastInsert(Wrapper(value))
     }
 
     public mutating func removeFirst() -> Element {
-        return heap.removeFirst().consume()
+        return heap.fastRemoveFirst().consume()
     }
 
     public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {
@@ -69,18 +69,5 @@ extension ClassElementHeap : BinaryHeapType {
     }
 }
 
-// MARK: Printing
-extension ClassElementHeap: CustomDebugStringConvertible, CustomStringConvertible {
-    public var debugDescription: String {
-        return heap.debugDescription
-    }
 
-    public var description: String {
-        return heap.description
-    }
-}
-
-extension ClassElementHeap: _DestructorSafeContainer { }
-
-
-
+extension ClassElementHeap : CustomDebugStringConvertible, CustomStringConvertible { }
