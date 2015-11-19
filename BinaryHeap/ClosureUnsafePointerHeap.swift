@@ -1,68 +1,37 @@
 //
-//  ClosureHeap2.swift
+//  ClosureUnsafePointerHeap.swift
 //  BinaryHeap
 //
 //  Created by Janosch Hildebrand on 14/11/15.
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
-
-public struct ClosureHeap<Element> {
+/// Binary heap that supports using a closure for element comparison instead of Comparable
+///
+/// - The closure is stored in the ClosureHeap struct to simplify implementation
+/// - Backed by an UnsafeMutablePointer to a buffer
+public struct ClosureUnsafePointerHeap<Element> {
     private var buffer: ArrayBuffer<Element>
     private let isOrderedBefore: (Element, Element) -> Bool
-
-    public init(isOrderedBefore: (Element, Element) -> Bool) {
-        buffer = ArrayBuffer()
-        self.isOrderedBefore = isOrderedBefore
-    }
 
     private mutating func reserveCapacity(minimumCapacity: Int) {
         buffer.reserveCapacity(minimumCapacity)
     }
-
-    private func heapify(elements: UnsafeMutablePointer<Element>, startIndex: Int, endIndex: Int) {
-        assert(startIndex >= 0)
-
-        var index = startIndex
-        while true {
-            assert(index >= startIndex)
-            assert(index < endIndex)
-
-            let leftIndex = leftChildIndex(index)
-            let rightIndex = rightChildIndex(index)
-
-            // Find the minimum among the element at 'index' and its children
-            var minIndex = index
-            if leftIndex < endIndex && isOrderedBefore(elements[leftIndex], elements[index]) {
-                minIndex = leftIndex
-            }
-            if rightIndex < endIndex && isOrderedBefore(elements[rightIndex], elements[minIndex]) {
-                minIndex = rightIndex
-            }
-
-            // Ensure the smallest element is at 'index' and recurse if neccessary
-            if minIndex != index {
-                swap(&elements[index], &elements[minIndex])
-                index = minIndex
-            } else {
-                return
-            }
-        }
-    }
 }
 
 // MARK: BinaryHeapType conformance
-extension ClosureHeap : BinaryHeapType_Alt {
+extension ClosureUnsafePointerHeap : ClosureBinaryHeapType {
+    public init(isOrderedBefore: (Element, Element) -> Bool) {
+        buffer = ArrayBuffer()
+        self.isOrderedBefore = isOrderedBefore
+    }
+    
     public var count: Int {
         return buffer.count
     }
 
     public var first: Element? {
         return count > 0 ? buffer.elements.memory : nil
-    }
-
-    public var isEmpty: Bool {
-        return count == 0
     }
 
     public mutating func insert(value: Element) {
@@ -91,7 +60,7 @@ extension ClosureHeap : BinaryHeapType_Alt {
         buffer.count = buffer.count - 1
         if count > 0 {
             swap(&buffer.elements[0], &buffer.elements[count])
-            heapify(buffer.elements, startIndex: 0, endIndex: count)
+            heapify(buffer.elements, startIndex: 0, endIndex: count, isOrderedBefore: isOrderedBefore)
         }
 
         return buffer.elements.advancedBy(count).move()
@@ -103,5 +72,5 @@ extension ClosureHeap : BinaryHeapType_Alt {
 }
 
 
-extension ClosureHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension ClosureHeap : _DestructorSafeContainer { }
+extension ClosureUnsafePointerHeap : CustomDebugStringConvertible, CustomStringConvertible { }
+extension ClosureUnsafePointerHeap : _DestructorSafeContainer { }

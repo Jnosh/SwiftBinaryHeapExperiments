@@ -79,7 +79,7 @@ public protocol BinaryHeapType : _BinaryHeapType {
     init()
 }
 
-public protocol BinaryHeapType_Alt : _BinaryHeapType {
+public protocol ClosureBinaryHeapType : _BinaryHeapType {
     // Alternatively, could use closure for comparsion instead of Comparable
     //
     // we'd like to have both versions i.e. init with comparable element or with comparison func
@@ -94,7 +94,7 @@ public protocol BinaryHeapType_Alt : _BinaryHeapType {
     init(isOrderedBefore: (Element, Element) -> Bool)
 }
 
-extension BinaryHeapType_Alt where Element : Comparable {
+extension ClosureBinaryHeapType where Element : Comparable {
     init() {
         self.init(isOrderedBefore: <)
     }

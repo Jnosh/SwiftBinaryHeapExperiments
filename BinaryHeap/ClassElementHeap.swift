@@ -38,10 +38,10 @@ private func <<Element>(lhs: Wrapper<Element>, rhs: Wrapper<Element>) -> Bool {
 
 
 public struct ClassElementHeap<Element: AnyComparableObject> {
-    private var heap: ManagedBufferHeap<Wrapper<Element>>
+    private var heap: UnsafePointerHeap<Wrapper<Element>>
 
     public init() {
-        heap = ManagedBufferHeap()
+        heap = UnsafePointerHeap()
     }
 }
 
@@ -56,11 +56,11 @@ extension ClassElementHeap : BinaryHeapType {
     }
 
     public mutating func insert(value: Element) {
-        heap.fastInsert(Wrapper(value))
+        heap.insert(Wrapper(value))
     }
 
     public mutating func removeFirst() -> Element {
-        return heap.fastRemoveFirst().consume()
+        return heap.removeFirst().consume()
     }
 
     public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {

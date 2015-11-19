@@ -23,8 +23,7 @@ for _ in 0..<iterations {
     let elementContainer = ElementContainer(count: elementCount)
 
     // Time CFBinaryHeapWrapper
-    timeCFHeap(resultGroup: measurements.refMeasurements, elements: elementContainer.refElements)
-    timeFrameworkCFHeap(resultGroup: measurements.refMeasurements, elements: elementContainer.refElements)
+    timeCFHeapWrapper(elementContainer)
 
     // Time standard variants
     timeArrayHeap(elementContainer)
@@ -32,15 +31,17 @@ for _ in 0..<iterations {
     timeUnsafePointerHeap(elementContainer)
     timeManagedBufferHeap(elementContainer)
 
-    // Time ClosureHeap
-    timeClosureHeap(elementContainer)
+    // Time closure-based heaps
+    timeClosureUnsafePointerHeapNonGeneric(elementContainer)
+    // timeClosureUnsafePointerHeap(elementContainer)
+    timeClosureManagedBufferHeap(elementContainer)
+    timeClosureArrayBufferHeap(elementContainer)
 
     // Time PtrElementHeap
     timePtrElementHeap(elementContainer)
 
     // Time ClassElementHeap
-    timeHeap(ClassElementHeap.self, resultGroup: measurements.refMeasurements, elements: elementContainer.refElements)
-    timeFrameworkHeap(Framework.ClassElementHeap.self, resultGroup: measurements.refMeasurements, elements: elementContainer.refElements)
+    timeClassElementHeap(elementContainer)
 }
 
 // Print the collected results

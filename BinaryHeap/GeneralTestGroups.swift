@@ -114,99 +114,11 @@ func timeManagedBufferHeap(elements: ElementContainer) {
     timeHeapFast(ManagedBufferHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
 }
 
-func timePtrElementHeap(elements: ElementContainer) {
+func timeClassElementHeap(elements: ElementContainer) {
     // Local
-    timePtrElementHeap(resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timePtrElementHeap(resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timePtrElementHeap(resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timePtrElementHeap(resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timePtrElementHeap(resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timePtrElementHeap(resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timePtrElementHeap(resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
-
+    timeHeap(ClassElementHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
+    
     // Framework
-    timeFrameworkPtrElementHeap(resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeFrameworkPtrElementHeap(resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeFrameworkPtrElementHeap(resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeFrameworkPtrElementHeap(resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeFrameworkPtrElementHeap(resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeFrameworkPtrElementHeap(resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeFrameworkPtrElementHeap(resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
-}
-
-func timeClosureHeap(elements: ElementContainer) {
-    // Local (<)
-    timeClosureHeap(resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeClosureHeap(resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeClosureHeap(resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeClosureHeap(resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeClosureHeap(resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeClosureHeap(resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeClosureHeap(resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
-
-    // Framework (<)
-    timeFrameworkClosureHeap(resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeFrameworkClosureHeap(resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeFrameworkClosureHeap(resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeFrameworkClosureHeap(resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeFrameworkClosureHeap(resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeFrameworkClosureHeap(resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeFrameworkClosureHeap(resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
-
-    // Variant with closure literal
-    timeClosureHeapLocalLiteral(resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeClosureHeapLocalLiteral(resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeClosureHeapLocalLiteral(resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeClosureHeapLocalLiteral(resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeClosureHeapLocalLiteral(resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeClosureHeapLocalLiteral(resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeClosureHeapLocalLiteral(resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
-
-    // Framework + closure literal
-    timeFrameworkClosureHeapLocalLiteral(resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeFrameworkClosureHeapLocalLiteral(resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeFrameworkClosureHeapLocalLiteral(resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeFrameworkClosureHeapLocalLiteral(resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeFrameworkClosureHeapLocalLiteral(resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeFrameworkClosureHeapLocalLiteral(resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeFrameworkClosureHeapLocalLiteral(resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
-
-    // Local + argument literal
-    let literal = "(argument literal)"
-    timeClosureHeapArg(resultGroup: measurements.refMeasurements, elements: elements.refElements, name: literal) { $0 < $1 }
-    timeClosureHeapArg(resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements, name: literal) { $0 < $1 }
-    timeClosureHeapArg(resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements, name: literal) { $0 < $1 }
-    timeClosureHeapArg(resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements, name: literal) { $0 < $1 }
-    timeClosureHeapArg(resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements, name: literal) { $0 < $1 }
-    timeClosureHeapArg(resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements, name: literal) { $0 < $1 }
-    timeClosureHeapArg(resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements, name: literal) { $0 < $1 }
-
-    // Framework + argument literal
-    timeFrameworkClosureHeapArg(resultGroup: measurements.refMeasurements, elements: elements.refElements, name: literal) { $0 < $1 }
-    timeFrameworkClosureHeapArg(resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements, name: literal) { $0 < $1 }
-    timeFrameworkClosureHeapArg(resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements, name: literal) { $0 < $1 }
-    timeFrameworkClosureHeapArg(resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements, name: literal) { $0 < $1 }
-    timeFrameworkClosureHeapArg(resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements, name: literal) { $0 < $1 }
-    timeFrameworkClosureHeapArg(resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements, name: literal) { $0 < $1 }
-    timeFrameworkClosureHeapArg(resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements, name: literal) { $0 < $1 }
-
-    // Local + argument <
-    let function = "(argument <)"
-    timeClosureHeapArg(resultGroup: measurements.refMeasurements, elements: elements.refElements, name: function, isOrderedBefore: <)
-    timeClosureHeapArg(resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements, name: function, isOrderedBefore: <)
-    timeClosureHeapArg(resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements, name: function, isOrderedBefore: <)
-    timeClosureHeapArg(resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements, name: function, isOrderedBefore: <)
-    timeClosureHeapArg(resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements, name: function, isOrderedBefore: <)
-    timeClosureHeapArg(resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements, name: function, isOrderedBefore: <)
-    timeClosureHeapArg(resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements, name: function, isOrderedBefore: <)
-
-    // Framework + argument <
-    timeFrameworkClosureHeapArg(resultGroup: measurements.refMeasurements, elements: elements.refElements, name: function, isOrderedBefore: <)
-    timeFrameworkClosureHeapArg(resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements, name: function, isOrderedBefore: <)
-    timeFrameworkClosureHeapArg(resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements, name: function, isOrderedBefore: <)
-    timeFrameworkClosureHeapArg(resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements, name: function, isOrderedBefore: <)
-    timeFrameworkClosureHeapArg(resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements, name: function, isOrderedBefore: <)
-    timeFrameworkClosureHeapArg(resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements, name: function, isOrderedBefore: <)
-    timeFrameworkClosureHeapArg(resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements, name: function, isOrderedBefore: <)
+    timeFrameworkHeap(Framework.ClassElementHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
 }
 

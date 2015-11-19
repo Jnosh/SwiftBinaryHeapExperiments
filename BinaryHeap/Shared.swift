@@ -71,6 +71,38 @@ internal func heapify<E : Comparable>(elements: UnsafeMutablePointer<E>, startIn
     }
 }
 
+/// Restore heap condition
+internal func heapify<Element>(elements: UnsafeMutablePointer<Element>, startIndex: Int, endIndex: Int, isOrderedBefore: (Element, Element) -> Bool) {
+    assert(startIndex >= 0)
+    
+    var index = startIndex
+    while true {
+        assert(index >= startIndex)
+        assert(index < endIndex)
+        
+        let leftIndex = leftChildIndex(index)
+        let rightIndex = rightChildIndex(index)
+        
+        // Find the minimum among the element at 'index' and its children
+        var minIndex = index
+        if leftIndex < endIndex && isOrderedBefore(elements[leftIndex], elements[index]) {
+            minIndex = leftIndex
+        }
+        if rightIndex < endIndex && isOrderedBefore(elements[rightIndex], elements[minIndex]) {
+            minIndex = rightIndex
+        }
+        
+        // Ensure the smallest element is at 'index' and recurs if neccessary
+        // Using loop since we don't have guaranteed tail recursion
+        if minIndex != index {
+            swap(&elements[index], &elements[minIndex])
+            index = minIndex
+        } else {
+            return
+        }
+    }
+}
+
 /// Create a description for a `BinaryHeapType`
 internal func binaryHeapDescription<HeapType: _BinaryHeapType>(heap: HeapType) -> String {
     let sequence = GeneratorSequence(heap.generate())
