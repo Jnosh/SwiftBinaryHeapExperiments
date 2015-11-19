@@ -37,9 +37,10 @@ struct DurationList {
     var stddev: Duration {
         let mean = self.mean
 
-        let variance = runtimes.map { $0.nanoseconds - mean.nanoseconds }
-            .map { $0 * $0 }
-            .reduce(0, combine: +) / Double(runtimes.count)
+        // Split up to reduce compile time
+        let differences: [Double] = runtimes.map { $0.nanoseconds - mean.nanoseconds }
+        let squared: [Double] = differences.map { $0 * $0 }
+        let variance: Double = squared.reduce(0, combine: +) / Double(runtimes.count)
 
         return Duration(nanoseconds: sqrt(variance))
     }
