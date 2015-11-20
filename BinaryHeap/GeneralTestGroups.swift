@@ -122,3 +122,23 @@ func timeClassElementHeap(elements: ElementContainer) {
     timeFrameworkHeap(Framework.ClassElementHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
 }
 
+func timeNonCoWHeap(elements: ElementContainer) {
+    // Local
+    timeHeap(NonCoWHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
+    timeHeap(NonCoWHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
+    timeHeap(NonCoWHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
+    timeHeap(NonCoWHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
+    timeHeap(NonCoWHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
+    timeHeap(NonCoWHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
+    timeHeap(NonCoWHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
+
+    // Framework
+    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
+    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
+    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
+    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
+    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
+    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
+    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
+}
+

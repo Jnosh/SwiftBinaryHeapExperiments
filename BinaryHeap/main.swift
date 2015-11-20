@@ -42,6 +42,9 @@ for _ in 0..<iterations {
 
     // Time ClassElementHeap
     timeClassElementHeap(elementContainer)
+
+    // Time NonCoWHeap
+    timeNonCoWHeap(elementContainer)
 }
 
 // Print the collected results
