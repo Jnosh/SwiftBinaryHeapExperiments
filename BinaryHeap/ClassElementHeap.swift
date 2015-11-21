@@ -71,3 +71,4 @@ extension ClassElementHeap : BinaryHeapType {
 
 
 extension ClassElementHeap : CustomDebugStringConvertible, CustomStringConvertible { }
+

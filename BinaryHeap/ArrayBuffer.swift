@@ -115,12 +115,11 @@ internal struct ArrayBuffer<Element> {
     ///         `holdsUniqueReference() == true` after calling `reserveCapacity()`
     mutating func reserveCapacity(minimumCapacity: Int) {
         if capacity < minimumCapacity {
-            let newCapacity = nextPoW2(minimumCapacity)
             // If we hold the only reference to managedBuffer, we can safely destroy the elements
             // during the copy process.
             if holdsUniqueReference() {
                 // Allocate a new buffer
-                let elements = UnsafeMutablePointer<Element>.alloc(newCapacity)
+                let (elements, newCapacity) = UnsafeMutablePointer<Element>.allocSmart(minimumCapacity)
                 
                 // Copy the contents to the new buffer
                 // Destroy the old buffer in the process if we hold the only reference
@@ -130,8 +129,22 @@ internal struct ArrayBuffer<Element> {
                 storage.elements = elements
                 storage.capacity = newCapacity
             } else {
-                storage = ArrayBufferStorage(capacity: newCapacity, sourceBuffer: storage)
+                storage = ArrayBufferStorage(capacity: minimumCapacity, sourceBuffer: storage)
             }
+        }
+    }
+
+    /// Grow the buffer so it is large enough to store at least `minimumCapacity` elements while
+    /// ensuring that the buffer grows exponentially.
+    ///
+    /// - Postcondition: `capacity >= minimumCapacity && minimumCapacity > oldCapacity => newCapacity >= 2 * oldCapacity`.
+    /// - Complexity: O(`count`).
+    /// - Note: `minimumCapacity > capacity` before calling `grow()` implies
+    ///         `holdsUniqueReference() == true` after calling `grow()`
+    mutating func grow(minimumCapacity: Int) {
+        if capacity < minimumCapacity {
+            let requestedCapacity = max(2 * capacity, minimumCapacity)
+            reserveCapacity(requestedCapacity)
         }
     }
 

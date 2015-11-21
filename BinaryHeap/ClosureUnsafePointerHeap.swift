@@ -38,7 +38,7 @@ extension ClosureUnsafePointerHeap : ClosureBinaryHeapType {
         // Optimization to prevent uneccessary copy
         // If we need to resize our element buffer we are guaranteed to have a unique copy afterwards
         if count == buffer.capacity {
-            reserveCapacity(count + 1)
+            buffer.grow(count + 1)
         } else {
             buffer.ensureHoldsUniqueReference()
         }

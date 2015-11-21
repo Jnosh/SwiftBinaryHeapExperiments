@@ -83,4 +83,5 @@ extension NonCoWHeap : BinaryHeapType {
 }
 
 extension NonCoWHeap : CustomDebugStringConvertible, CustomStringConvertible { }
+extension NonCoWHeap : _DestructorSafeContainer { }
 

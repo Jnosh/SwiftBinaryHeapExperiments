@@ -6,6 +6,22 @@
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
+import Foundation // malloc_good_size
+
+extension UnsafeMutablePointer {
+    /// Allocate memory for at least `minimumCapacity` objects of type Memory.
+    ///
+    /// Returns both the pointer to the allocated memory as well as the actual capacity
+    /// of the buffer. This is the value that should be passed to `dealloc`.
+    ///
+    /// - Warning: This is based on the fact that UnsafeMutablePointer.alloc is currently built on
+    ///            malloc and may break in the future.
+    static func allocSmart(minimumCapacity: Int) -> (UnsafeMutablePointer<Memory>, Int) {
+        let stride = strideof(Memory)
+        let actualCapacity = malloc_good_size(stride * minimumCapacity) / stride
+        return (alloc(actualCapacity), actualCapacity)
+    }
+}
 
 /// Returns the index for the left child of the given index
 @transparent internal func leftChildIndex(index: Int) -> Int {
@@ -23,20 +39,6 @@
 @transparent internal func parentIndex(index: Int) -> Int {
     assert(index > 0)
     return (index - 1) / 2
-}
-
-/// Returns the smallest power-of-two >= `i`
-@transparent internal func nextPoW2(i: Int) -> Int {
-    var x = Int64(i)
-    x--
-    x |= x >> 1  // handle  2 bit numbers
-    x |= x >> 2  // handle  4 bit numbers
-    x |= x >> 4  // handle  8 bit numbers
-    x |= x >> 8  // handle 16 bit numbers
-    x |= x >> 16 // handle 32 bit numbers
-    x |= x >> 32 // handle 64 bit numbers
-    x++
-    return Int(x)
 }
 
 /// Restore heap condition

@@ -128,13 +128,26 @@ internal struct ManagedArrayBuffer<Element> {
     ///         `holdsUniqueReference() == true` after calling `reserveCapacity()`
     mutating func reserveCapacity(minimumCapacity: Int) {
         if capacity < minimumCapacity {
-            let newCapacity = nextPoW2(minimumCapacity)
             // If we hold the only reference to managedBuffer, we can safely destroy the elements
             // during the copy process.
             let destroy = holdsUniqueReference()
-            storage = ManagedArrayBufferStorage.createManagedArrayBuffer(newCapacity,
+            storage = ManagedArrayBufferStorage.createManagedArrayBuffer(minimumCapacity,
                                                             sourceBuffer: storage,
                                                    destroySourceContents: destroy)
+        }
+    }
+
+    /// Grow the buffer so it is large enough to store at least `minimumCapacity` elements while
+    /// ensuring that the buffer grows exponentially.
+    ///
+    /// - Postcondition: `capacity >= minimumCapacity && minimumCapacity > oldCapacity => newCapacity >= 2 * oldCapacity`.
+    /// - Complexity: O(`count`).
+    /// - Note: `minimumCapacity > capacity` before calling `grow()` implies
+    ///         `holdsUniqueReference() == true` after calling `grow()`
+    mutating func grow(minimumCapacity: Int) {
+        if capacity < minimumCapacity {
+            let requestedCapacity = max(2 * capacity, minimumCapacity)
+            reserveCapacity(requestedCapacity)
         }
     }
 
