@@ -7,7 +7,7 @@
 //
 
 /// Storage class backing `ArrayBuffer` used to implement CoW behaviour.
-private final class ArrayBufferStorage<Element> : NonObjectiveCBase {
+private final class ArrayBufferStorage<Element> {
     /// The pointer to the elements.
     private var elements: UnsafeMutablePointer<Element>
     /// The capacity of `elements`.
@@ -15,7 +15,7 @@ private final class ArrayBufferStorage<Element> : NonObjectiveCBase {
     /// The number of elements that the buffer stores.
     private var count: Int
     
-    private override init() {
+    private init() {
         elements = nil
         count = 0
         capacity = 0
@@ -90,7 +90,7 @@ internal struct ArrayBuffer<Element> {
 
     /// Returns true iff `self` holds the only strong reference to its buffer.
     mutating func holdsUniqueReference() -> Bool {
-        return isUniquelyReferenced(&storage)
+        return isUniquelyReferencedNonObjC(&storage)
     }
 
     /// Ensures that `self` holds the only strong reference to its buffer by copying the buffer

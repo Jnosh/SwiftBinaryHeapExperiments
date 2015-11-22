@@ -23,7 +23,23 @@ extension ClosureArrayBufferHeap : ClosureBinaryHeapType {
     public init(isOrderedBefore: (Element, Element) -> Bool) {
         buffer = ClosureArrayBuffer(isOrderedBefore: isOrderedBefore)
     }
-    
+
+    /// Returns true iff `self` is empty.
+    public var isEmpty: Bool {
+        return count == 0
+    }
+
+    /// If `!self.isEmpty`, remove the first element and return it, otherwise return `nil`.
+    public mutating func popFirst() -> Element? {
+        if isEmpty { return nil }
+
+        return removeFirst()
+    }
+
+    public func underestimateCount() -> Int {
+        return count
+    }
+
     public var count: Int {
         return buffer.count
     }
@@ -58,7 +74,7 @@ extension ClosureArrayBufferHeap : ClosureBinaryHeapType {
         buffer.count = buffer.count - 1
         if count > 0 {
             swap(&buffer.elements[0], &buffer.elements[count])
-            heapify(buffer.elements, startIndex: 0, endIndex: count, isOrderedBefore: buffer.isOrderedBefore)
+            heapify(buffer.elements, 0, count, buffer.isOrderedBefore)
         }
         
         return buffer.elements.advancedBy(count).move()
@@ -69,6 +85,3 @@ extension ClosureArrayBufferHeap : ClosureBinaryHeapType {
     }
 }
 
-
-extension ClosureArrayBufferHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension ClosureArrayBufferHeap : _DestructorSafeContainer { }

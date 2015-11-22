@@ -21,7 +21,23 @@ extension UnsafePointerHeap : BinaryHeapType {
     public init() {
         buffer = ArrayBuffer()
     }
-    
+
+    /// Returns true iff `self` is empty.
+    public var isEmpty: Bool {
+        return count == 0
+    }
+
+    /// If `!self.isEmpty`, remove the first element and return it, otherwise return `nil`.
+    public mutating func popFirst() -> Element? {
+        if isEmpty { return nil }
+
+        return removeFirst()
+    }
+
+    public func underestimateCount() -> Int {
+        return count
+    }
+
     public var count: Int {
         return buffer.count
     }
@@ -56,7 +72,7 @@ extension UnsafePointerHeap : BinaryHeapType {
         buffer.count = buffer.count - 1
         if count > 0 {
             swap(&buffer.elements[0], &buffer.elements[count])
-            heapify(buffer.elements, startIndex: 0, endIndex: count)
+            heapify(buffer.elements, 0, count)
         }
         
         return buffer.elements.advancedBy(count).move()
@@ -68,16 +84,12 @@ extension UnsafePointerHeap : BinaryHeapType {
 }
 
 extension UnsafePointerHeap {
-    internal mutating func forEach(@noescape body: (Element) throws -> Void) rethrows {
+    internal mutating func forEach(@noescape body: (Element) -> Void) {
         buffer.ensureHoldsUniqueReference()
         
         for element in UnsafeBufferPointer(start: buffer.elements, count: count) {
-            try body(element)
+            body(element)
         }
     }
 }
-
-
-extension UnsafePointerHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension UnsafePointerHeap : _DestructorSafeContainer { }
 

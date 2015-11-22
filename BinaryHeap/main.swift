@@ -23,7 +23,7 @@ for _ in 0..<iterations {
     let elementContainer = ElementContainer(count: elementCount)
 
     // Time CFBinaryHeapWrapper
-    timeCFHeapWrapper(elementContainer)
+    // timeCFHeapWrapper(elementContainer)
 
     // Time standard variants
     timeArrayHeap(elementContainer)

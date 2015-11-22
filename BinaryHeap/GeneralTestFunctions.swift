@@ -10,8 +10,8 @@ import Chronos
 import Framework
 
 func removeGenerics(name: String) -> String {
-    if let index = name.characters.indexOf("<") {
-        return String(name.characters.prefixUpTo(index))
+    if let index = find(name, "<") {
+        return name.substringToIndex(index)
     }
 
     return name
@@ -34,7 +34,7 @@ func timeHeap<Heap : BinaryHeapType, Element where Heap.Element == Element>(heap
     }
     let removeTime = sw2.elapsed()
 
-    let name = removeGenerics(String(heapType))
+    let name = removeGenerics(String(stringInterpolationSegment: heapType))
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
@@ -55,7 +55,7 @@ func timeHeap<Heap : BinaryHeapType, Element where Heap.Element == Element>(heap
     }
     let removeTime = sw2.elapsed()
 
-    let name = removeGenerics(String(heapType)) + " (@transparent)"
+    let name = removeGenerics(String(stringInterpolationSegment: heapType)) + " (@transparent)"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
@@ -76,7 +76,7 @@ func timeHeapFast<Heap : BinaryHeapType_Fast, Element where Heap.Element == Elem
     }
     let removeTime = sw2.elapsed()
     
-    let name = removeGenerics(String(heapType)) + " (workaround)"
+    let name = removeGenerics(String(stringInterpolationSegment: heapType)) + " (workaround)"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
@@ -97,7 +97,7 @@ func timeHeapFast<Heap : BinaryHeapType_Fast, Element where Heap.Element == Elem
     }
     let removeTime = sw2.elapsed()
     
-    let name = removeGenerics(String(heapType)) + " (@transparent + workaround)"
+    let name = removeGenerics(String(stringInterpolationSegment: heapType)) + " (@transparent + workaround)"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
@@ -119,7 +119,7 @@ func timeFrameworkHeap<Heap : Framework.BinaryHeapType, Element where Heap.Eleme
     }
     let removeTime = sw2.elapsed()
 
-    let name = removeGenerics(String(reflecting: heapType))
+    let name = removeGenerics(String(stringInterpolationSegment: heapType))
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 

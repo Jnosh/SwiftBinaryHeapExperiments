@@ -42,6 +42,22 @@ extension NonCoWHeap : BinaryHeapType {
         return count > 0 ? elements.memory : nil
     }
 
+    /// Returns true iff `self` is empty.
+    public var isEmpty: Bool {
+        return count == 0
+    }
+
+    /// If `!self.isEmpty`, remove the first element and return it, otherwise return `nil`.
+    public func popFirst() -> Element? {
+        if isEmpty { return nil }
+
+        return removeFirst()
+    }
+
+    public func underestimateCount() -> Int {
+        return count
+    }
+
     public func insert(value: Element) {
         if count == capacity {
             let requestedCapacity = max(2 * capacity, count + 1)
@@ -64,7 +80,7 @@ extension NonCoWHeap : BinaryHeapType {
         count = count - 1
         if count > 0 {
             swap(&elements[0], &elements[count])
-            heapify(elements, startIndex: 0, endIndex: count)
+            heapify(elements, 0, count)
         }
 
         return elements.advancedBy(count).move()
@@ -81,7 +97,4 @@ extension NonCoWHeap : BinaryHeapType {
         }
     }
 }
-
-extension NonCoWHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension NonCoWHeap : _DestructorSafeContainer { }
 

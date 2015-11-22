@@ -34,8 +34,14 @@ class ElementContainer {
     }
 
     deinit {
-        ptrRefElements.forEach { $0.destroy() }
-        ptrValElements.forEach { $0.destroy() }
-        unmanagedElements.forEach { $0.destroy() }
+        for el in ptrRefElements {
+            el.destroy()
+        }
+        for el in ptrValElements {
+            el.destroy()
+        }
+        for el in unmanagedElements {
+            el.destroy()
+        }
     }
 }

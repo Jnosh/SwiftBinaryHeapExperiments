@@ -17,11 +17,11 @@ struct DurationList {
     }
 
     var min: Duration {
-        return runtimes.minElement()!
+        return minElement(runtimes)
     }
 
     var max: Duration {
-        return runtimes.maxElement()!
+        return maxElement(runtimes)
     }
 
     var mean: Duration {
@@ -30,7 +30,7 @@ struct DurationList {
     }
 
     var median: Duration {
-        let sorted = runtimes.sort()
+        let sorted = runtimes.sorted(<)
         return sorted[sorted.count / 2]
     }
 

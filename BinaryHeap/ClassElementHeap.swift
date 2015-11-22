@@ -51,6 +51,22 @@ extension ClassElementHeap : BinaryHeapType {
         return heap.count
     }
 
+    /// Returns true iff `self` is empty.
+    public var isEmpty: Bool {
+        return count == 0
+    }
+
+    /// If `!self.isEmpty`, remove the first element and return it, otherwise return `nil`.
+    public mutating func popFirst() -> Element? {
+        if isEmpty { return nil }
+
+        return removeFirst()
+    }
+
+    public func underestimateCount() -> Int {
+        return count
+    }
+
     public var first: Element? {
         return heap.first?.element
     }
@@ -68,7 +84,4 @@ extension ClassElementHeap : BinaryHeapType {
         heap.removeAll(keepCapacity: keepCapacity)
     }
 }
-
-
-extension ClassElementHeap : CustomDebugStringConvertible, CustomStringConvertible { }
 

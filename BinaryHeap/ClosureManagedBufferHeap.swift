@@ -25,7 +25,23 @@ extension ClosureManagedBufferHeap : ClosureBinaryHeapType {
         buffer = ManagedArrayBuffer()
         self.isOrderedBefore = isOrderedBefore
     }
-    
+
+    /// Returns true iff `self` is empty.
+    public var isEmpty: Bool {
+        return count == 0
+    }
+
+    /// If `!self.isEmpty`, remove the first element and return it, otherwise return `nil`.
+    public mutating func popFirst() -> Element? {
+        if isEmpty { return nil }
+
+        return removeFirst()
+    }
+
+    public func underestimateCount() -> Int {
+        return count
+    }
+
     public var count: Int {
         return buffer.count
     }
@@ -48,9 +64,9 @@ extension ClosureManagedBufferHeap : ClosureBinaryHeapType {
         // Essentially buffer is retained for the closure call which costs us quite a bit of perf.
         buffer.count = count + 1
         var elements: UnsafeMutablePointer<Element> = nil
-        buffer.withUnsafeMutablePointer {
-            $0.advancedBy(count).initialize(element)
-            elements = $0
+        buffer.withUnsafeMutablePointer { ptr -> Void in
+            ptr.advancedBy(count).initialize(element)
+            elements = ptr
         }
         
         var index = count
@@ -72,7 +88,7 @@ extension ClosureManagedBufferHeap : ClosureBinaryHeapType {
         
         if count > 1 {
             swap(&elements[0], &elements[count - 1])
-            heapify(elements, startIndex: 0, endIndex: count - 1, isOrderedBefore: isOrderedBefore)
+            heapify(elements, 0, count - 1, isOrderedBefore)
         }
         
         return elements.advancedBy(count - 1).move()
@@ -83,6 +99,3 @@ extension ClosureManagedBufferHeap : ClosureBinaryHeapType {
     }
 }
 
-
-extension ClosureManagedBufferHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension ClosureManagedBufferHeap : _DestructorSafeContainer { }

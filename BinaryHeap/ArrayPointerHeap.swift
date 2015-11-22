@@ -21,6 +21,22 @@ extension ArrayPointerHeap : BinaryHeapType, BinaryHeapType_Fast {
         storage = Array()
     }
 
+    /// Returns true iff `self` is empty.
+    public var isEmpty: Bool {
+        return count == 0
+    }
+
+    /// If `!self.isEmpty`, remove the first element and return it, otherwise return `nil`.
+    public mutating func popFirst() -> Element? {
+        if isEmpty { return nil }
+
+        return removeFirst()
+    }
+
+    public func underestimateCount() -> Int {
+        return count
+    }
+    
     public var count: Int {
         return storage.count
     }
@@ -33,7 +49,7 @@ extension ArrayPointerHeap : BinaryHeapType, BinaryHeapType_Fast {
         var index = count
         storage.append(value)
 
-        storage.withUnsafeMutableBufferPointer { buffer in
+        storage.withUnsafeMutableBufferPointer { buffer -> Void in
             while index > 0 && (value < buffer[parentIndex(index)]) {
                 swap(&buffer[index], &buffer[parentIndex(index)])
                 index = parentIndex(index)
@@ -63,9 +79,9 @@ extension ArrayPointerHeap : BinaryHeapType, BinaryHeapType_Fast {
 
         let count = storage.count
         if count > 1 {
-            storage.withUnsafeMutableBufferPointer { buffer in
+            storage.withUnsafeMutableBufferPointer { buffer -> Void in
                 swap(&buffer[0], &buffer[count - 1])
-                heapify(buffer.baseAddress, startIndex: 0, endIndex: count - 1)
+                heapify(buffer.baseAddress, 0, count - 1)
             }
         }
 
@@ -84,7 +100,7 @@ extension ArrayPointerHeap : BinaryHeapType, BinaryHeapType_Fast {
             }
             
             swap(&elementPtr[0], &elementPtr[count - 1])
-            heapify(elementPtr, startIndex: 0, endIndex: count - 1)
+            heapify(elementPtr, 0, count - 1)
         }
         
         return storage.removeLast()
@@ -96,6 +112,3 @@ extension ArrayPointerHeap : BinaryHeapType, BinaryHeapType_Fast {
     }
 }
 
-
-extension ArrayPointerHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension ArrayPointerHeap : _DestructorSafeContainer { }

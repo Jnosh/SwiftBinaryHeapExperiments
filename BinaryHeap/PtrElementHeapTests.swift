@@ -12,38 +12,34 @@ import Framework
 
 func timePtrElementHeap(elements: ElementContainer) {
     // Local
-    timePtrElementHeap(resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timePtrElementHeap(resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timePtrElementHeap(resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timePtrElementHeap(resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timePtrElementHeap(resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timePtrElementHeap(resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timePtrElementHeap(resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
+    timePtrElementHeap(resultGroup: measurements.refMeasurements, elements.refElements)
+    timePtrElementHeap(resultGroup: measurements.smallValMeasurements, elements.smallValElements)
+    timePtrElementHeap(resultGroup: measurements.medValMeasurements, elements.mediumValElements)
+    timePtrElementHeap(resultGroup: measurements.largeValMeasurements, elements.largeValElements)
+    timePtrElementHeap(resultGroup: measurements.ptrRefMeasurements, elements.ptrRefElements)
+    timePtrElementHeap(resultGroup: measurements.ptrValMeasurements, elements.ptrValElements)
+    timePtrElementHeap(resultGroup: measurements.unmanagedMeasurements, elements.unmanagedElements)
     
     // Framework
-    timeFrameworkPtrElementHeap(resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeFrameworkPtrElementHeap(resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeFrameworkPtrElementHeap(resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeFrameworkPtrElementHeap(resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeFrameworkPtrElementHeap(resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeFrameworkPtrElementHeap(resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeFrameworkPtrElementHeap(resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
+    timeFrameworkPtrElementHeap(resultGroup: measurements.refMeasurements, elements.refElements)
+    timeFrameworkPtrElementHeap(resultGroup: measurements.smallValMeasurements, elements.smallValElements)
+    timeFrameworkPtrElementHeap(resultGroup: measurements.medValMeasurements, elements.mediumValElements)
+    timeFrameworkPtrElementHeap(resultGroup: measurements.largeValMeasurements, elements.largeValElements)
+    timeFrameworkPtrElementHeap(resultGroup: measurements.ptrRefMeasurements, elements.ptrRefElements)
+    timeFrameworkPtrElementHeap(resultGroup: measurements.ptrValMeasurements, elements.ptrValElements)
+    timeFrameworkPtrElementHeap(resultGroup: measurements.unmanagedMeasurements, elements.unmanagedElements)
 }
 
 
 private func timePtrElementHeap<E: Comparable>(resultGroup resultGroup: MeasurementGroup, elements: [E]) {
     let elementPtr = UnsafeMutablePointer<E>.alloc(elements.count)
     elementPtr.initializeFrom(elements)
-    defer {
-        elementPtr.destroy(elements.count)
-        elementPtr.dealloc(elements.count)
-    }
-    
+
     var heap = PtrElementHeap<E>()
     
     // Add the elements
     let sw1 = Stopwatch()
-    for element in elementPtr.stride(to: elementPtr.advancedBy(elements.count), by: 1) {
+    for element in stride(from: elementPtr, to: elementPtr.advancedBy(elements.count), by: 1) {
         heap.insert(element)
     }
     let insertTime = sw1.elapsed()
@@ -54,25 +50,24 @@ private func timePtrElementHeap<E: Comparable>(resultGroup resultGroup: Measurem
         heap.removeFirst()
     }
     let removeTime = sw2.elapsed()
+
     
-    
-    let name = removeGenerics(String(PtrElementHeap<E>.self))
+    let name = removeGenerics(String(stringInterpolationSegment: PtrElementHeap<E>.self))
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+
+    elementPtr.destroy(elements.count)
+    elementPtr.dealloc(elements.count)
 }
 
 private func timeFrameworkPtrElementHeap<E: Comparable>(resultGroup resultGroup: MeasurementGroup, elements: [E]) {
     let elementPtr = UnsafeMutablePointer<E>.alloc(elements.count)
     elementPtr.initializeFrom(elements)
-    defer {
-        elementPtr.destroy(elements.count)
-        elementPtr.dealloc(elements.count)
-    }
     
     var heap = Framework.PtrElementHeap<E>()
     
     // Add the elements
     let sw1 = Stopwatch()
-    for element in elementPtr.stride(to: elementPtr.advancedBy(elements.count), by: 1) {
+    for element in stride(from: elementPtr, to: elementPtr.advancedBy(elements.count), by: 1) {
         heap.insert(element)
     }
     let insertTime = sw1.elapsed()
@@ -85,6 +80,9 @@ private func timeFrameworkPtrElementHeap<E: Comparable>(resultGroup resultGroup:
     let removeTime = sw2.elapsed()
     
     
-    let name = removeGenerics(String(reflecting: Framework.PtrElementHeap<E>.self))
+    let name = removeGenerics(String(stringInterpolationSegment: Framework.PtrElementHeap<E>.self))
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+
+    elementPtr.destroy(elements.count)
+    elementPtr.dealloc(elements.count)
 }

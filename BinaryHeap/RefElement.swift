@@ -10,7 +10,7 @@ import Foundation
 import Framework
 
 /// A reference type element
-final class RefElement: NSObject {
+final class RefElement {
     var value: Int = Int(arc4random())
 }
 
@@ -24,21 +24,3 @@ func ==(lhs: RefElement, rhs: RefElement) -> Bool {
 func <(lhs: RefElement, rhs: RefElement) -> Bool {
     return lhs.value < rhs.value
 }
-
-extension RefElement: CFComparable {
-    @objc func compare(other: AnyObject) -> CFComparisonResult {
-        let rhs: RefElement = unsafeDowncast(other)
-        
-        if value < rhs.value {
-            return .CompareLessThan
-        } else if value > rhs.value {
-            return .CompareGreaterThan
-        } else  {
-            return .CompareEqualTo
-        }
-    }
-}
-
-extension RefElement : Framework.CFComparable {
-}
-
