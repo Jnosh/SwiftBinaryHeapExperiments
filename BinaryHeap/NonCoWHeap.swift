@@ -28,7 +28,7 @@ public final class NonCoWHeap<Element : Comparable> {
     private func reserveCapacity(minimumCapacity: Int) {
         if capacity < minimumCapacity {
             let (newElements, newCapacity) = UnsafeMutablePointer<Element>.allocSmart(minimumCapacity)
-            newElements.moveInitializeFrom(elements, count: count)
+            newElements.moveInitializeBackwardFrom(elements, count: count)
             elements.dealloc(capacity)
 
             elements = newElements
@@ -40,6 +40,22 @@ public final class NonCoWHeap<Element : Comparable> {
 extension NonCoWHeap : BinaryHeapType {
     public var first: Element? {
         return count > 0 ? elements.memory : nil
+    }
+
+    /// Returns true iff `self` is empty.
+    public var isEmpty: Bool {
+        return count == 0
+    }
+
+    /// If `!self.isEmpty`, remove the first element and return it, otherwise return `nil`.
+    public func popFirst() -> Element? {
+        if isEmpty { return nil }
+
+        return removeFirst()
+    }
+
+    public func underestimateCount() -> Int {
+        return count
     }
 
     public func insert(value: Element) {
@@ -64,7 +80,7 @@ extension NonCoWHeap : BinaryHeapType {
         count = count - 1
         if count > 0 {
             swap(&elements[0], &elements[count])
-            heapify(elements, startIndex: 0, endIndex: count)
+            heapify(elements, 0, count)
         }
 
         return elements.advancedBy(count).move()
@@ -81,7 +97,4 @@ extension NonCoWHeap : BinaryHeapType {
         }
     }
 }
-
-extension NonCoWHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension NonCoWHeap : _DestructorSafeContainer { }
 

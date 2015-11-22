@@ -23,25 +23,25 @@ for _ in 0..<iterations {
     let elementContainer = ElementContainer(count: elementCount)
 
     // Time CFBinaryHeapWrapper
-    timeCFHeapWrapper(elementContainer)
+    // timeCFHeapWrapper(elementContainer)
 
     // Time standard variants
     timeArrayHeap(elementContainer)
     timeArrayPointerHeap(elementContainer)
-    timeUnsafePointerHeap(elementContainer)
-    timeManagedBufferHeap(elementContainer)
+    //timeUnsafePointerHeap(elementContainer)
+    //timeManagedBufferHeap(elementContainer)
 
     // Time closure-based heaps
-    timeClosureUnsafePointerHeapNonGeneric(elementContainer)
+    //timeClosureUnsafePointerHeapNonGeneric(elementContainer)
     // timeClosureUnsafePointerHeap(elementContainer)
-    timeClosureManagedBufferHeap(elementContainer)
-    timeClosureArrayBufferHeap(elementContainer)
+    //timeClosureManagedBufferHeap(elementContainer)
+    //timeClosureArrayBufferHeap(elementContainer)
 
     // Time PtrElementHeap
     timePtrElementHeap(elementContainer)
 
     // Time ClassElementHeap
-    timeClassElementHeap(elementContainer)
+    //timeClassElementHeap(elementContainer)
 
     // Time NonCoWHeap
     timeNonCoWHeap(elementContainer)

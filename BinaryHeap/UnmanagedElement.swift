@@ -7,7 +7,7 @@
 //
 
 /// An element that wraps an Unmanaged reference type
-struct UnmanagedElement<Element : protocol<Comparable, AnyObject>> : Comparable {
+struct UnmanagedElement<Element : AnyObject where Element : Comparable> : Comparable {
     private let wrapped: Unmanaged<Element>
     
     var element: Element {

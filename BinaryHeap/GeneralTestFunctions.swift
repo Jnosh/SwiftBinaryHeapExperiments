@@ -9,16 +9,8 @@
 import Chronos
 import Framework
 
-func removeGenerics(name: String) -> String {
-    if let index = name.characters.indexOf("<") {
-        return String(name.characters.prefixUpTo(index))
-    }
-
-    return name
-}
-
-func timeHeap<Heap : BinaryHeapType, Element where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
-    var heap = heapType.init()
+func timeArrayHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = ArrayHeap<Element>()
 
     // Add the elements
     let sw1 = Stopwatch()
@@ -34,12 +26,12 @@ func timeHeap<Heap : BinaryHeapType, Element where Heap.Element == Element>(heap
     }
     let removeTime = sw2.elapsed()
 
-    let name = removeGenerics(String(heapType))
+    let name = "ArrayHeap"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-@transparent func timeHeapTransparent<Heap : BinaryHeapType, Element where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
-    var heap = heapType.init()
+func timeArrayPointerHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = ArrayPointerHeap<Element>()
 
     // Add the elements
     let sw1 = Stopwatch()
@@ -55,13 +47,98 @@ func timeHeap<Heap : BinaryHeapType, Element where Heap.Element == Element>(heap
     }
     let removeTime = sw2.elapsed()
 
-    let name = removeGenerics(String(heapType)) + " (@transparent)"
+    let name = "ArrayPointerHeap"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeHeapFast<Heap : BinaryHeapType_Fast, Element where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
-    var heap = heapType.init()
+func timeNonCoWHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = NonCoWHeap<Element>()
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+    let name = "NonCoWHeap"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+
+@transparent func timeArrayHeapTransparent<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = ArrayHeap<Element>()
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+    let name = "ArrayHeap" + " (@transparent)"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+@transparent func timeArrayPointerHeapTransparent<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = ArrayPointerHeap<Element>()
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+    let name = "ArrayPointerHeap" + " (@transparent)"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+func timeArrayPointerHeapFast<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = ArrayPointerHeap<Element>()
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.fastInsert(element)
+    }
+    let insertTime = sw1.elapsed()
     
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.fastRemoveFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+    let name = "ArrayPointerHeap" + " (workaround)"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+@transparent func timeArrayPointerHeapFastTransparent<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = ArrayPointerHeap<Element>()
+
     // Add the elements
     let sw1 = Stopwatch()
     for element in elements {
@@ -76,34 +153,13 @@ func timeHeapFast<Heap : BinaryHeapType_Fast, Element where Heap.Element == Elem
     }
     let removeTime = sw2.elapsed()
     
-    let name = removeGenerics(String(heapType)) + " (workaround)"
-    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
-}
-
-@transparent func timeHeapFastTransparent<Heap : BinaryHeapType_Fast, Element where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
-    var heap = heapType.init()
-    
-    // Add the elements
-    let sw1 = Stopwatch()
-    for element in elements {
-        heap.fastInsert(element)
-    }
-    let insertTime = sw1.elapsed()
-    
-    // Retrieve the elements in order
-    let sw2 = Stopwatch()
-    while !heap.isEmpty {
-        heap.fastRemoveFirst()
-    }
-    let removeTime = sw2.elapsed()
-    
-    let name = removeGenerics(String(heapType)) + " (@transparent + workaround)"
+    let name = "ArrayPointerHeap" + " (@transparent + workaround)"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
 
-func timeFrameworkHeap<Heap : Framework.BinaryHeapType, Element where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
-    var heap = heapType.init()
+func timeFrameworkArrayHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = Framework.ArrayHeap<Element>()
 
     // Add the elements
     let sw1 = Stopwatch()
@@ -119,7 +175,49 @@ func timeFrameworkHeap<Heap : Framework.BinaryHeapType, Element where Heap.Eleme
     }
     let removeTime = sw2.elapsed()
 
-    let name = removeGenerics(String(reflecting: heapType))
+    let name = "Framework.ArrayHeap"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+func timeFrameworkArrayPointerHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = Framework.ArrayPointerHeap<Element>()
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+    let name = "Framework.ArrayPointerHeap"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+func timeFrameworkNonCoWHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = Framework.NonCoWHeap<Element>()
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+    let name = "Framework.NonCoWHeap"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 

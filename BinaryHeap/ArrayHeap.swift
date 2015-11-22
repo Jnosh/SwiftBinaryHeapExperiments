@@ -21,6 +21,22 @@ extension ArrayHeap : BinaryHeapType {
         storage = Array()
     }
 
+    /// Returns true iff `self` is empty.
+    public var isEmpty: Bool {
+        return count == 0
+    }
+
+    /// If `!self.isEmpty`, remove the first element and return it, otherwise return `nil`.
+    public mutating func popFirst() -> Element? {
+        if isEmpty { return nil }
+
+        return removeFirst()
+    }
+
+    public func underestimateCount() -> Int {
+        return count
+    }
+
     public var count: Int {
         return storage.count
     }
@@ -89,6 +105,3 @@ extension ArrayHeap {
         }
     }
 }
-
-extension ArrayHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension ArrayHeap : _DestructorSafeContainer { }

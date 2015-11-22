@@ -31,6 +31,8 @@ public protocol _BinaryHeapType  {
     /// The smallest element on the heap as ordered by the comparison function or nil if the heap is empty.
     var first: Element? { get }
 
+    var isEmpty: Bool { get }
+
     /// Insert a new element into the heap.
     mutating func insert(element: Element)
 
@@ -39,39 +41,6 @@ public protocol _BinaryHeapType  {
 
     /// Remove all elements.
     mutating func removeAll(keepCapacity keepCapacity: Bool)
-}
-
-// Default implementations
-extension _BinaryHeapType {
-    /// Returns true iff `self` is empty.
-    public var isEmpty: Bool {
-        return count == 0
-    }
-    
-    /// If `!self.isEmpty`, remove the first element and return it, otherwise return `nil`.
-    public mutating func popFirst() -> Element? {
-        guard !isEmpty else { return nil }
-        
-        return removeFirst()
-    }
-    
-    public func underestimateCount() -> Int {
-        return count
-    }
-    
-    public func generate() -> BinaryHeapGenerator<Self> {
-        return BinaryHeapGenerator(heap: self)
-    }
-}
-
-extension _BinaryHeapType {
-    public var debugDescription: String {
-        return binaryHeapDescription(self)
-    }
-
-    public var description: String {
-        return binaryHeapDescription(self)
-    }
 }
 
 public protocol BinaryHeapType : _BinaryHeapType {
@@ -94,12 +63,6 @@ public protocol ClosureBinaryHeapType : _BinaryHeapType {
     init(isOrderedBefore: (Element, Element) -> Bool)
 }
 
-extension ClosureBinaryHeapType where Element : Comparable {
-    init() {
-        self.init(isOrderedBefore: <)
-    }
-}
-
 /// Extension to BinaryHeapType that offers alternative (unsafe) insertion and removal methods
 /// to work around current optimizer limitations.
 public protocol BinaryHeapType_Fast : BinaryHeapType {
@@ -107,17 +70,3 @@ public protocol BinaryHeapType_Fast : BinaryHeapType {
     mutating func fastRemoveFirst() -> Element
 }
 
-/// Basic generator that works with all `BinaryHeapType`s.
-public struct BinaryHeapGenerator<BinaryHeap : _BinaryHeapType> : GeneratorType {
-    private var heap: BinaryHeap
-
-    public init(heap: BinaryHeap) {
-        self.heap = heap
-    }
-
-    public mutating func next() -> BinaryHeap.Element? {
-        guard !heap.isEmpty else { return nil }
-
-        return heap.removeFirst()
-    }
-}

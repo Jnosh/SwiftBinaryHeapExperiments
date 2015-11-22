@@ -10,31 +10,31 @@ import Foundation
 import Chronos
 
 struct DurationList {
-    private var runtimes: [Duration] = []
+    private var runtimes: [Chronos.Duration] = []
 
-    mutating func addDuration(duration: Duration) {
+    mutating func addDuration(duration: Chronos.Duration) {
         runtimes.append(duration)
     }
 
-    var min: Duration {
-        return runtimes.minElement()!
+    var min: Chronos.Duration {
+        return minElement(runtimes)
     }
 
-    var max: Duration {
-        return runtimes.maxElement()!
+    var max: Chronos.Duration {
+        return maxElement(runtimes)
     }
 
-    var mean: Duration {
-        let total = runtimes.reduce(0) { return $0 + $1.nanoseconds }
+    var mean: Chronos.Duration {
+        let total = runtimes.reduce(0.0) { return $0 + $1.nanoseconds }
         return Duration(nanoseconds: total / Double(runtimes.count))
     }
 
-    var median: Duration {
-        let sorted = runtimes.sort()
+    var median: Chronos.Duration {
+        let sorted = runtimes.sorted(<)
         return sorted[sorted.count / 2]
     }
 
-    var stddev: Duration {
+    var stddev: Chronos.Duration {
         let mean = self.mean
 
         // Split up to reduce compile time
@@ -51,7 +51,7 @@ struct Measurement {
     var removes = DurationList()
     var totals = DurationList()
 
-    mutating func addMeasurement(insert: Duration, remove: Duration) {
+    mutating func addMeasurement(insert: Chronos.Duration, remove: Chronos.Duration) {
         inserts.addDuration(insert)
         removes.addDuration(remove)
         totals.addDuration(insert + remove)

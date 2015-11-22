@@ -16,9 +16,9 @@ extension UnsafeMutablePointer {
     ///
     /// - Warning: This is based on the fact that UnsafeMutablePointer.alloc is currently built on
     ///            malloc and may break in the future.
-    static func allocSmart(minimumCapacity: Int) -> (UnsafeMutablePointer<Memory>, Int) {
-        let stride = strideof(Memory)
-        let actualCapacity = malloc_good_size(stride * minimumCapacity) / stride
+    static func allocSmart(minimumCapacity: Int) -> (UnsafeMutablePointer<T>, Int) {
+        let stride = strideof(T)
+        let actualCapacity = Int(malloc_good_size(UInt(stride * minimumCapacity))) / stride
         return (alloc(actualCapacity), actualCapacity)
     }
 }
@@ -103,14 +103,6 @@ internal func heapify<Element>(elements: UnsafeMutablePointer<Element>, startInd
             return
         }
     }
-}
-
-/// Create a description for a `BinaryHeapType`
-internal func binaryHeapDescription<HeapType: _BinaryHeapType>(heap: HeapType) -> String {
-    let sequence = GeneratorSequence(heap.generate())
-    let joinedElements = sequence.map { return String($0) }.joinWithSeparator(", ")
-    
-    return "[" + joinedElements + "]"
 }
 
 

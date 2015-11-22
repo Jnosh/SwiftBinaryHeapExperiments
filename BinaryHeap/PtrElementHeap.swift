@@ -48,9 +48,20 @@ extension PtrElementHeap : BinaryHeapType {
         return storage.count
     }
 
-    /// true iff count == 0
+    /// Returns true iff `self` is empty.
     public var isEmpty: Bool {
-        return storage.isEmpty
+        return count == 0
+    }
+
+    /// If `!self.isEmpty`, remove the first element and return it, otherwise return `nil`.
+    public mutating func popFirst() -> UnsafePointer<E>? {
+        if isEmpty { return nil }
+
+        return removeFirst()
+    }
+
+    public func underestimateCount() -> Int {
+        return count
     }
 
     /// The smallest element on the heap as ordered by the comparison function
@@ -112,6 +123,3 @@ extension PtrElementHeap {
         storage = Array()
     }
 }
-
-extension PtrElementHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension PtrElementHeap : _DestructorSafeContainer { }

@@ -11,134 +11,77 @@ import Framework
 
 func timeArrayHeap(elements: ElementContainer) {
     // Local
-    timeHeap(ArrayHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeHeap(ArrayHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeHeap(ArrayHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeHeap(ArrayHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeHeap(ArrayHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeHeap(ArrayHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeHeap(ArrayHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
+    timeArrayHeap(measurements.refMeasurements, elements.refElements)
+    timeArrayHeap(measurements.smallValMeasurements, elements.smallValElements)
+    timeArrayHeap(measurements.medValMeasurements, elements.mediumValElements)
+    timeArrayHeap(measurements.largeValMeasurements, elements.largeValElements)
+    timeArrayHeap(measurements.ptrRefMeasurements, elements.ptrRefElements)
+    timeArrayHeap(measurements.ptrValMeasurements, elements.ptrValElements)
+    timeArrayHeap(measurements.unmanagedMeasurements, elements.unmanagedElements)
 
     // Framework
-    timeFrameworkHeap(Framework.ArrayHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeFrameworkHeap(Framework.ArrayHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeFrameworkHeap(Framework.ArrayHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeFrameworkHeap(Framework.ArrayHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeFrameworkHeap(Framework.ArrayHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeFrameworkHeap(Framework.ArrayHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeFrameworkHeap(Framework.ArrayHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
+    timeFrameworkArrayHeap(measurements.refMeasurements, elements.refElements)
+    timeFrameworkArrayHeap(measurements.smallValMeasurements, elements.smallValElements)
+    timeFrameworkArrayHeap(measurements.medValMeasurements, elements.mediumValElements)
+    timeFrameworkArrayHeap(measurements.largeValMeasurements, elements.largeValElements)
+    timeFrameworkArrayHeap(measurements.ptrRefMeasurements, elements.ptrRefElements)
+    timeFrameworkArrayHeap(measurements.ptrValMeasurements, elements.ptrValElements)
+    timeFrameworkArrayHeap(measurements.unmanagedMeasurements, elements.unmanagedElements)
 
     // @transparent test (only seems to have impact for RefElement so we confine our testing to this case)
-    timeHeapTransparent(ArrayHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
+    timeArrayHeapTransparent(measurements.refMeasurements, elements.refElements)
 }
 
 func timeArrayPointerHeap(elements: ElementContainer) {
     // Local
-    timeHeap(ArrayPointerHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeHeap(ArrayPointerHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeHeap(ArrayPointerHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeHeap(ArrayPointerHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeHeap(ArrayPointerHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeHeap(ArrayPointerHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeHeap(ArrayPointerHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
+    timeArrayPointerHeap(measurements.refMeasurements, elements.refElements)
+    timeArrayPointerHeap(measurements.smallValMeasurements, elements.smallValElements)
+    timeArrayPointerHeap(measurements.medValMeasurements, elements.mediumValElements)
+    timeArrayPointerHeap(measurements.largeValMeasurements, elements.largeValElements)
+    timeArrayPointerHeap(measurements.ptrRefMeasurements, elements.ptrRefElements)
+    timeArrayPointerHeap(measurements.ptrValMeasurements, elements.ptrValElements)
+    timeArrayPointerHeap(measurements.unmanagedMeasurements, elements.unmanagedElements)
 
     // Framework
-    timeFrameworkHeap(Framework.ArrayPointerHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeFrameworkHeap(Framework.ArrayPointerHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeFrameworkHeap(Framework.ArrayPointerHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeFrameworkHeap(Framework.ArrayPointerHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeFrameworkHeap(Framework.ArrayPointerHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeFrameworkHeap(Framework.ArrayPointerHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeFrameworkHeap(Framework.ArrayPointerHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
+    timeFrameworkArrayPointerHeap(measurements.refMeasurements, elements.refElements)
+    timeFrameworkArrayPointerHeap(measurements.smallValMeasurements, elements.smallValElements)
+    timeFrameworkArrayPointerHeap(measurements.medValMeasurements, elements.mediumValElements)
+    timeFrameworkArrayPointerHeap(measurements.largeValMeasurements, elements.largeValElements)
+    timeFrameworkArrayPointerHeap(measurements.ptrRefMeasurements, elements.ptrRefElements)
+    timeFrameworkArrayPointerHeap(measurements.ptrValMeasurements, elements.ptrValElements)
+    timeFrameworkArrayPointerHeap(measurements.unmanagedMeasurements, elements.unmanagedElements)
 
     // Run test on "fast" variant
-    timeHeapFast(ArrayPointerHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeHeapFast(ArrayPointerHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeHeapFast(ArrayPointerHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeHeapFast(ArrayPointerHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeHeapFast(ArrayPointerHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeHeapFast(ArrayPointerHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeHeapFast(ArrayPointerHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
+    timeArrayPointerHeapFast(measurements.refMeasurements, elements.refElements)
+    timeArrayPointerHeapFast(measurements.smallValMeasurements, elements.smallValElements)
+    timeArrayPointerHeapFast(measurements.medValMeasurements, elements.mediumValElements)
+    timeArrayPointerHeapFast(measurements.largeValMeasurements, elements.largeValElements)
+    timeArrayPointerHeapFast(measurements.ptrRefMeasurements, elements.ptrRefElements)
+    timeArrayPointerHeapFast(measurements.ptrValMeasurements, elements.ptrValElements)
+    timeArrayPointerHeapFast(measurements.unmanagedMeasurements, elements.unmanagedElements)
 
     // @transparent test (only seems to have impact for RefElement so we confine our testing to this case)
-    timeHeapTransparent(ArrayPointerHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeHeapFastTransparent(ArrayPointerHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-}
-
-func timeUnsafePointerHeap(elements: ElementContainer) {
-    // Local
-    timeHeap(UnsafePointerHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeHeap(UnsafePointerHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeHeap(UnsafePointerHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeHeap(UnsafePointerHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeHeap(UnsafePointerHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeHeap(UnsafePointerHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeHeap(UnsafePointerHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
-
-    // Framework
-    timeFrameworkHeap(Framework.UnsafePointerHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeFrameworkHeap(Framework.UnsafePointerHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeFrameworkHeap(Framework.UnsafePointerHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeFrameworkHeap(Framework.UnsafePointerHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeFrameworkHeap(Framework.UnsafePointerHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeFrameworkHeap(Framework.UnsafePointerHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeFrameworkHeap(Framework.UnsafePointerHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
-}
-
-func timeManagedBufferHeap(elements: ElementContainer) {
-    // Local
-    timeHeap(ManagedBufferHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeHeap(ManagedBufferHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeHeap(ManagedBufferHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeHeap(ManagedBufferHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeHeap(ManagedBufferHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeHeap(ManagedBufferHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeHeap(ManagedBufferHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
-
-    // Framework
-    timeFrameworkHeap(Framework.ManagedBufferHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeFrameworkHeap(Framework.ManagedBufferHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeFrameworkHeap(Framework.ManagedBufferHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeFrameworkHeap(Framework.ManagedBufferHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeFrameworkHeap(Framework.ManagedBufferHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeFrameworkHeap(Framework.ManagedBufferHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeFrameworkHeap(Framework.ManagedBufferHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
-
-    // "fast" variant
-    timeHeapFast(ManagedBufferHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeHeapFast(ManagedBufferHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeHeapFast(ManagedBufferHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeHeapFast(ManagedBufferHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeHeapFast(ManagedBufferHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeHeapFast(ManagedBufferHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeHeapFast(ManagedBufferHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
-}
-
-func timeClassElementHeap(elements: ElementContainer) {
-    // Local
-    timeHeap(ClassElementHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    
-    // Framework
-    timeFrameworkHeap(Framework.ClassElementHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
+    timeArrayPointerHeapTransparent(measurements.refMeasurements, elements.refElements)
+    timeArrayPointerHeapFastTransparent(measurements.refMeasurements, elements.refElements)
 }
 
 func timeNonCoWHeap(elements: ElementContainer) {
     // Local
-    timeHeap(NonCoWHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeHeap(NonCoWHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeHeap(NonCoWHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeHeap(NonCoWHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeHeap(NonCoWHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeHeap(NonCoWHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeHeap(NonCoWHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
+    timeNonCoWHeap(measurements.refMeasurements, elements.refElements)
+    timeNonCoWHeap(measurements.smallValMeasurements, elements.smallValElements)
+    timeNonCoWHeap(measurements.medValMeasurements, elements.mediumValElements)
+    timeNonCoWHeap(measurements.largeValMeasurements, elements.largeValElements)
+    timeNonCoWHeap(measurements.ptrRefMeasurements, elements.ptrRefElements)
+    timeNonCoWHeap(measurements.ptrValMeasurements, elements.ptrValElements)
+    timeNonCoWHeap(measurements.unmanagedMeasurements, elements.unmanagedElements)
 
     // Framework
-    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.smallValMeasurements, elements: elements.smallValElements)
-    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.medValMeasurements, elements: elements.mediumValElements)
-    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.largeValMeasurements, elements: elements.largeValElements)
-    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.ptrRefMeasurements, elements: elements.ptrRefElements)
-    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.ptrValMeasurements, elements: elements.ptrValElements)
-    timeFrameworkHeap(Framework.NonCoWHeap.self, resultGroup: measurements.unmanagedMeasurements, elements: elements.unmanagedElements)
+    timeFrameworkNonCoWHeap(measurements.refMeasurements, elements.refElements)
+    timeFrameworkNonCoWHeap(measurements.smallValMeasurements, elements.smallValElements)
+    timeFrameworkNonCoWHeap(measurements.medValMeasurements, elements.mediumValElements)
+    timeFrameworkNonCoWHeap(measurements.largeValMeasurements, elements.largeValElements)
+    timeFrameworkNonCoWHeap(measurements.ptrRefMeasurements, elements.ptrRefElements)
+    timeFrameworkNonCoWHeap(measurements.ptrValMeasurements, elements.ptrValElements)
+    timeFrameworkNonCoWHeap(measurements.unmanagedMeasurements, elements.unmanagedElements)
 }
 

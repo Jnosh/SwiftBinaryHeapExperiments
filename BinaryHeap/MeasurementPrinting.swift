@@ -17,25 +17,29 @@ func printMeasurementGroup(measurementGroup: MeasurementGroup) {
     let tags = ["Insert", "Remove", "Total", "σ"]
 
     // Sort measurements by total execution time
-    let sortedMeasurements = measurementGroup.resultSets.sort() { lhs, rhs in
+
+    var sortedMeasurements = map(measurementGroup.resultSets) { (key: String, value: Measurement) -> (String, Measurement) in
+        return (key, value)
+    }
+    sortedMeasurements.sort { lhs, rhs in
         lhs.1.totals.mean < rhs.1.totals.mean
     }
 
     // Determine the width of the name column
-    let maxNameLength = measurementGroup.resultSets.keys.reduce(0) {
-        max($0, $1.characters.count)
+    let maxNameLength = reduce(measurementGroup.resultSets.keys, 0) {
+        max($0, countElements($1))
     }
     let paddedGroupName = pad(measurementGroup.name, toLength: maxNameLength)
 
     // Since the durations have a fixed size, we resize the tag names to fit
-    let maxTagLength = formatDuration(Duration(nanoseconds: 0)).characters.count
+    let maxTagLength = countElements(formatDuration(Duration(nanoseconds: 0)))
     let paddedTags = tags.map { leftPad($0, toLength: maxTagLength) }
 
     // Print the title line
     let titleLine = lineForElements([paddedGroupName] + paddedTags)
-    let separatorLine = separatorLineWithLength(titleLine.characters.count)
-    print(titleLine)
-    print(separatorLine)
+    let separatorLine = separatorLineWithLength(countElements(titleLine))
+    println(titleLine)
+    println(separatorLine)
 
     // Print the measurements
     for (name, measurementGroup) in sortedMeasurements {
@@ -46,15 +50,15 @@ func printMeasurementGroup(measurementGroup: MeasurementGroup) {
         let stddev = formatDuration(measurementGroup.totals.stddev)
 
         let line = lineForElements([paddedName, insert, remove, total, stddev])
-        print(line)
+        println(line)
     }
 
-    print(separatorLine)
-    print("")
+    println(separatorLine)
+    println("")
 }
 
 private func lineForElements(elements: [String]) -> String {
-    return elements.joinWithSeparator(separatorString)
+    return join(separatorString, elements)
 }
 
 private func separatorLineWithLength(length: Int) -> String {
@@ -66,11 +70,11 @@ private func pad(string: String, toLength length: Int) -> String {
 }
 
 private func leftPad(string: String, toLength length: Int) -> String {
-    let shortenedString = String(string.characters.prefix(length))
-    let padding = String(count: length - shortenedString.characters.count, repeatedValue: paddingCharacter)
+    let shortenedString = prefix(string, length)
+    let padding = String(count: length - countElements(shortenedString), repeatedValue: paddingCharacter)
     return padding + shortenedString
 }
 
-private func formatDuration(duration: Duration) -> String {
+private func formatDuration(duration: Chronos.Duration) -> String {
     return String(format: "%10.4gms", duration.milliseconds)
 }

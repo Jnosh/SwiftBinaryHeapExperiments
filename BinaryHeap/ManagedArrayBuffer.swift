@@ -31,7 +31,7 @@ private final class ManagedArrayBufferStorage<Element>: ManagedBuffer<ValueWrapp
                                          sourceBuffer: ManagedArrayBufferStorage<Element>,
                                          destroySourceContents: Bool = false) -> ManagedArrayBufferStorage<Element> {
         let newBuffer = ManagedArrayBufferStorage.createManagedArrayBuffer(minimumCapacity)
-        newBuffer.withUnsafeMutablePointers { (newValuePtr, newElements) in
+        newBuffer.withUnsafeMutablePointers { (newValuePtr, newElements) -> Void in
             sourceBuffer.withUnsafeMutablePointers { (valuePtr, elements) in
                 precondition(minimumCapacity >= valuePtr.memory.capacity)
                 
@@ -51,7 +51,7 @@ private final class ManagedArrayBufferStorage<Element>: ManagedBuffer<ValueWrapp
     
     deinit {
         // We own the elements in the buffer - destroy them
-        withUnsafeMutablePointers { (valuePtr, elementPtr) in
+        withUnsafeMutablePointers { (valuePtr, elementPtr) -> Void in
             elementPtr.destroy(valuePtr.memory.count)
             valuePtr.destroy()
         }
