@@ -54,13 +54,13 @@
 		D8B256111BB086D4002ED631 /* ArrayPointerHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C21BB014A1002ED631 /* ArrayPointerHeap.swift */; };
 		D8B256121BB086D4002ED631 /* ManagedBufferHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C31BB014A1002ED631 /* ManagedBufferHeap.swift */; };
 		D8B256131BB086D4002ED631 /* UnsafePointerHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C41BB014A1002ED631 /* UnsafePointerHeap.swift */; };
-		D8D191161BD2795F0069D9EF /* Chronos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D191151BD2795F0069D9EF /* Chronos.framework */; };
-		D8D191171BD2795F0069D9EF /* Chronos.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8D191151BD2795F0069D9EF /* Chronos.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8D191661BD2BC9B0069D9EF /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D191651BD2BC9B0069D9EF /* Shared.swift */; };
 		D8D191671BD2BC9B0069D9EF /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D191651BD2BC9B0069D9EF /* Shared.swift */; };
 		D8D191811BD2DC9B0069D9EF /* BinaryHeapCF_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D191801BD2DC9B0069D9EF /* BinaryHeapCF_Tests.swift */; };
 		D8D191831BD2DC9B0069D9EF /* Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B255DB1BB06BF9002ED631 /* Framework.framework */; };
 		D8D191901BD2E0A80069D9EF /* TestElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D1918F1BD2E0A80069D9EF /* TestElements.swift */; };
+		D8DD46091C02286600A80E15 /* Chronos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DD46081C02286600A80E15 /* Chronos.framework */; };
+		D8DD460A1C02286600A80E15 /* Chronos.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8DD46081C02286600A80E15 /* Chronos.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8EF16271BDC1CE900B3A52C /* PtrElementHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF16261BDC1CE900B3A52C /* PtrElementHeap.swift */; };
 		D8EF16281BDC1CE900B3A52C /* PtrElementHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF16261BDC1CE900B3A52C /* PtrElementHeap.swift */; };
 		D8EF163E1BDD679200B3A52C /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF163D1BDD679200B3A52C /* Elements.swift */; };
@@ -85,13 +85,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D8D191181BD279600069D9EF /* Embed Frameworks */ = {
+		D8DD460B1C02286700A80E15 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D8D191171BD2795F0069D9EF /* Chronos.framework in Embed Frameworks */,
+				D8DD460A1C02286600A80E15 /* Chronos.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,7 +101,6 @@
 /* Begin PBXFileReference section */
 		D83AF0091BFFC3C1007E34B0 /* CFBinaryHeapWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFBinaryHeapWrapper.swift; sourceTree = "<group>"; };
 		D83AF00C1BFFC4C6007E34B0 /* NonCoWHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonCoWHeap.swift; sourceTree = "<group>"; };
-		D84620261BE5722E0086DBDF /* Current Results (iMac).txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Current Results (iMac).txt"; sourceTree = "<group>"; };
 		D84B83621BED58760009DC50 /* MeasurementPrinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementPrinting.swift; sourceTree = "<group>"; };
 		D88D29281BFD407E0032FBC0 /* ClosureManagedBufferHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureManagedBufferHeap.swift; sourceTree = "<group>"; };
 		D88D292B1BFD463E0032FBC0 /* ClosureArrayBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureArrayBuffer.swift; sourceTree = "<group>"; };
@@ -118,11 +117,6 @@
 		D8937AA71BD403700041999A /* MeasurementCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementCollection.swift; sourceTree = "<group>"; };
 		D898F9CE1BF7BE6000FC17E1 /* ClassElementHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassElementHeap.swift; sourceTree = "<group>"; };
 		D898F9D41BF7EF9300FC17E1 /* ClosureUnsafePointerHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureUnsafePointerHeap.swift; sourceTree = "<group>"; };
-		D8AEF4311BF3EDC200D5F781 /* Results.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Results.txt; sourceTree = "<group>"; };
-		D8AEF4341BF3EDC200D5F781 /* Results.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Results.txt; sourceTree = "<group>"; };
-		D8AEF4361BF3EDC200D5F781 /* Results.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Results.txt; sourceTree = "<group>"; };
-		D8AEF4371BF3EDC200D5F781 /* Swift 2.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Swift 2.txt"; sourceTree = "<group>"; };
-		D8AEF4381BF5003F00D5F781 /* Current Results (Mac Pro).txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Current Results (Mac Pro).txt"; sourceTree = "<group>"; };
 		D8AEF4391BF5351600D5F781 /* ManagedArrayBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedArrayBuffer.swift; sourceTree = "<group>"; };
 		D8AEF43C1BF6161400D5F781 /* ArrayBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayBuffer.swift; sourceTree = "<group>"; };
 		D8B255C21BB014A1002ED631 /* ArrayPointerHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayPointerHeap.swift; sourceTree = "<group>"; };
@@ -137,7 +131,6 @@
 		D8B255DF1BB06BF9002ED631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8B255F31BB08605002ED631 /* BinaryHeap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinaryHeap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8B255FE1BB08605002ED631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D8D191151BD2795F0069D9EF /* Chronos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chronos.framework; path = Carthage/Build/Mac/Chronos.framework; sourceTree = "<group>"; };
 		D8D1913A1BD27B400069D9EF /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		D8D1913C1BD27B400069D9EF /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		D8D1913D1BD27B400069D9EF /* Profile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Profile.xcconfig; sourceTree = "<group>"; };
@@ -176,6 +169,7 @@
 		D8D191801BD2DC9B0069D9EF /* BinaryHeapCF_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryHeapCF_Tests.swift; sourceTree = "<group>"; };
 		D8D191821BD2DC9B0069D9EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8D1918F1BD2E0A80069D9EF /* TestElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestElements.swift; sourceTree = "<group>"; };
+		D8DD46081C02286600A80E15 /* Chronos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chronos.framework; path = Carthage/Build/Chronos.framework; sourceTree = "<group>"; };
 		D8EF16261BDC1CE900B3A52C /* PtrElementHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PtrElementHeap.swift; sourceTree = "<group>"; };
 		D8EF163D1BDD679200B3A52C /* Elements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
 		D8EF163F1BDD685900B3A52C /* GeneralTestGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralTestGroups.swift; sourceTree = "<group>"; };
@@ -198,7 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8B256041BB0860C002ED631 /* Framework.framework in Frameworks */,
-				D8D191161BD2795F0069D9EF /* Chronos.framework in Frameworks */,
+				D8DD46091C02286600A80E15 /* Chronos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,16 +207,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D84620251BE5722E0086DBDF /* Results */ = {
-			isa = PBXGroup;
-			children = (
-				D84620261BE5722E0086DBDF /* Current Results (iMac).txt */,
-				D8AEF4381BF5003F00D5F781 /* Current Results (Mac Pro).txt */,
-				D8AEF42F1BF3EDC200D5F781 /* Old */,
-			);
-			path = Results;
-			sourceTree = "<group>";
-		};
 		D88D293B1BFDFF860032FBC0 /* Data collection */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,49 +239,6 @@
 			name = "Closure Heap";
 			sourceTree = "<group>";
 		};
-		D8AEF42F1BF3EDC200D5F781 /* Old */ = {
-			isa = PBXGroup;
-			children = (
-				D8AEF4301BF3EDC200D5F781 /* Swift 1.1 */,
-				D8AEF4321BF3EDC200D5F781 /* Swift 1.2 */,
-				D8AEF4371BF3EDC200D5F781 /* Swift 2.txt */,
-			);
-			path = Old;
-			sourceTree = "<group>";
-		};
-		D8AEF4301BF3EDC200D5F781 /* Swift 1.1 */ = {
-			isa = PBXGroup;
-			children = (
-				D8AEF4311BF3EDC200D5F781 /* Results.txt */,
-			);
-			path = "Swift 1.1";
-			sourceTree = "<group>";
-		};
-		D8AEF4321BF3EDC200D5F781 /* Swift 1.2 */ = {
-			isa = PBXGroup;
-			children = (
-				D8AEF4331BF3EDC200D5F781 /* Normal */,
-				D8AEF4351BF3EDC200D5F781 /* WMO */,
-			);
-			path = "Swift 1.2";
-			sourceTree = "<group>";
-		};
-		D8AEF4331BF3EDC200D5F781 /* Normal */ = {
-			isa = PBXGroup;
-			children = (
-				D8AEF4341BF3EDC200D5F781 /* Results.txt */,
-			);
-			path = Normal;
-			sourceTree = "<group>";
-		};
-		D8AEF4351BF3EDC200D5F781 /* WMO */ = {
-			isa = PBXGroup;
-			children = (
-				D8AEF4361BF3EDC200D5F781 /* Results.txt */,
-			);
-			path = WMO;
-			sourceTree = "<group>";
-		};
 		D8B255CB1BB051AD002ED631 /* Element Types */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,7 +264,7 @@
 		D8D191191BD279710069D9EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D8D191151BD2795F0069D9EF /* Chronos.framework */,
+				D8DD46081C02286600A80E15 /* Chronos.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -485,7 +426,6 @@
 		D8EF8D251B9B2DA6003B0B37 = {
 			isa = PBXGroup;
 			children = (
-				D84620251BE5722E0086DBDF /* Results */,
 				D8EF8D301B9B2DA6003B0B37 /* Profiling */,
 				D8EF8D641B9B2ED0003B0B37 /* BinaryHeap Variants */,
 				D8B255DC1BB06BF9002ED631 /* Framework Target */,
@@ -594,7 +534,7 @@
 				D8B255EF1BB08605002ED631 /* Sources */,
 				D8B255F01BB08605002ED631 /* Frameworks */,
 				D8B255F11BB08605002ED631 /* Resources */,
-				D8D191181BD279600069D9EF /* Embed Frameworks */,
+				D8DD460B1C02286700A80E15 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -885,7 +825,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Build",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BinaryHeap/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -904,7 +844,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Build",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BinaryHeap/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -923,7 +863,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Build",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BinaryHeap/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -942,7 +882,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/Mac",
+					"$(PROJECT_DIR)/Carthage/Build",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BinaryHeap/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
