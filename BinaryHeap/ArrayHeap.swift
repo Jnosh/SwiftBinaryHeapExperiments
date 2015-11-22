@@ -91,4 +91,4 @@ extension ArrayHeap {
 }
 
 extension ArrayHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension ArrayHeap : _DestructorSafeContainer { }
+

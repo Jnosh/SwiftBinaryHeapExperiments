@@ -131,5 +131,4 @@ extension ManagedBufferHeap {
 
 
 extension ManagedBufferHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension ManagedBufferHeap : _DestructorSafeContainer { }
 

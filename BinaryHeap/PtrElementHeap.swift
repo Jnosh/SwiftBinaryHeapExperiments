@@ -114,4 +114,4 @@ extension PtrElementHeap {
 }
 
 extension PtrElementHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension PtrElementHeap : _DestructorSafeContainer { }
+

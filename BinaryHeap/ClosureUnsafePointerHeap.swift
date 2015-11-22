@@ -73,4 +73,4 @@ extension ClosureUnsafePointerHeap : ClosureBinaryHeapType {
 
 
 extension ClosureUnsafePointerHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension ClosureUnsafePointerHeap : _DestructorSafeContainer { }
+

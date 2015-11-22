@@ -79,5 +79,4 @@ extension UnsafePointerHeap {
 
 
 extension UnsafePointerHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension UnsafePointerHeap : _DestructorSafeContainer { }
 
