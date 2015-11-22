@@ -98,4 +98,4 @@ extension ArrayPointerHeap : BinaryHeapType, BinaryHeapType_Fast {
 
 
 extension ArrayPointerHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension ArrayPointerHeap : _DestructorSafeContainer { }
+

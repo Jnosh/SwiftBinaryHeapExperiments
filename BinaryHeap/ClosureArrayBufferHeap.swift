@@ -71,4 +71,4 @@ extension ClosureArrayBufferHeap : ClosureBinaryHeapType {
 
 
 extension ClosureArrayBufferHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension ClosureArrayBufferHeap : _DestructorSafeContainer { }
+

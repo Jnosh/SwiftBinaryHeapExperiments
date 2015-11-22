@@ -85,4 +85,4 @@ extension ClosureManagedBufferHeap : ClosureBinaryHeapType {
 
 
 extension ClosureManagedBufferHeap : CustomDebugStringConvertible, CustomStringConvertible { }
-extension ClosureManagedBufferHeap : _DestructorSafeContainer { }
+
