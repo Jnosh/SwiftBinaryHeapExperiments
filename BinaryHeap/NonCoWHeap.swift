@@ -6,6 +6,7 @@
 //  Copyright © 2015 Janosch Hildebrand. All rights reserved.
 //
 
+/// UnsafePointerHeap variant without CoW support.
 public final class NonCoWHeap<Element : Comparable> {
     /// The pointer to the elements.
     private var elements: UnsafeMutablePointer<Element>

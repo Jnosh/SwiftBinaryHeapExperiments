@@ -39,6 +39,10 @@ public protocol _BinaryHeapType  {
 
     /// Remove all elements.
     mutating func removeAll(keepCapacity keepCapacity: Bool)
+    
+    // Supported by all except CFBinaryHeapWrapper
+    // var capacity: Int { get }
+    // mutating func reserveCapacity(minimumCapacity: Int)
 }
 
 // Default implementations

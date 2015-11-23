@@ -13,11 +13,11 @@ import Framework
 func timeCFHeapWrapper(elements: ElementContainer) {
     // Local
     timeCFHeap(resultGroup: measurements.refMeasurements, elements: elements.refElements)
-    // timeHeap(CFBinaryHeapWrapper.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
+    timeHeap(CFBinaryHeapWrapper.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
     
     // Framework
     timeFrameworkCFHeap(resultGroup: measurements.refMeasurements, elements: elements.frameworkRefElements)
-    // timeFrameworkHeap(Framework.CFBinaryHeapWrapper.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
+    timeFrameworkHeap(Framework.CFBinaryHeapWrapper.self, resultGroup: measurements.refMeasurements, elements: elements.frameworkRefElements)
 }
 
 private func timeCFHeap<E: CFComparable>(resultGroup resultGroup: MeasurementGroup, elements: [E]) {
@@ -37,7 +37,7 @@ private func timeCFHeap<E: CFComparable>(resultGroup resultGroup: MeasurementGro
     }
     let removeTime = sw2.elapsed()
     
-    let name = removeGenerics(String(CFBinaryHeapWrapper<E>.self))
+    let name = removeGenerics(String(CFBinaryHeapWrapper<E>.self)) + " ---"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
@@ -58,6 +58,6 @@ private func timeFrameworkCFHeap<E: Framework.CFComparable>(resultGroup resultGr
     }
     let removeTime = sw2.elapsed()
     
-    let name = removeGenerics(String(reflecting: Framework.CFBinaryHeapWrapper<E>.self))
+    let name = removeGenerics(String(reflecting: Framework.CFBinaryHeapWrapper<E>.self))  + " ---"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }

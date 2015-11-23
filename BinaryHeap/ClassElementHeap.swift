@@ -36,7 +36,9 @@ private func <<Element>(lhs: Wrapper<Element>, rhs: Wrapper<Element>) -> Bool {
     return lhs.element < rhs.element
 }
 
-
+/// A heap specialized for `AnyObject`'s.
+///
+/// Uses `Unmanaged` instances internally to avoid any ARC overhead.
 public struct ClassElementHeap<Element: AnyComparableObject> {
     private var heap: UnsafePointerHeap<Wrapper<Element>>
 }
