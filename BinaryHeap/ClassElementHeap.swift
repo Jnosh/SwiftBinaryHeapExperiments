@@ -39,14 +39,14 @@ private func <<Element>(lhs: Wrapper<Element>, rhs: Wrapper<Element>) -> Bool {
 
 public struct ClassElementHeap<Element: AnyComparableObject> {
     private var heap: UnsafePointerHeap<Wrapper<Element>>
-
-    public init() {
-        heap = UnsafePointerHeap()
-    }
 }
 
 // MARK: BinaryHeapType conformance
 extension ClassElementHeap : BinaryHeapType {
+    public init() {
+        heap = UnsafePointerHeap()
+    }
+    
     public var count: Int {
         return heap.count
     }

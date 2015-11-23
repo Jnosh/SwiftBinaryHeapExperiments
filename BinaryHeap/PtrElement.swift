@@ -7,14 +7,14 @@
 //
 
 /// An element that wraps an UnsafePointer to an Element
-struct PtrElement<Element : Comparable> : Comparable {
+public struct PtrElement<Element : Comparable> : Comparable {
     private let elementPtr: UnsafeMutablePointer<Element>
     
     var element: Element {
         return elementPtr.memory
     }
     
-    init(_ element: Element) {
+    public init(_ element: Element) {
         let ptr = UnsafeMutablePointer<Element>.alloc(1)
         ptr.initialize(element)
         
@@ -27,11 +27,11 @@ struct PtrElement<Element : Comparable> : Comparable {
     }
 }
 
-func ==<Element>(lhs: PtrElement<Element>, rhs: PtrElement<Element>) -> Bool {
+public func ==<Element>(lhs: PtrElement<Element>, rhs: PtrElement<Element>) -> Bool {
     return lhs.elementPtr.memory == rhs.elementPtr.memory
 }
 
-func <<Element>(lhs: PtrElement<Element>, rhs: PtrElement<Element>) -> Bool {
+public func <<Element>(lhs: PtrElement<Element>, rhs: PtrElement<Element>) -> Bool {
     return lhs.elementPtr.memory < rhs.elementPtr.memory
 }
 

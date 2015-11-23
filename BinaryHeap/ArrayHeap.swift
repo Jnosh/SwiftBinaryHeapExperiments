@@ -8,8 +8,6 @@
 
 /// Binary heap backed by an array
 public struct ArrayHeap<Element: Comparable> {
-    // MARK: Instance variables
-
     /// Heap is stored in an array
     /// We reuse CoW property of underlying array
     private var storage: [Element]
