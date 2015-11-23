@@ -62,7 +62,7 @@
 		D8B256131BB086D4002ED631 /* UnsafePointerHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C41BB014A1002ED631 /* UnsafePointerHeap.swift */; };
 		D8D191661BD2BC9B0069D9EF /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D191651BD2BC9B0069D9EF /* Shared.swift */; };
 		D8D191671BD2BC9B0069D9EF /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D191651BD2BC9B0069D9EF /* Shared.swift */; };
-		D8D191811BD2DC9B0069D9EF /* BinaryHeapCF_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D191801BD2DC9B0069D9EF /* BinaryHeapCF_Tests.swift */; };
+		D8D191811BD2DC9B0069D9EF /* CFBinaryHeapWrapper_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D191801BD2DC9B0069D9EF /* CFBinaryHeapWrapper_Tests.swift */; };
 		D8D191831BD2DC9B0069D9EF /* Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B255DB1BB06BF9002ED631 /* Framework.framework */; };
 		D8D191901BD2E0A80069D9EF /* TestElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D1918F1BD2E0A80069D9EF /* TestElements.swift */; };
 		D8DD46091C02286600A80E15 /* Chronos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DD46081C02286600A80E15 /* Chronos.framework */; };
@@ -171,7 +171,7 @@
 		D8D191641BD27B400069D9EF /* watchOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		D8D191651BD2BC9B0069D9EF /* Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
 		D8D1917E1BD2DC9B0069D9EF /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8D191801BD2DC9B0069D9EF /* BinaryHeapCF_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BinaryHeapCF_Tests.swift; sourceTree = "<group>"; };
+		D8D191801BD2DC9B0069D9EF /* CFBinaryHeapWrapper_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFBinaryHeapWrapper_Tests.swift; sourceTree = "<group>"; };
 		D8D191821BD2DC9B0069D9EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8D1918F1BD2E0A80069D9EF /* TestElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestElements.swift; sourceTree = "<group>"; };
 		D8DD46081C02286600A80E15 /* Chronos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chronos.framework; path = Carthage/Build/Chronos.framework; sourceTree = "<group>"; };
@@ -407,7 +407,7 @@
 			children = (
 				D8D1918F1BD2E0A80069D9EF /* TestElements.swift */,
 				D8937A9D1BD2F1500041999A /* SharedTests.swift */,
-				D8D191801BD2DC9B0069D9EF /* BinaryHeapCF_Tests.swift */,
+				D8D191801BD2DC9B0069D9EF /* CFBinaryHeapWrapper_Tests.swift */,
 				D8937A9F1BD2F8620041999A /* ArrayHeap_Tests.swift */,
 				D8937AA11BD2FBD30041999A /* ArrayPtrHeap_Tests.swift */,
 				D8937AA31BD2FBFA0041999A /* ManagedBufferHeap_Tests.swift */,
@@ -707,7 +707,7 @@
 				D8937AA41BD2FBFA0041999A /* ManagedBufferHeap_Tests.swift in Sources */,
 				D8937AA21BD2FBD30041999A /* ArrayPtrHeap_Tests.swift in Sources */,
 				D8937A9E1BD2F1500041999A /* SharedTests.swift in Sources */,
-				D8D191811BD2DC9B0069D9EF /* BinaryHeapCF_Tests.swift in Sources */,
+				D8D191811BD2DC9B0069D9EF /* CFBinaryHeapWrapper_Tests.swift in Sources */,
 				D8937AA01BD2F8620041999A /* ArrayHeap_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

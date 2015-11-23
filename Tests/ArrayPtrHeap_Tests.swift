@@ -11,13 +11,13 @@ import Framework
 
 class ArrayPtrHeap_Tests: XCTestCase {
 
-    private var refElementHeap: ArrayPtrHeap<RefElement>!
-    private var valElementHeap: ArrayPtrHeap<ValElement>!
+    private var refElementHeap: ArrayPointerHeap<RefElement>!
+    private var valElementHeap: ArrayPointerHeap<ValElementSmall>!
 
     override func setUp() {
         super.setUp()
-        refElementHeap = ArrayPtrHeap()
-        valElementHeap = ArrayPtrHeap()
+        refElementHeap = ArrayPointerHeap()
+        valElementHeap = ArrayPointerHeap()
     }
 
     override func tearDown() {

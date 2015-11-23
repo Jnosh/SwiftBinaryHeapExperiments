@@ -11,13 +11,13 @@ import Framework
 
 class UnsafePtrHeap_Tests: XCTestCase {
 
-    private var refElementHeap: UnsafePtrHeap<RefElement>!
-    private var valElementHeap: UnsafePtrHeap<ValElement>!
+    private var refElementHeap: UnsafePointerHeap<RefElement>!
+    private var valElementHeap: UnsafePointerHeap<ValElementSmall>!
 
     override func setUp() {
         super.setUp()
-        refElementHeap = UnsafePtrHeap()
-        valElementHeap = UnsafePtrHeap()
+        refElementHeap = UnsafePointerHeap()
+        valElementHeap = UnsafePointerHeap()
     }
 
     override func tearDown() {

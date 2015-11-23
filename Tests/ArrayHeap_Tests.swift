@@ -12,7 +12,7 @@ import Framework
 class ArrayHeap_Tests: XCTestCase {
 
     private var refElementHeap: ArrayHeap<RefElement>!
-    private var valElementHeap: ArrayHeap<ValElement>!
+    private var valElementHeap: ArrayHeap<ValElementSmall>!
 
     override func setUp() {
         super.setUp()

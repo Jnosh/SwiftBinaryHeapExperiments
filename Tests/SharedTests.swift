@@ -15,7 +15,7 @@ private func assertEmpty<Heap: BinaryHeapType>(heap: Heap) {
     XCTAssert(heap.first == nil, "Heap empty")
 }
 
-private func assertInvariants<Heap: BinaryHeapType>(var heap: Heap) {
+private func assertInvariants<Heap: BinaryHeapType where Heap.Element : Comparable>(var heap: Heap) {
     XCTAssertEqual(heap.count == 0, heap.isEmpty, "isEmpty iff (count == 0)")
 
     let count = heap.count
@@ -46,7 +46,7 @@ func runInitTest<Heap: BinaryHeapType>(heap: Heap) {
     assertEmpty(heap)
 }
 
-func runInsertTest<Heap: BinaryHeapType>(var heap: Heap, element: Heap.Element) {
+func runInsertTest<Heap: BinaryHeapType where Heap.Element : Comparable>(var heap: Heap, element: Heap.Element) {
     heap.insert(element)
 
     XCTAssert(heap.count == 1, "Element inserted")
@@ -55,7 +55,7 @@ func runInsertTest<Heap: BinaryHeapType>(var heap: Heap, element: Heap.Element) 
     assertInvariants(heap)
 }
 
-func runRemoveTest<Heap: BinaryHeapType>(var heap: Heap, element: Heap.Element) {
+func runRemoveTest<Heap: BinaryHeapType where Heap.Element : Comparable>(var heap: Heap, element: Heap.Element) {
     heap.insert(element)
     let root = heap.removeFirst()
 
@@ -64,7 +64,7 @@ func runRemoveTest<Heap: BinaryHeapType>(var heap: Heap, element: Heap.Element) 
     assertInvariants(heap)
 }
 
-func runRemoveAllTest<Heap: BinaryHeapType>(var heap: Heap, elements: [Heap.Element]) {
+func runRemoveAllTest<Heap: BinaryHeapType where Heap.Element : Comparable>(var heap: Heap, elements: [Heap.Element]) {
     insertElements(&heap, elements: elements)
     assertInvariants(heap)
 
@@ -75,7 +75,7 @@ func runRemoveAllTest<Heap: BinaryHeapType>(var heap: Heap, elements: [Heap.Elem
     assertInvariants(heap)
 }
 
-func runOrderTest<Heap: BinaryHeapType, Element where Element == Heap.Element>(var heap: Heap, elements: [Element]) {
+func runOrderTest<Heap: BinaryHeapType, Element : Comparable where Element == Heap.Element>(var heap: Heap, elements: [Element]) {
     let sortedElements = elements.sort()
 
     insertElements(&heap, elements: elements)
@@ -92,7 +92,7 @@ func runOrderTest<Heap: BinaryHeapType, Element where Element == Heap.Element>(v
     XCTAssert(sortedElements == heapElements, "Correct order")
 }
 
-func runCoWTest<Heap: BinaryHeapType, Element where Element == Heap.Element>(var heap: Heap, elements: [Element]) {
+func runCoWTest<Heap: BinaryHeapType, Element : Comparable where Element == Heap.Element>(var heap: Heap, elements: [Element]) {
     insertElements(&heap, elements: elements)
     assertInvariants(heap)
 
