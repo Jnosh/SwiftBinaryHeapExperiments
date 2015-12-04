@@ -37,7 +37,7 @@ private func timeCFHeap<E: CFComparable>(resultGroup resultGroup: MeasurementGro
     }
     let removeTime = sw2.elapsed()
     
-    let name = removeGenerics(String(CFBinaryHeapWrapper<E>.self)) + " ---"
+    let name = removeGenerics(String(CFBinaryHeapWrapper<E>.self)) + " (non-generic test)"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
@@ -58,6 +58,6 @@ private func timeFrameworkCFHeap<E: Framework.CFComparable>(resultGroup resultGr
     }
     let removeTime = sw2.elapsed()
     
-    let name = removeGenerics(String(reflecting: Framework.CFBinaryHeapWrapper<E>.self))  + " ---"
+    let name = removeGenerics(String(reflecting: Framework.CFBinaryHeapWrapper<E>.self))  + " (non-generic test)"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
