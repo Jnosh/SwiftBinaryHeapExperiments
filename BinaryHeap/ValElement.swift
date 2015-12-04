@@ -9,7 +9,7 @@
 import Foundation
 
 /// A small value type element
-public struct ValElementSmall : Comparable {
+public struct ValueElementSmall : Comparable {
     var value: Int
     
     public init(_ value: Int) {
@@ -17,16 +17,16 @@ public struct ValElementSmall : Comparable {
     }
 }
 
-public func ==(lhs: ValElementSmall, rhs: ValElementSmall) -> Bool {
+public func ==(lhs: ValueElementSmall, rhs: ValueElementSmall) -> Bool {
     return lhs.value == rhs.value
 }
 
-public func <(lhs: ValElementSmall, rhs: ValElementSmall) -> Bool {
+public func <(lhs: ValueElementSmall, rhs: ValueElementSmall) -> Bool {
     return lhs.value < rhs.value
 }
 
 /// A medium value type element
-public struct ValElementMedium : Comparable {
+public struct ValueElementMedium : Comparable {
     var value: Int
     
     let padding_0 = 0
@@ -38,16 +38,16 @@ public struct ValElementMedium : Comparable {
     }
 }
 
-public func ==(lhs: ValElementMedium, rhs: ValElementMedium) -> Bool {
+public func ==(lhs: ValueElementMedium, rhs: ValueElementMedium) -> Bool {
     return lhs.value == rhs.value
 }
 
-public func <(lhs: ValElementMedium, rhs: ValElementMedium) -> Bool {
+public func <(lhs: ValueElementMedium, rhs: ValueElementMedium) -> Bool {
     return lhs.value < rhs.value
 }
 
 /// A large value type element
-public struct ValElementLarge : Comparable {
+public struct ValueElementLarge : Comparable {
     var value: Int
     
     let padding_0 = 0
@@ -67,10 +67,10 @@ public struct ValElementLarge : Comparable {
     }
 }
 
-public func ==(lhs: ValElementLarge, rhs: ValElementLarge) -> Bool {
+public func ==(lhs: ValueElementLarge, rhs: ValueElementLarge) -> Bool {
     return lhs.value == rhs.value
 }
 
-public func <(lhs: ValElementLarge, rhs: ValElementLarge) -> Bool {
+public func <(lhs: ValueElementLarge, rhs: ValueElementLarge) -> Bool {
     return lhs.value < rhs.value
 }

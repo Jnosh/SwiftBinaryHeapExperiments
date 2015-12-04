@@ -1,5 +1,5 @@
 //
-//  PtrElement.swift
+//  PointerElement.swift
 //  BinaryHeap
 //
 //  Created by Janosch Hildebrand on 21/09/15.
@@ -7,7 +7,7 @@
 //
 
 /// An element that wraps an UnsafePointer to an Element
-public struct PtrElement<Element : Comparable> : Comparable {
+public struct PointerElement<Element : Comparable> : Comparable {
     private let elementPtr: UnsafeMutablePointer<Element>
     
     var element: Element {
@@ -27,11 +27,11 @@ public struct PtrElement<Element : Comparable> : Comparable {
     }
 }
 
-public func ==<Element>(lhs: PtrElement<Element>, rhs: PtrElement<Element>) -> Bool {
+public func ==<Element>(lhs: PointerElement<Element>, rhs: PointerElement<Element>) -> Bool {
     return lhs.elementPtr.memory == rhs.elementPtr.memory
 }
 
-public func <<Element>(lhs: PtrElement<Element>, rhs: PtrElement<Element>) -> Bool {
+public func <<Element>(lhs: PointerElement<Element>, rhs: PointerElement<Element>) -> Bool {
     return lhs.elementPtr.memory < rhs.elementPtr.memory
 }
 

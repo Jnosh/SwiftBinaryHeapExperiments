@@ -10,8 +10,8 @@ import XCTest
 import Framework
 
 class ClosureArrayBufferHeap_Tests: XCTestCase {
-    private var refElementHeap: ClosureArrayBufferHeap<RefElement>!
-    private var valElementHeap: ClosureArrayBufferHeap<ValElementSmall>!
+    private var refElementHeap: ClosureArrayBufferHeap<ReferenceElement>!
+    private var valElementHeap: ClosureArrayBufferHeap<ValueElementSmall>!
     
     override func setUp() {
         super.setUp()

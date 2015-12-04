@@ -10,7 +10,7 @@ import XCTest
 import Framework
 
 class ClassElementHeap_Tests: XCTestCase {
-    private var refElementHeap: ClassElementHeap<RefElement>!
+    private var refElementHeap: ClassElementHeap<ReferenceElement>!
     
     override func setUp() {
         super.setUp()

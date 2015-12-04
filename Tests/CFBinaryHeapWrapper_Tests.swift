@@ -11,7 +11,7 @@ import Framework
 
 
 class CFBinaryHeapWrapper_Tests: XCTestCase {
-    private var heap: CFBinaryHeapWrapper<RefElement>!
+    private var heap: CFBinaryHeapWrapper<ReferenceElement>!
 
     override func setUp() {
         super.setUp()

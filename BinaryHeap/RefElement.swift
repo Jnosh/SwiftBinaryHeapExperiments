@@ -9,7 +9,7 @@
 import Foundation
 
 /// A reference type element
-public final class RefElement: NSObject {
+public final class ReferenceElement: NSObject {
     var value: Int
     
     public init(_ value: Int) {
@@ -17,20 +17,20 @@ public final class RefElement: NSObject {
     }
 }
 
-extension RefElement: Comparable {
+extension ReferenceElement: Comparable {
 }
 
-public func ==(lhs: RefElement, rhs: RefElement) -> Bool {
+public func ==(lhs: ReferenceElement, rhs: ReferenceElement) -> Bool {
     return lhs.value == rhs.value
 }
 
-public func <(lhs: RefElement, rhs: RefElement) -> Bool {
+public func <(lhs: ReferenceElement, rhs: ReferenceElement) -> Bool {
     return lhs.value < rhs.value
 }
 
-extension RefElement: CFComparable {
+extension ReferenceElement: CFComparable {
     @objc public func compare(other: AnyObject) -> CFComparisonResult {
-        let rhs: RefElement = unsafeDowncast(other)
+        let rhs: ReferenceElement = unsafeDowncast(other)
         
         if value < rhs.value {
             return .CompareLessThan

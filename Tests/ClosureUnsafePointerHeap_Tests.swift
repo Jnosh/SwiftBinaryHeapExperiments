@@ -11,8 +11,8 @@ import XCTest
 import Framework
 
 class ClosureUnsafePointerHeap_Tests: XCTestCase {
-    private var refElementHeap: ClosureUnsafePointerHeap<RefElement>!
-    private var valElementHeap: ClosureUnsafePointerHeap<ValElementSmall>!
+    private var refElementHeap: ClosureUnsafePointerHeap<ReferenceElement>!
+    private var valElementHeap: ClosureUnsafePointerHeap<ValueElementSmall>!
     
     override func setUp() {
         super.setUp()

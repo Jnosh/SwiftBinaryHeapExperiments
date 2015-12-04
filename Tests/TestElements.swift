@@ -14,6 +14,6 @@ struct TestElements {
     static let maxBaseCapacity = 16
 
     static let elementCount = 10000
-    static let referenceElements = (0..<elementCount).map { _ in return RefElement(random()) }
-    static let valueElements = (0..<elementCount).map { _ in return ValElementSmall(random()) }
+    static let referenceElements = (0..<elementCount).map { _ in return ReferenceElement(random()) }
+    static let valueElements = (0..<elementCount).map { _ in return ValueElementSmall(random()) }
 }

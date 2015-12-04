@@ -10,8 +10,8 @@ import XCTest
 import Framework
 
 class ManagedBufferHeap_Tests: XCTestCase {
-    private var refElementHeap: ManagedBufferHeap<RefElement>!
-    private var valElementHeap: ManagedBufferHeap<ValElementSmall>!
+    private var refElementHeap: ManagedBufferHeap<ReferenceElement>!
+    private var valElementHeap: ManagedBufferHeap<ValueElementSmall>!
 
     override func setUp() {
         super.setUp()

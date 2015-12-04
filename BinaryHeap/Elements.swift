@@ -10,58 +10,58 @@ import Framework
 
 /// Container that contains element collections for a test run
 class ElementContainer {
-    let refElements: [RefElement]
+    let refElements: [ReferenceElement]
 
-    let smallValElements: [ValElementSmall]
-    let mediumValElements: [ValElementMedium]
-    let largeValElements: [ValElementLarge]
+    let smallValueElements: [ValueElementSmall]
+    let mediumValueElements: [ValueElementMedium]
+    let largeValueElements: [ValueElementLarge]
 
-    let ptrRefElements: [PtrElement<RefElement>]
-    let ptrValElements: [PtrElement<ValElementLarge>]
+    let pointerReferenceElements: [PointerElement<ReferenceElement>]
+    let pointerValueElements: [PointerElement<ValueElementLarge>]
 
-    let unmanagedElements: [UnmanagedElement<RefElement>]
+    let unmanagedElements: [UnmanagedElement<ReferenceElement>]
     
     
-    let frameworkRefElements: [Framework.RefElement]
+    let frameworkReferenceElements: [Framework.ReferenceElement]
     
-    let frameworkSmallValElements: [Framework.ValElementSmall]
-    let frameworkMediumValElements: [Framework.ValElementMedium]
-    let frameworkLargeValElements: [Framework.ValElementLarge]
+    let frameworkSmallValueElements: [Framework.ValueElementSmall]
+    let frameworkMediumValueElements: [Framework.ValueElementMedium]
+    let frameworkLargeValueElements: [Framework.ValueElementLarge]
     
-    let frameworkPtrRefElements: [Framework.PtrElement<Framework.RefElement>]
-    let frameworkPtrValElements: [Framework.PtrElement<Framework.ValElementLarge>]
+    let frameworkPointerReferenceElements: [Framework.PointerElement<Framework.ReferenceElement>]
+    let frameworkPointerValueElements: [Framework.PointerElement<Framework.ValueElementLarge>]
     
-    let frameworkUnmanagedElements: [Framework.UnmanagedElement<Framework.RefElement>]
+    let frameworkUnmanagedElements: [Framework.UnmanagedElement<Framework.ReferenceElement>]
     
     init(count: Int) {
         // Generate nodes
-        refElements = (0..<count).map { _ in RefElement(random()) }
+        refElements = (0..<count).map { _ in ReferenceElement(random()) }
 
-        smallValElements = refElements.map { ValElementSmall($0.value) }
-        mediumValElements = refElements.map { ValElementMedium($0.value) }
-        largeValElements = refElements.map { ValElementLarge($0.value) }
+        smallValueElements = refElements.map { ValueElementSmall($0.value) }
+        mediumValueElements = refElements.map { ValueElementMedium($0.value) }
+        largeValueElements = refElements.map { ValueElementLarge($0.value) }
 
-        ptrRefElements = refElements.map { PtrElement($0) }
-        ptrValElements = largeValElements.map { PtrElement($0) }
+        pointerReferenceElements = refElements.map { PointerElement($0) }
+        pointerValueElements = largeValueElements.map { PointerElement($0) }
 
         unmanagedElements = refElements.map { UnmanagedElement($0) }
         
         
-        frameworkRefElements = refElements.map { Framework.RefElement($0.value) }
+        frameworkReferenceElements = refElements.map { Framework.ReferenceElement($0.value) }
         
-        frameworkSmallValElements = refElements.map { Framework.ValElementSmall($0.value) }
-        frameworkMediumValElements = refElements.map { Framework.ValElementMedium($0.value) }
-        frameworkLargeValElements = refElements.map { Framework.ValElementLarge($0.value) }
+        frameworkSmallValueElements = refElements.map { Framework.ValueElementSmall($0.value) }
+        frameworkMediumValueElements = refElements.map { Framework.ValueElementMedium($0.value) }
+        frameworkLargeValueElements = refElements.map { Framework.ValueElementLarge($0.value) }
         
-        frameworkPtrRefElements = frameworkRefElements.map { Framework.PtrElement($0) }
-        frameworkPtrValElements = frameworkLargeValElements.map { Framework.PtrElement($0) }
+        frameworkPointerReferenceElements = frameworkReferenceElements.map { Framework.PointerElement($0) }
+        frameworkPointerValueElements = frameworkLargeValueElements.map { Framework.PointerElement($0) }
         
-        frameworkUnmanagedElements = frameworkRefElements.map { Framework.UnmanagedElement($0) }
+        frameworkUnmanagedElements = frameworkReferenceElements.map { Framework.UnmanagedElement($0) }
     }
 
     deinit {
-        ptrRefElements.forEach { $0.destroy() }
-        ptrValElements.forEach { $0.destroy() }
+        pointerReferenceElements.forEach { $0.destroy() }
+        pointerValueElements.forEach { $0.destroy() }
         unmanagedElements.forEach { $0.destroy() }
     }
 }

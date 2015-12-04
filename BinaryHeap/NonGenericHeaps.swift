@@ -7,7 +7,7 @@
 //
 
 public struct SmallValueElementHeap : BinaryHeapType, CustomDebugStringConvertible, CustomStringConvertible {
-    private var heap: UnsafePointerHeap<ValElementSmall>
+    private var heap: UnsafePointerHeap<ValueElementSmall>
 
     public init() {
         heap = UnsafePointerHeap()
@@ -17,15 +17,15 @@ public struct SmallValueElementHeap : BinaryHeapType, CustomDebugStringConvertib
         return heap.count
     }
     
-    public var first: ValElementSmall? {
+    public var first: ValueElementSmall? {
         return heap.first
     }
     
-    public mutating func insert(value: ValElementSmall) {
+    public mutating func insert(value: ValueElementSmall) {
         heap.insert(value)
     }
     
-    public mutating func removeFirst() -> ValElementSmall {
+    public mutating func removeFirst() -> ValueElementSmall {
         return heap.removeFirst()
     }
     
@@ -35,7 +35,7 @@ public struct SmallValueElementHeap : BinaryHeapType, CustomDebugStringConvertib
 }
 
 public struct MediumValueElementHeap : BinaryHeapType, CustomDebugStringConvertible, CustomStringConvertible {
-    private var heap: UnsafePointerHeap<ValElementMedium>
+    private var heap: UnsafePointerHeap<ValueElementMedium>
 
     public init() {
         heap = UnsafePointerHeap()
@@ -45,15 +45,15 @@ public struct MediumValueElementHeap : BinaryHeapType, CustomDebugStringConverti
         return heap.count
     }
     
-    public var first: ValElementMedium? {
+    public var first: ValueElementMedium? {
         return heap.first
     }
     
-    public mutating func insert(value: ValElementMedium) {
+    public mutating func insert(value: ValueElementMedium) {
         heap.insert(value)
     }
     
-    public mutating func removeFirst() -> ValElementMedium {
+    public mutating func removeFirst() -> ValueElementMedium {
         return heap.removeFirst()
     }
     
@@ -63,7 +63,7 @@ public struct MediumValueElementHeap : BinaryHeapType, CustomDebugStringConverti
 }
 
 public struct LargeValueElementHeap : BinaryHeapType, CustomDebugStringConvertible, CustomStringConvertible {
-    private var heap: UnsafePointerHeap<ValElementLarge>
+    private var heap: UnsafePointerHeap<ValueElementLarge>
 
     public init() {
         heap = UnsafePointerHeap()
@@ -73,15 +73,15 @@ public struct LargeValueElementHeap : BinaryHeapType, CustomDebugStringConvertib
         return heap.count
     }
     
-    public var first: ValElementLarge? {
+    public var first: ValueElementLarge? {
         return heap.first
     }
     
-    public mutating func insert(value: ValElementLarge) {
+    public mutating func insert(value: ValueElementLarge) {
         heap.insert(value)
     }
     
-    public mutating func removeFirst() -> ValElementLarge {
+    public mutating func removeFirst() -> ValueElementLarge {
         return heap.removeFirst()
     }
     
@@ -91,7 +91,7 @@ public struct LargeValueElementHeap : BinaryHeapType, CustomDebugStringConvertib
 }
 
 public struct ReferenceElementHeap : BinaryHeapType, CustomDebugStringConvertible, CustomStringConvertible {
-    private var heap: UnsafePointerHeap<RefElement>
+    private var heap: UnsafePointerHeap<ReferenceElement>
     
     public init() {
         heap = UnsafePointerHeap()
@@ -101,15 +101,15 @@ public struct ReferenceElementHeap : BinaryHeapType, CustomDebugStringConvertibl
         return heap.count
     }
     
-    public var first: RefElement? {
+    public var first: ReferenceElement? {
         return heap.first
     }
     
-    public mutating func insert(value: RefElement) {
+    public mutating func insert(value: ReferenceElement) {
         heap.insert(value)
     }
     
-    public mutating func removeFirst() -> RefElement {
+    public mutating func removeFirst() -> ReferenceElement {
         return heap.removeFirst()
     }
     
@@ -119,7 +119,7 @@ public struct ReferenceElementHeap : BinaryHeapType, CustomDebugStringConvertibl
 }
 
 public struct PointerReferenceElementHeap : BinaryHeapType, CustomDebugStringConvertible, CustomStringConvertible {
-    private var heap: UnsafePointerHeap<PtrElement<RefElement>>
+    private var heap: UnsafePointerHeap<PointerElement<ReferenceElement>>
     
     public init() {
         heap = UnsafePointerHeap()
@@ -129,15 +129,15 @@ public struct PointerReferenceElementHeap : BinaryHeapType, CustomDebugStringCon
         return heap.count
     }
     
-    public var first: PtrElement<RefElement>? {
+    public var first: PointerElement<ReferenceElement>? {
         return heap.first
     }
     
-    public mutating func insert(value: PtrElement<RefElement>) {
+    public mutating func insert(value: PointerElement<ReferenceElement>) {
         heap.insert(value)
     }
     
-    public mutating func removeFirst() -> PtrElement<RefElement> {
+    public mutating func removeFirst() -> PointerElement<ReferenceElement> {
         return heap.removeFirst()
     }
     
@@ -147,7 +147,7 @@ public struct PointerReferenceElementHeap : BinaryHeapType, CustomDebugStringCon
 }
 
 public struct PointerValueElementHeap : BinaryHeapType, CustomDebugStringConvertible, CustomStringConvertible {
-    private var heap: UnsafePointerHeap<PtrElement<ValElementLarge>>
+    private var heap: UnsafePointerHeap<PointerElement<ValueElementLarge>>
     
     public init() {
         heap = UnsafePointerHeap()
@@ -157,15 +157,15 @@ public struct PointerValueElementHeap : BinaryHeapType, CustomDebugStringConvert
         return heap.count
     }
     
-    public var first: PtrElement<ValElementLarge>? {
+    public var first: PointerElement<ValueElementLarge>? {
         return heap.first
     }
     
-    public mutating func insert(value: PtrElement<ValElementLarge>) {
+    public mutating func insert(value: PointerElement<ValueElementLarge>) {
         heap.insert(value)
     }
     
-    public mutating func removeFirst() -> PtrElement<ValElementLarge> {
+    public mutating func removeFirst() -> PointerElement<ValueElementLarge> {
         return heap.removeFirst()
     }
     
@@ -175,7 +175,7 @@ public struct PointerValueElementHeap : BinaryHeapType, CustomDebugStringConvert
 }
 
 public struct UnmanagedElementHeap : BinaryHeapType, CustomDebugStringConvertible, CustomStringConvertible {
-    private var heap: UnsafePointerHeap<UnmanagedElement<RefElement>>
+    private var heap: UnsafePointerHeap<UnmanagedElement<ReferenceElement>>
     
     public init() {
         heap = UnsafePointerHeap()
@@ -185,15 +185,15 @@ public struct UnmanagedElementHeap : BinaryHeapType, CustomDebugStringConvertibl
         return heap.count
     }
     
-    public var first: UnmanagedElement<RefElement>? {
+    public var first: UnmanagedElement<ReferenceElement>? {
         return heap.first
     }
     
-    public mutating func insert(value: UnmanagedElement<RefElement>) {
+    public mutating func insert(value: UnmanagedElement<ReferenceElement>) {
         heap.insert(value)
     }
     
-    public mutating func removeFirst() -> UnmanagedElement<RefElement> {
+    public mutating func removeFirst() -> UnmanagedElement<ReferenceElement> {
         return heap.removeFirst()
     }
     

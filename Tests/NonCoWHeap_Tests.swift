@@ -10,8 +10,8 @@ import XCTest
 import Framework
 
 class NonCoWHeap_Tests: XCTestCase {
-    private var refElementHeap: NonCoWHeap<RefElement>!
-    private var valElementHeap: NonCoWHeap<ValElementSmall>!
+    private var refElementHeap: NonCoWHeap<ReferenceElement>!
+    private var valElementHeap: NonCoWHeap<ValueElementSmall>!
     
     override func setUp() {
         super.setUp()

@@ -16,8 +16,8 @@ func timeCFHeapWrapper(elements: ElementContainer) {
     timeHeap(CFBinaryHeapWrapper.self, resultGroup: measurements.refMeasurements, elements: elements.refElements)
     
     // Framework
-    timeFrameworkCFHeap(resultGroup: measurements.refMeasurements, elements: elements.frameworkRefElements)
-    timeFrameworkHeap(Framework.CFBinaryHeapWrapper.self, resultGroup: measurements.refMeasurements, elements: elements.frameworkRefElements)
+    timeFrameworkCFHeap(resultGroup: measurements.refMeasurements, elements: elements.frameworkReferenceElements)
+    timeFrameworkHeap(Framework.CFBinaryHeapWrapper.self, resultGroup: measurements.refMeasurements, elements: elements.frameworkReferenceElements)
 }
 
 private func timeCFHeap<E: CFComparable>(resultGroup resultGroup: MeasurementGroup, elements: [E]) {

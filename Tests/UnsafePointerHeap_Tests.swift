@@ -10,8 +10,8 @@ import XCTest
 import Framework
 
 class UnsafePointerHeap_Tests: XCTestCase {
-    private var refElementHeap: UnsafePointerHeap<RefElement>!
-    private var valElementHeap: UnsafePointerHeap<ValElementSmall>!
+    private var refElementHeap: UnsafePointerHeap<ReferenceElement>!
+    private var valElementHeap: UnsafePointerHeap<ValueElementSmall>!
 
     override func setUp() {
         super.setUp()
