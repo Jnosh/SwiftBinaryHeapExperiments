@@ -45,6 +45,6 @@ class ClassElementHeap_Tests: XCTestCase {
     }
     
     func testCoW() {
-        //runCoWTest(refElementHeap, elements: TestElements.referenceElements)
+        runCoWTest(refElementHeap, elements: TestElements.referenceElements)
     }
 }

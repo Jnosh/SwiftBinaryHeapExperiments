@@ -14,8 +14,6 @@
 		D846200C1BE5503C0086DBDF /* BinaryHeapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FF7DB41BA98500003D6F18 /* BinaryHeapType.swift */; };
 		D846200D1BE550620086DBDF /* BinaryHeapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FF7DB41BA98500003D6F18 /* BinaryHeapType.swift */; };
 		D84B83631BED58760009DC50 /* MeasurementPrinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B83621BED58760009DC50 /* MeasurementPrinting.swift */; };
-		D88D292C1BFD463E0032FBC0 /* ClosureArrayBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88D292B1BFD463E0032FBC0 /* ClosureArrayBuffer.swift */; };
-		D88D292D1BFD463E0032FBC0 /* ClosureArrayBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88D292B1BFD463E0032FBC0 /* ClosureArrayBuffer.swift */; };
 		D88D29351BFDF73F0032FBC0 /* ClosureArrayBufferHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88D29301BFD48060032FBC0 /* ClosureArrayBufferHeap.swift */; };
 		D88D29361BFDF7400032FBC0 /* ClosureArrayBufferHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88D29301BFD48060032FBC0 /* ClosureArrayBufferHeap.swift */; };
 		D88D29371BFDFAD30032FBC0 /* ClosureUnsafePointerHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D898F9D41BF7EF9300FC17E1 /* ClosureUnsafePointerHeap.swift */; };
@@ -112,7 +110,6 @@
 		D83AF00C1BFFC4C6007E34B0 /* NonCoWHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonCoWHeap.swift; sourceTree = "<group>"; };
 		D84B83621BED58760009DC50 /* MeasurementPrinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementPrinting.swift; sourceTree = "<group>"; };
 		D88D29281BFD407E0032FBC0 /* ClosureManagedBufferHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureManagedBufferHeap.swift; sourceTree = "<group>"; };
-		D88D292B1BFD463E0032FBC0 /* ClosureArrayBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureArrayBuffer.swift; sourceTree = "<group>"; };
 		D88D29301BFD48060032FBC0 /* ClosureArrayBufferHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureArrayBufferHeap.swift; sourceTree = "<group>"; };
 		D88D293D1BFDFFD30032FBC0 /* ClosureHeapTestsNonGeneric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureHeapTestsNonGeneric.swift; sourceTree = "<group>"; };
 		D88D29401BFE00450032FBC0 /* CFBinaryHeapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFBinaryHeapTests.swift; sourceTree = "<group>"; };
@@ -247,8 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				D898F9D41BF7EF9300FC17E1 /* ClosureUnsafePointerHeap.swift */,
-				D88D29281BFD407E0032FBC0 /* ClosureManagedBufferHeap.swift */,
 				D88D29301BFD48060032FBC0 /* ClosureArrayBufferHeap.swift */,
+				D88D29281BFD407E0032FBC0 /* ClosureManagedBufferHeap.swift */,
 			);
 			name = "Closure heaps";
 			sourceTree = "<group>";
@@ -509,7 +506,6 @@
 				D8D191651BD2BC9B0069D9EF /* Shared.swift */,
 				D8AEF43C1BF6161400D5F781 /* ArrayBuffer.swift */,
 				D8AEF4391BF5351600D5F781 /* ManagedArrayBuffer.swift */,
-				D88D292B1BFD463E0032FBC0 /* ClosureArrayBuffer.swift */,
 				D8EF8D651B9B2EF4003B0B37 /* CFBinaryHeap Wrapper */,
 				D8FF7DB31BA984B1003D6F18 /* Basic heaps */,
 				D88D29501BFE21CB0032FBC0 /* Closure heaps */,
@@ -693,7 +689,6 @@
 				D891B0071C027ACA00F486F5 /* NonGenericHeaps.swift in Sources */,
 				D88D29361BFDF7400032FBC0 /* ClosureArrayBufferHeap.swift in Sources */,
 				D8B255E81BB06CC3002ED631 /* ArrayHeap.swift in Sources */,
-				D88D292D1BFD463E0032FBC0 /* ClosureArrayBuffer.swift in Sources */,
 				D83AF00E1BFFC4C7007E34B0 /* NonCoWHeap.swift in Sources */,
 				D88D293A1BFDFAD70032FBC0 /* ClosureManagedBufferHeap.swift in Sources */,
 				D891B0151C0368AD00F486F5 /* UnmanagedElement.swift in Sources */,
@@ -732,7 +727,6 @@
 				D891B0171C036E6E00F486F5 /* ValElement.swift in Sources */,
 				D8B256121BB086D4002ED631 /* ManagedBufferHeap.swift in Sources */,
 				D8B256101BB086D4002ED631 /* ArrayHeap.swift in Sources */,
-				D88D292C1BFD463E0032FBC0 /* ClosureArrayBuffer.swift in Sources */,
 				D891B0191C036E6E00F486F5 /* UnmanagedElement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
