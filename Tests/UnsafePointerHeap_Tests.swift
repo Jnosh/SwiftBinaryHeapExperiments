@@ -1,5 +1,5 @@
 //
-//  UnsafePtrHeap_Tests.swift
+//  UnsafePointerHeap_Tests.swift
 //  BinaryHeap
 //
 //  Created by Janosch Hildebrand on 17/10/15.
@@ -9,8 +9,7 @@
 import XCTest
 import Framework
 
-class UnsafePtrHeap_Tests: XCTestCase {
-
+class UnsafePointerHeap_Tests: XCTestCase {
     private var refElementHeap: UnsafePointerHeap<RefElement>!
     private var valElementHeap: UnsafePointerHeap<ValElementSmall>!
 

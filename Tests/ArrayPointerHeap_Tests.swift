@@ -1,5 +1,5 @@
 //
-//  ArrayHeap_Tests.swift
+//  ArrayPointerHeap_Tests.swift
 //  BinaryHeap
 //
 //  Created by Janosch Hildebrand on 17/10/15.
@@ -9,14 +9,14 @@
 import XCTest
 import Framework
 
-class ArrayHeap_Tests: XCTestCase {
-    private var refElementHeap: ArrayHeap<RefElement>!
-    private var valElementHeap: ArrayHeap<ValElementSmall>!
+class ArrayPointerHeap_Tests: XCTestCase {
+    private var refElementHeap: ArrayPointerHeap<RefElement>!
+    private var valElementHeap: ArrayPointerHeap<ValElementSmall>!
 
     override func setUp() {
         super.setUp()
-        refElementHeap = ArrayHeap()
-        valElementHeap = ArrayHeap()
+        refElementHeap = ArrayPointerHeap()
+        valElementHeap = ArrayPointerHeap()
     }
 
     override func tearDown() {
@@ -36,11 +36,17 @@ class ArrayHeap_Tests: XCTestCase {
     func testInsert() {
         runInsertTest(refElementHeap, element: TestElements.referenceElements[0])
         runInsertTest(valElementHeap, element: TestElements.valueElements[0])
+        
+        runFastInsertTest(refElementHeap, element: TestElements.referenceElements[0])
+        runFastInsertTest(valElementHeap, element: TestElements.valueElements[0])
     }
-
+    
     func testRemove() {
         runRemoveTest(refElementHeap, element: TestElements.referenceElements[0])
         runRemoveTest(valElementHeap, element: TestElements.valueElements[0])
+        
+        runFastRemoveTest(refElementHeap, element: TestElements.referenceElements[0])
+        runFastRemoveTest(valElementHeap, element: TestElements.valueElements[0])
     }
 
     func testRemoveAll() {

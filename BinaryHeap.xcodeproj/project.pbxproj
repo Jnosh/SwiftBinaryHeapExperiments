@@ -36,11 +36,16 @@
 		D891B0171C036E6E00F486F5 /* ValElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255CE1BB0520C002ED631 /* ValElement.swift */; };
 		D891B0181C036E6E00F486F5 /* PtrElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255D21BB05A45002ED631 /* PtrElement.swift */; };
 		D891B0191C036E6E00F486F5 /* UnmanagedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255D41BB06178002ED631 /* UnmanagedElement.swift */; };
+		D891B01B1C03A81C00F486F5 /* ClassElementHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D891B01A1C03A81C00F486F5 /* ClassElementHeap_Tests.swift */; };
+		D891B01D1C03A82B00F486F5 /* NonCoWHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D891B01C1C03A82B00F486F5 /* NonCoWHeap_Tests.swift */; };
+		D891B01F1C03ADF900F486F5 /* ClosureUnsafePointerHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D891B01E1C03ADF900F486F5 /* ClosureUnsafePointerHeap_Tests.swift */; };
+		D891B0211C03B17100F486F5 /* ClosureManagedBufferHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D891B0201C03B17100F486F5 /* ClosureManagedBufferHeap_Tests.swift */; };
+		D891B0231C03B1A100F486F5 /* ClosureArrayBufferHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D891B0221C03B1A100F486F5 /* ClosureArrayBufferHeap_Tests.swift */; };
 		D8937A9E1BD2F1500041999A /* SharedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937A9D1BD2F1500041999A /* SharedTests.swift */; };
 		D8937AA01BD2F8620041999A /* ArrayHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937A9F1BD2F8620041999A /* ArrayHeap_Tests.swift */; };
-		D8937AA21BD2FBD30041999A /* ArrayPtrHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937AA11BD2FBD30041999A /* ArrayPtrHeap_Tests.swift */; };
+		D8937AA21BD2FBD30041999A /* ArrayPointerHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937AA11BD2FBD30041999A /* ArrayPointerHeap_Tests.swift */; };
 		D8937AA41BD2FBFA0041999A /* ManagedBufferHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937AA31BD2FBFA0041999A /* ManagedBufferHeap_Tests.swift */; };
-		D8937AA61BD2FC0F0041999A /* UnsafePtrHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937AA51BD2FC0F0041999A /* UnsafePtrHeap_Tests.swift */; };
+		D8937AA61BD2FC0F0041999A /* UnsafePointerHeap_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937AA51BD2FC0F0041999A /* UnsafePointerHeap_Tests.swift */; };
 		D8937AA81BD403700041999A /* MeasurementCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937AA71BD403700041999A /* MeasurementCollection.swift */; };
 		D898F9CF1BF7BE6000FC17E1 /* ClassElementHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D898F9CE1BF7BE6000FC17E1 /* ClassElementHeap.swift */; };
 		D898F9D01BF7BE6000FC17E1 /* ClassElementHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D898F9CE1BF7BE6000FC17E1 /* ClassElementHeap.swift */; };
@@ -114,11 +119,16 @@
 		D88D294C1BFE0A300032FBC0 /* ClosureHeapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureHeapTests.swift; sourceTree = "<group>"; };
 		D891B0051C027ACA00F486F5 /* NonGenericHeaps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonGenericHeaps.swift; sourceTree = "<group>"; };
 		D891B0081C027BF300F486F5 /* NonGenericHeapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonGenericHeapTests.swift; sourceTree = "<group>"; };
+		D891B01A1C03A81C00F486F5 /* ClassElementHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassElementHeap_Tests.swift; sourceTree = "<group>"; };
+		D891B01C1C03A82B00F486F5 /* NonCoWHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonCoWHeap_Tests.swift; sourceTree = "<group>"; };
+		D891B01E1C03ADF900F486F5 /* ClosureUnsafePointerHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureUnsafePointerHeap_Tests.swift; sourceTree = "<group>"; };
+		D891B0201C03B17100F486F5 /* ClosureManagedBufferHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureManagedBufferHeap_Tests.swift; sourceTree = "<group>"; };
+		D891B0221C03B1A100F486F5 /* ClosureArrayBufferHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureArrayBufferHeap_Tests.swift; sourceTree = "<group>"; };
 		D8937A9D1BD2F1500041999A /* SharedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedTests.swift; sourceTree = "<group>"; };
 		D8937A9F1BD2F8620041999A /* ArrayHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayHeap_Tests.swift; sourceTree = "<group>"; };
-		D8937AA11BD2FBD30041999A /* ArrayPtrHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayPtrHeap_Tests.swift; sourceTree = "<group>"; };
+		D8937AA11BD2FBD30041999A /* ArrayPointerHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayPointerHeap_Tests.swift; sourceTree = "<group>"; };
 		D8937AA31BD2FBFA0041999A /* ManagedBufferHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManagedBufferHeap_Tests.swift; sourceTree = "<group>"; };
-		D8937AA51BD2FC0F0041999A /* UnsafePtrHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafePtrHeap_Tests.swift; sourceTree = "<group>"; };
+		D8937AA51BD2FC0F0041999A /* UnsafePointerHeap_Tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnsafePointerHeap_Tests.swift; sourceTree = "<group>"; };
 		D8937AA71BD403700041999A /* MeasurementCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementCollection.swift; sourceTree = "<group>"; };
 		D898F9CE1BF7BE6000FC17E1 /* ClassElementHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassElementHeap.swift; sourceTree = "<group>"; };
 		D898F9D41BF7EF9300FC17E1 /* ClosureUnsafePointerHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureUnsafePointerHeap.swift; sourceTree = "<group>"; };
@@ -241,6 +251,36 @@
 				D88D29301BFD48060032FBC0 /* ClosureArrayBufferHeap.swift */,
 			);
 			name = "Closure heaps";
+			sourceTree = "<group>";
+		};
+		D891B0251C03B1C700F486F5 /* Closure heaps */ = {
+			isa = PBXGroup;
+			children = (
+				D891B01E1C03ADF900F486F5 /* ClosureUnsafePointerHeap_Tests.swift */,
+				D891B0201C03B17100F486F5 /* ClosureManagedBufferHeap_Tests.swift */,
+				D891B0221C03B1A100F486F5 /* ClosureArrayBufferHeap_Tests.swift */,
+			);
+			name = "Closure heaps";
+			sourceTree = "<group>";
+		};
+		D891B0261C03B1CB00F486F5 /* Other heaps */ = {
+			isa = PBXGroup;
+			children = (
+				D891B01A1C03A81C00F486F5 /* ClassElementHeap_Tests.swift */,
+				D891B01C1C03A82B00F486F5 /* NonCoWHeap_Tests.swift */,
+			);
+			name = "Other heaps";
+			sourceTree = "<group>";
+		};
+		D891B0271C03B1CF00F486F5 /* Basic heaps */ = {
+			isa = PBXGroup;
+			children = (
+				D8937A9F1BD2F8620041999A /* ArrayHeap_Tests.swift */,
+				D8937AA11BD2FBD30041999A /* ArrayPointerHeap_Tests.swift */,
+				D8937AA51BD2FC0F0041999A /* UnsafePointerHeap_Tests.swift */,
+				D8937AA31BD2FBFA0041999A /* ManagedBufferHeap_Tests.swift */,
+			);
+			name = "Basic heaps";
 			sourceTree = "<group>";
 		};
 		D8B255CB1BB051AD002ED631 /* Element Types */ = {
@@ -408,10 +448,9 @@
 				D8D1918F1BD2E0A80069D9EF /* TestElements.swift */,
 				D8937A9D1BD2F1500041999A /* SharedTests.swift */,
 				D8D191801BD2DC9B0069D9EF /* CFBinaryHeapWrapper_Tests.swift */,
-				D8937A9F1BD2F8620041999A /* ArrayHeap_Tests.swift */,
-				D8937AA11BD2FBD30041999A /* ArrayPtrHeap_Tests.swift */,
-				D8937AA31BD2FBFA0041999A /* ManagedBufferHeap_Tests.swift */,
-				D8937AA51BD2FC0F0041999A /* UnsafePtrHeap_Tests.swift */,
+				D891B0271C03B1CF00F486F5 /* Basic heaps */,
+				D891B0251C03B1C700F486F5 /* Closure heaps */,
+				D891B0261C03B1CB00F486F5 /* Other heaps */,
 				D8D191821BD2DC9B0069D9EF /* Info.plist */,
 			);
 			path = Tests;
@@ -703,12 +742,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8D191901BD2E0A80069D9EF /* TestElements.swift in Sources */,
-				D8937AA61BD2FC0F0041999A /* UnsafePtrHeap_Tests.swift in Sources */,
+				D8937AA61BD2FC0F0041999A /* UnsafePointerHeap_Tests.swift in Sources */,
+				D891B01D1C03A82B00F486F5 /* NonCoWHeap_Tests.swift in Sources */,
+				D891B0231C03B1A100F486F5 /* ClosureArrayBufferHeap_Tests.swift in Sources */,
 				D8937AA41BD2FBFA0041999A /* ManagedBufferHeap_Tests.swift in Sources */,
-				D8937AA21BD2FBD30041999A /* ArrayPtrHeap_Tests.swift in Sources */,
+				D8937AA21BD2FBD30041999A /* ArrayPointerHeap_Tests.swift in Sources */,
 				D8937A9E1BD2F1500041999A /* SharedTests.swift in Sources */,
+				D891B0211C03B17100F486F5 /* ClosureManagedBufferHeap_Tests.swift in Sources */,
 				D8D191811BD2DC9B0069D9EF /* CFBinaryHeapWrapper_Tests.swift in Sources */,
 				D8937AA01BD2F8620041999A /* ArrayHeap_Tests.swift in Sources */,
+				D891B01B1C03A81C00F486F5 /* ClassElementHeap_Tests.swift in Sources */,
+				D891B01F1C03ADF900F486F5 /* ClosureUnsafePointerHeap_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

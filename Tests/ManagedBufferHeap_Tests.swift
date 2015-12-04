@@ -10,7 +10,6 @@ import XCTest
 import Framework
 
 class ManagedBufferHeap_Tests: XCTestCase {
-
     private var refElementHeap: ManagedBufferHeap<RefElement>!
     private var valElementHeap: ManagedBufferHeap<ValElementSmall>!
 
@@ -37,11 +36,17 @@ class ManagedBufferHeap_Tests: XCTestCase {
     func testInsert() {
         runInsertTest(refElementHeap, element: TestElements.referenceElements[0])
         runInsertTest(valElementHeap, element: TestElements.valueElements[0])
+        
+        runFastInsertTest(refElementHeap, element: TestElements.referenceElements[0])
+        runFastInsertTest(valElementHeap, element: TestElements.valueElements[0])
     }
 
     func testRemove() {
         runRemoveTest(refElementHeap, element: TestElements.referenceElements[0])
         runRemoveTest(valElementHeap, element: TestElements.valueElements[0])
+        
+        runFastRemoveTest(refElementHeap, element: TestElements.referenceElements[0])
+        runFastRemoveTest(valElementHeap, element: TestElements.valueElements[0])
     }
 
     func testRemoveAll() {
