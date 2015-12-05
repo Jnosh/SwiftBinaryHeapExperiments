@@ -8,7 +8,7 @@
 
 public typealias AnyComparableObject = protocol<AnyObject, Comparable>
 
-private struct Wrapper<Element: AnyComparableObject> : Comparable {
+private struct Wrapper<Element : AnyComparableObject> : Comparable {
     let wrapped: Unmanaged<Element>
 
     init(_ element: Element) {
@@ -37,18 +37,22 @@ private func <<Element>(lhs: Wrapper<Element>, rhs: Wrapper<Element>) -> Bool {
 }
 
 
-public struct ClassElementHeap<Element: AnyComparableObject> {
-    private var heap: UnsafePointerHeap<Wrapper<Element>>
+/// A heap specialized for `AnyObject`s.
+///
+/// Uses `Unmanaged` instances internally to avoid any ARC overhead.
+public struct ClassElementHeap<Element : AnyComparableObject> {
+    /// The buffer object backing this heap
+    private var buffer: ArrayBuffer<Wrapper<Element>>
 
-    public init() {
-        heap = UnsafePointerHeap()
+    private mutating func reserveCapacity(minimumCapacity: Int) {
+        buffer.reserveCapacity(minimumCapacity)
     }
 }
 
 // MARK: BinaryHeapType conformance
 extension ClassElementHeap : BinaryHeapType {
-    public var count: Int {
-        return heap.count
+    public init() {
+        buffer = ArrayBuffer(minimumCapacity: 0, retainElementsOnCopy: true)
     }
 
     /// Returns true iff `self` is empty.
@@ -67,21 +71,56 @@ extension ClassElementHeap : BinaryHeapType {
         return count
     }
 
-    public var first: Element? {
-        return heap.first?.element
+    public var count: Int {
+        return buffer.count
     }
 
-    public mutating func insert(value: Element) {
-        heap.insert(Wrapper(value))
+    public var first: Element? {
+        return count > 0 ? buffer.elements.memory.element : nil
+    }
+
+    public mutating func insert(_value: Element) {
+        // Optimization to prevent uneccessary copy
+        // If we need to resize our element buffer we are guaranteed to have a unique copy afterwards
+        if count == buffer.capacity {
+            buffer.grow(count + 1)
+        } else {
+            buffer.ensureHoldsUniqueReference()
+        }
+
+        let value = Wrapper(_value)
+        buffer.elements.advancedBy(count).initialize(value)
+        buffer.count = buffer.count + 1
+
+        var index = count - 1
+        while index > 0 && (value < buffer.elements[parentIndex(index)]) {
+            swap(&buffer.elements[index], &buffer.elements[parentIndex(index)])
+            index = parentIndex(index)
+        }
     }
 
     public mutating func removeFirst() -> Element {
-        return heap.removeFirst().consume()
+        precondition(!isEmpty, "Heap may not be empty.")
+        buffer.ensureHoldsUniqueReference()
+
+        buffer.count = buffer.count - 1
+        if count > 0 {
+            swap(&buffer.elements[0], &buffer.elements[count])
+            heapify(buffer.elements, 0, count)
+        }
+
+        return buffer.elements.advancedBy(count).move().consume()
     }
 
     public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {
-        heap.forEach { $0.destroy() }
-        heap.removeAll(keepCapacity: keepCapacity)
+        buffer.ensureHoldsUniqueReference()
+
+        // Release unmanaged objects
+        for element in UnsafeBufferPointer(start: buffer.elements, count: count) {
+            element.consume()
+        }
+
+        buffer.removeAll(keepCapacity: keepCapacity)
     }
 }
 

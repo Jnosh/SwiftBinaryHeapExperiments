@@ -8,6 +8,9 @@
 
 import Framework
 
+// Random seed
+srandom(42424242)
+
 // Constants
 let elementCount = 10000
 let iterations = 20
@@ -36,10 +39,10 @@ for _ in 0..<iterations {
     // timeClosureUnsafePointerHeap(elementContainer)
     timeClosureManagedBufferHeap(elementContainer)
     timeClosureArrayBufferHeap(elementContainer)
-
-    // Time PtrElementHeap
-    timePtrElementHeap(elementContainer)
-
+    
+    // Time non-generic heaps
+    timeNonGenericHeaps(elementContainer)
+    
     // Time ClassElementHeap
     timeClassElementHeap(elementContainer)
 

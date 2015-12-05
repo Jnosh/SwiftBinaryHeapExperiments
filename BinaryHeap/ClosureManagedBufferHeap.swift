@@ -98,4 +98,3 @@ extension ClosureManagedBufferHeap : ClosureBinaryHeapType {
         buffer.removeAll(keepCapacity: keepCapacity)
     }
 }
-

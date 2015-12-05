@@ -78,18 +78,18 @@ final class MeasurementGroup {
 
 /// Container to accumulate measurements
 class MeasurementContainer {
-    let refMeasurements = MeasurementGroup(name: "RefElement")
-    let smallValMeasurements = MeasurementGroup(name: "ValElement Small")
-    let medValMeasurements = MeasurementGroup(name: "ValElement Medium")
-    let largeValMeasurements = MeasurementGroup(name: "ValElement Large")
-    let ptrRefMeasurements = MeasurementGroup(name: "PtrElement Ref")
-    let ptrValMeasurements = MeasurementGroup(name: "PtrElement Val")
+    let refMeasurements = MeasurementGroup(name: "ReferenceElement")
+    let smallValueMeasurements = MeasurementGroup(name: "ValElement Small")
+    let medValueMeasurements = MeasurementGroup(name: "ValElement Medium")
+    let largeValueMeasurements = MeasurementGroup(name: "ValElement Large")
+    let ptrRefMeasurements = MeasurementGroup(name: "PointerElement Ref")
+    let ptrValMeasurements = MeasurementGroup(name: "PointerElement Val")
     let unmanagedMeasurements = MeasurementGroup(name: "UnmanagedElement")
 
     let allMeasurements: [MeasurementGroup]
 
     init() {
-        allMeasurements = [refMeasurements, smallValMeasurements, medValMeasurements, largeValMeasurements, ptrRefMeasurements, ptrValMeasurements, unmanagedMeasurements]
+        allMeasurements = [refMeasurements, smallValueMeasurements, medValueMeasurements, largeValueMeasurements, ptrRefMeasurements, ptrValMeasurements, unmanagedMeasurements]
     }
 }
 

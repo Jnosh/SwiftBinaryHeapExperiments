@@ -132,16 +132,3 @@ extension ManagedBufferHeap : BinaryHeapType, BinaryHeapType_Fast {
     }
 }
 
-extension ManagedBufferHeap {
-    internal mutating func forEach(body: (Element) -> Void) {
-        buffer.ensureHoldsUniqueReference()
-
-        let count = self.count
-        buffer.withUnsafeMutablePointer { elements -> Void in
-            for element in UnsafeBufferPointer(start: elements, count: count) {
-                body(element)
-            }
-        }
-    }
-}
-
