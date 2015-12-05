@@ -99,7 +99,7 @@ extension ClassElementHeap : BinaryHeapType {
     public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {
         buffer.ensureHoldsUniqueReference()
 
-        // Release unamaged objects
+        // Release unmanaged objects
         for element in UnsafeBufferPointer(start: buffer.elements, count: count) {
             element.consume()
         }
