@@ -11,7 +11,7 @@
 /// - The closure is stored in the buffer wrapper class
 /// - Backed by an UnsafeMutablePointer to a buffer
 public struct ClosureArrayBufferHeap<Element> {
-    private var buffer: ClosureArrayBuffer<Element>
+    private var buffer: ArrayBuffer<Element>
     
     private mutating func reserveCapacity(minimumCapacity: Int) {
         buffer.reserveCapacity(minimumCapacity)
@@ -21,7 +21,7 @@ public struct ClosureArrayBufferHeap<Element> {
 // MARK: BinaryHeapType conformance
 extension ClosureArrayBufferHeap : ClosureBinaryHeapType {
     public init(isOrderedBefore: (Element, Element) -> Bool) {
-        buffer = ClosureArrayBuffer(isOrderedBefore: isOrderedBefore)
+        buffer = ArrayBuffer(isOrderedBefore: isOrderedBefore)
     }
 
     /// Returns true iff `self` is empty.
@@ -53,8 +53,6 @@ extension ClosureArrayBufferHeap : ClosureBinaryHeapType {
         // If we need to resize our element buffer we are guaranteed to have a unique copy afterwards
         if count == buffer.capacity {
             buffer.grow(count + 1)
-        } else {
-            buffer.ensureHoldsUniqueReference()
         }
         
         buffer.elements.advancedBy(count).initialize(value)
@@ -69,7 +67,6 @@ extension ClosureArrayBufferHeap : ClosureBinaryHeapType {
     
     public mutating func removeFirst() -> Element {
         precondition(!isEmpty, "Heap may not be empty.")
-        buffer.ensureHoldsUniqueReference()
         
         buffer.count = buffer.count - 1
         if count > 0 {
@@ -85,5 +82,3 @@ extension ClosureArrayBufferHeap : ClosureBinaryHeapType {
     }
 }
 
-
-extension ClosureArrayBufferHeap : _DestructorSafeContainer { }

@@ -7,20 +7,23 @@
 //
 
 import Foundation
-import Framework
 
 /// A reference type element
-final class RefElement {
-    var value: Int = Int(arc4random())
+public final class ReferenceElement: NSObject {
+    var _value: Int
+    
+    public init(_ value: Int) {
+        self._value = value
+    }
 }
 
-extension RefElement: Comparable {
+extension ReferenceElement: Comparable {
 }
 
-func ==(lhs: RefElement, rhs: RefElement) -> Bool {
-    return lhs.value == rhs.value
+public func ==(lhs: ReferenceElement, rhs: ReferenceElement) -> Bool {
+    return lhs._value == rhs._value
 }
 
-func <(lhs: RefElement, rhs: RefElement) -> Bool {
-    return lhs.value < rhs.value
+public func <(lhs: ReferenceElement, rhs: ReferenceElement) -> Bool {
+    return lhs._value < rhs._value
 }

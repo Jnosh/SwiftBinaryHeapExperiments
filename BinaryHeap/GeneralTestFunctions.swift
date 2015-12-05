@@ -51,28 +51,6 @@ func timeArrayPointerHeap<Element : Comparable>(resultGroup: MeasurementGroup, e
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeNonCoWHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
-    var heap = NonCoWHeap<Element>()
-
-    // Add the elements
-    let sw1 = Stopwatch()
-    for element in elements {
-        heap.insert(element)
-    }
-    let insertTime = sw1.elapsed()
-
-    // Retrieve the elements in order
-    let sw2 = Stopwatch()
-    while !heap.isEmpty {
-        heap.removeFirst()
-    }
-    let removeTime = sw2.elapsed()
-
-    let name = "NonCoWHeap"
-    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
-}
-
-
 @transparent func timeArrayHeapTransparent<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
     var heap = ArrayHeap<Element>()
 
@@ -200,8 +178,9 @@ func timeFrameworkArrayPointerHeap<Element : Comparable>(resultGroup: Measuremen
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-func timeFrameworkNonCoWHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
-    var heap = Framework.NonCoWHeap<Element>()
+
+func timeUnsafePointerHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = UnsafePointerHeap<Element>()
 
     // Add the elements
     let sw1 = Stopwatch()
@@ -217,7 +196,94 @@ func timeFrameworkNonCoWHeap<Element : Comparable>(resultGroup: MeasurementGroup
     }
     let removeTime = sw2.elapsed()
 
-    let name = "Framework.NonCoWHeap"
+    let name = "UnsafePointerHeap"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
+
+@transparent func timeUnsafePointerHeapTransparent<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = UnsafePointerHeap<Element>()
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+    let name = "UnsafePointerHeap" + " (@transparent)"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+func timeFrameworkUnsafePointerHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = Framework.UnsafePointerHeap<Element>()
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+    let name = "Framework.UnsafePointerHeap"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+
+func timeClassElementHeap(resultGroup: MeasurementGroup, elements: [ReferenceElement]) {
+    var heap = ClassElementHeap<ReferenceElement>()
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+    let name = "ClassElementHeap"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+func timeFrameworkClassElementHeap(resultGroup: MeasurementGroup, elements: [ReferenceElement]) {
+    var heap = Framework.ClassElementHeap<ReferenceElement>()
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+    let name = "Framework.ClassElementHeap"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+
 

@@ -12,67 +12,47 @@ import Framework
 
 func timeClosureUnsafePointerHeap(elements: ElementContainer) {
     // Local
-    timeClosureHeap(ClosureUnsafePointerHeap.self, measurements.refMeasurements, elements.refElements)
-    timeClosureHeap(ClosureUnsafePointerHeap.self, measurements.smallValMeasurements, elements.smallValElements)
-    timeClosureHeap(ClosureUnsafePointerHeap.self, measurements.medValMeasurements, elements.mediumValElements)
-    timeClosureHeap(ClosureUnsafePointerHeap.self, measurements.largeValMeasurements, elements.largeValElements)
-    timeClosureHeap(ClosureUnsafePointerHeap.self, measurements.ptrRefMeasurements, elements.ptrRefElements)
-    timeClosureHeap(ClosureUnsafePointerHeap.self, measurements.ptrValMeasurements, elements.ptrValElements)
-    timeClosureHeap(ClosureUnsafePointerHeap.self, measurements.unmanagedMeasurements, elements.unmanagedElements)
+    timeClosureUnsafePointerHeap(measurements.refMeasurements, elements.refElements)
+    timeClosureUnsafePointerHeap(measurements.smallValueMeasurements, elements.smallValueElements)
+    timeClosureUnsafePointerHeap(measurements.medValueMeasurements, elements.mediumValueElements)
+    timeClosureUnsafePointerHeap(measurements.largeValueMeasurements, elements.largeValueElements)
+    timeClosureUnsafePointerHeap(measurements.ptrRefMeasurements, elements.pointerReferenceElements)
+    timeClosureUnsafePointerHeap(measurements.ptrValMeasurements, elements.pointerValueElements)
+    timeClosureUnsafePointerHeap(measurements.unmanagedMeasurements, elements.unmanagedElements)
     
     // Framework
-    timeFrameworkClosureHeap(Framework.ClosureUnsafePointerHeap.self, measurements.refMeasurements, elements.refElements)
-    timeFrameworkClosureHeap(Framework.ClosureUnsafePointerHeap.self, measurements.smallValMeasurements, elements.smallValElements)
-    timeFrameworkClosureHeap(Framework.ClosureUnsafePointerHeap.self, measurements.medValMeasurements, elements.mediumValElements)
-    timeFrameworkClosureHeap(Framework.ClosureUnsafePointerHeap.self, measurements.largeValMeasurements, elements.largeValElements)
-    timeFrameworkClosureHeap(Framework.ClosureUnsafePointerHeap.self, measurements.ptrRefMeasurements, elements.ptrRefElements)
-    timeFrameworkClosureHeap(Framework.ClosureUnsafePointerHeap.self, measurements.ptrValMeasurements, elements.ptrValElements)
-    timeFrameworkClosureHeap(Framework.ClosureUnsafePointerHeap.self, measurements.unmanagedMeasurements, elements.unmanagedElements)
-}
-
-func timeClosureManagedBufferHeap(elements: ElementContainer) {
-    // Local
-    timeClosureHeap(ClosureManagedBufferHeap.self, measurements.refMeasurements, elements.refElements)
-    timeClosureHeap(ClosureManagedBufferHeap.self, measurements.smallValMeasurements, elements.smallValElements)
-    timeClosureHeap(ClosureManagedBufferHeap.self, measurements.medValMeasurements, elements.mediumValElements)
-    timeClosureHeap(ClosureManagedBufferHeap.self, measurements.largeValMeasurements, elements.largeValElements)
-    timeClosureHeap(ClosureManagedBufferHeap.self, measurements.ptrRefMeasurements, elements.ptrRefElements)
-    timeClosureHeap(ClosureManagedBufferHeap.self, measurements.ptrValMeasurements, elements.ptrValElements)
-    timeClosureHeap(ClosureManagedBufferHeap.self, measurements.unmanagedMeasurements, elements.unmanagedElements)
-    
-    // Framework
-    timeFrameworkClosureHeap(Framework.ClosureManagedBufferHeap.self, measurements.refMeasurements, elements.refElements)
-    timeFrameworkClosureHeap(Framework.ClosureManagedBufferHeap.self, measurements.smallValMeasurements, elements.smallValElements)
-    timeFrameworkClosureHeap(Framework.ClosureManagedBufferHeap.self, measurements.medValMeasurements, elements.mediumValElements)
-    timeFrameworkClosureHeap(Framework.ClosureManagedBufferHeap.self, measurements.largeValMeasurements, elements.largeValElements)
-    timeFrameworkClosureHeap(Framework.ClosureManagedBufferHeap.self, measurements.ptrRefMeasurements, elements.ptrRefElements)
-    timeFrameworkClosureHeap(Framework.ClosureManagedBufferHeap.self, measurements.ptrValMeasurements, elements.ptrValElements)
-    timeFrameworkClosureHeap(Framework.ClosureManagedBufferHeap.self, measurements.unmanagedMeasurements, elements.unmanagedElements)
+    timeFrameworkClosureUnsafePointerHeap(measurements.refMeasurements, elements.refElements)
+    timeFrameworkClosureUnsafePointerHeap(measurements.smallValueMeasurements, elements.smallValueElements)
+    timeFrameworkClosureUnsafePointerHeap(measurements.medValueMeasurements, elements.mediumValueElements)
+    timeFrameworkClosureUnsafePointerHeap(measurements.largeValueMeasurements, elements.largeValueElements)
+    timeFrameworkClosureUnsafePointerHeap(measurements.ptrRefMeasurements, elements.pointerReferenceElements)
+    timeFrameworkClosureUnsafePointerHeap(measurements.ptrValMeasurements, elements.pointerValueElements)
+    timeFrameworkClosureUnsafePointerHeap(measurements.unmanagedMeasurements, elements.unmanagedElements)
 }
 
 func timeClosureArrayBufferHeap(elements: ElementContainer) {
     // Local
-    timeClosureHeap(ClosureArrayBufferHeap.self, measurements.refMeasurements, elements.refElements)
-    timeClosureHeap(ClosureArrayBufferHeap.self, measurements.smallValMeasurements, elements.smallValElements)
-    timeClosureHeap(ClosureArrayBufferHeap.self, measurements.medValMeasurements, elements.mediumValElements)
-    timeClosureHeap(ClosureArrayBufferHeap.self, measurements.largeValMeasurements, elements.largeValElements)
-    timeClosureHeap(ClosureArrayBufferHeap.self, measurements.ptrRefMeasurements, elements.ptrRefElements)
-    timeClosureHeap(ClosureArrayBufferHeap.self, measurements.ptrValMeasurements, elements.ptrValElements)
-    timeClosureHeap(ClosureArrayBufferHeap.self, measurements.unmanagedMeasurements, elements.unmanagedElements)
+    timeClosureArrayBufferHeap(measurements.refMeasurements, elements.refElements)
+    timeClosureArrayBufferHeap(measurements.smallValueMeasurements, elements.smallValueElements)
+    timeClosureArrayBufferHeap(measurements.medValueMeasurements, elements.mediumValueElements)
+    timeClosureArrayBufferHeap(measurements.largeValueMeasurements, elements.largeValueElements)
+    timeClosureArrayBufferHeap(measurements.ptrRefMeasurements, elements.pointerReferenceElements)
+    timeClosureArrayBufferHeap(measurements.ptrValMeasurements, elements.pointerValueElements)
+    timeClosureArrayBufferHeap(measurements.unmanagedMeasurements, elements.unmanagedElements)
     
     // Framework
-    timeFrameworkClosureHeap(Framework.ClosureArrayBufferHeap.self, measurements.refMeasurements, elements.refElements)
-    timeFrameworkClosureHeap(Framework.ClosureArrayBufferHeap.self, measurements.smallValMeasurements, elements.smallValElements)
-    timeFrameworkClosureHeap(Framework.ClosureArrayBufferHeap.self, measurements.medValMeasurements, elements.mediumValElements)
-    timeFrameworkClosureHeap(Framework.ClosureArrayBufferHeap.self, measurements.largeValMeasurements, elements.largeValElements)
-    timeFrameworkClosureHeap(Framework.ClosureArrayBufferHeap.self, measurements.ptrRefMeasurements, elements.ptrRefElements)
-    timeFrameworkClosureHeap(Framework.ClosureArrayBufferHeap.self, measurements.ptrValMeasurements, elements.ptrValElements)
-    timeFrameworkClosureHeap(Framework.ClosureArrayBufferHeap.self, measurements.unmanagedMeasurements, elements.unmanagedElements)
+    timeFrameworkClosureArrayBufferHeap(measurements.refMeasurements, elements.refElements)
+    timeFrameworkClosureArrayBufferHeap(measurements.smallValueMeasurements, elements.smallValueElements)
+    timeFrameworkClosureArrayBufferHeap(measurements.medValueMeasurements, elements.mediumValueElements)
+    timeFrameworkClosureArrayBufferHeap(measurements.largeValueMeasurements, elements.largeValueElements)
+    timeFrameworkClosureArrayBufferHeap(measurements.ptrRefMeasurements, elements.pointerReferenceElements)
+    timeFrameworkClosureArrayBufferHeap(measurements.ptrValMeasurements, elements.pointerValueElements)
+    timeFrameworkClosureArrayBufferHeap(measurements.unmanagedMeasurements, elements.unmanagedElements)
 }
 
-private func timeClosureHeap<Heap : ClosureBinaryHeapType, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
-    var heap = heapType.init() { $0 < $1 }
-    
+private func timeClosureUnsafePointerHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = ClosureUnsafePointerHeap<Element>() { $0 < $1 }
+
     // Add the elements
     let sw1 = Stopwatch()
     for element in elements {
@@ -88,28 +68,72 @@ private func timeClosureHeap<Heap : ClosureBinaryHeapType, Element : Comparable 
     let removeTime = sw2.elapsed()
     
     
-    let name = removeGenerics(String(stringInterpolationSegment: heapType))
+    let name = "ClosureUnsafePointerHeap"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-private func timeFrameworkClosureHeap<Heap : Framework.ClosureBinaryHeapType, Element : Comparable where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
-    var heap = heapType.init() { $0 < $1 }
-    
+private func timeClosureArrayBufferHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = ClosureArrayBufferHeap<Element>() { $0 < $1 }
+
     // Add the elements
     let sw1 = Stopwatch()
     for element in elements {
         heap.insert(element)
     }
     let insertTime = sw1.elapsed()
-    
+
     // Retrieve the elements in order
     let sw2 = Stopwatch()
     while !heap.isEmpty {
         heap.removeFirst()
     }
     let removeTime = sw2.elapsed()
-    
-    
-    let name = removeGenerics(String(stringInterpolationSegment: heapType))
+
+
+    let name = "ClosureArrayBufferHeap"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+private func timeFrameworkClosureUnsafePointerHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = Framework.ClosureUnsafePointerHeap<Element>() { $0 < $1 }
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+
+    let name = "Framework.ClosureUnsafePointerHeap"
+    resultGroup[name].addMeasurement(insertTime, remove: removeTime)
+}
+
+private func timeFrameworkClosureArrayBufferHeap<Element : Comparable>(resultGroup: MeasurementGroup, elements: [Element]) {
+    var heap = Framework.ClosureArrayBufferHeap<Element>() { $0 < $1 }
+
+    // Add the elements
+    let sw1 = Stopwatch()
+    for element in elements {
+        heap.insert(element)
+    }
+    let insertTime = sw1.elapsed()
+
+    // Retrieve the elements in order
+    let sw2 = Stopwatch()
+    while !heap.isEmpty {
+        heap.removeFirst()
+    }
+    let removeTime = sw2.elapsed()
+
+
+    let name = "Framework.ClosureArrayBufferHeap"
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }

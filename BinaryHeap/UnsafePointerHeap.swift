@@ -51,8 +51,6 @@ extension UnsafePointerHeap : BinaryHeapType {
         // If we need to resize our element buffer we are guaranteed to have a unique copy afterwards
         if count == buffer.capacity {
             buffer.grow(count + 1)
-        } else {
-            buffer.ensureHoldsUniqueReference()
         }
 
         buffer.elements.advancedBy(count).initialize(value)
@@ -67,7 +65,6 @@ extension UnsafePointerHeap : BinaryHeapType {
 
     public mutating func removeFirst() -> Element {
         precondition(!isEmpty, "Heap may not be empty.")
-        buffer.ensureHoldsUniqueReference()
         
         buffer.count = buffer.count - 1
         if count > 0 {
@@ -82,17 +79,4 @@ extension UnsafePointerHeap : BinaryHeapType {
         buffer.removeAll(keepCapacity: keepCapacity)
     }
 }
-
-extension UnsafePointerHeap {
-    internal mutating func forEach(body: (Element) -> Void) {
-        buffer.ensureHoldsUniqueReference()
-        
-        for element in UnsafeBufferPointer(start: buffer.elements, count: count) {
-            body(element)
-        }
-    }
-}
-
-
-extension UnsafePointerHeap : _DestructorSafeContainer { }
 

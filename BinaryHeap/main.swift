@@ -8,6 +8,9 @@
 
 import Framework
 
+// Random seed
+srandom(42424242)
+
 // Constants
 let elementCount = 10000
 let iterations = 20
@@ -22,29 +25,20 @@ for _ in 0..<iterations {
     // to get a better average at the cost of increased variance
     let elementContainer = ElementContainer(count: elementCount)
 
-    // Time CFBinaryHeapWrapper
-    // timeCFHeapWrapper(elementContainer)
-
     // Time standard variants
     timeArrayHeap(elementContainer)
     timeArrayPointerHeap(elementContainer)
-    //timeUnsafePointerHeap(elementContainer)
-    //timeManagedBufferHeap(elementContainer)
+    timeUnsafePointerHeap(elementContainer)
 
     // Time closure-based heaps
-    //timeClosureUnsafePointerHeapNonGeneric(elementContainer)
-    // timeClosureUnsafePointerHeap(elementContainer)
-    //timeClosureManagedBufferHeap(elementContainer)
-    //timeClosureArrayBufferHeap(elementContainer)
-
-    // Time PtrElementHeap
-    timePtrElementHeap(elementContainer)
-
+    timeClosureUnsafePointerHeap(elementContainer)
+    timeClosureArrayBufferHeap(elementContainer)
+    
+    // Time non-generic heaps
+    timeNonGenericHeaps(elementContainer)
+    
     // Time ClassElementHeap
-    //timeClassElementHeap(elementContainer)
-
-    // Time NonCoWHeap
-    timeNonCoWHeap(elementContainer)
+    // timeClassElementHeap(elementContainer)
 }
 
 // Print the collected results

@@ -7,14 +7,14 @@
 //
 
 /// An element that wraps an Unmanaged reference type
-struct UnmanagedElement<Element : AnyObject where Element : Comparable> : Comparable {
+public struct UnmanagedElement<Element : AnyObject where Element : Comparable> : Comparable {
     private let wrapped: Unmanaged<Element>
     
     var element: Element {
         return wrapped.takeUnretainedValue()
     }
     
-    init(_ element: Element) {
+    public init(_ element: Element) {
         wrapped = Unmanaged.passRetained(element)
     }
 
@@ -23,10 +23,10 @@ struct UnmanagedElement<Element : AnyObject where Element : Comparable> : Compar
     }
 }
 
-func ==<Element>(lhs: UnmanagedElement<Element>, rhs: UnmanagedElement<Element>) -> Bool {
+public func ==<Element>(lhs: UnmanagedElement<Element>, rhs: UnmanagedElement<Element>) -> Bool {
     return lhs.wrapped.takeUnretainedValue() == rhs.wrapped.takeUnretainedValue()
 }
 
-func <<Element>(lhs: UnmanagedElement<Element>, rhs: UnmanagedElement<Element>) -> Bool {
+public func <<Element>(lhs: UnmanagedElement<Element>, rhs: UnmanagedElement<Element>) -> Bool {
     return lhs.wrapped.takeUnretainedValue() < rhs.wrapped.takeUnretainedValue()
 }
