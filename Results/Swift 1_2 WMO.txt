@@ -1,0 +1,201 @@
+ReferenceElement                                        |       Insert |       Remove |        Total |            σ
+-------------------------------------------------------------------------------------------------------------------
+BinaryHeap.UnsafePointerHeap                            |      1.251ms |      1.687ms |      2.937ms |     0.3131ms
+BinaryHeap.ManagedBufferHeap (workaround)               |      1.346ms |      1.644ms |       2.99ms |     0.3561ms
+BinaryHeap.ReferenceElementHeap                         |      1.359ms |      1.696ms |      3.055ms |     0.4313ms
+BinaryHeap.NonCoWHeap                                   |      1.433ms |      1.751ms |      3.184ms |     0.3897ms
+BinaryHeap.ManagedBufferHeap                            |      1.424ms |      1.785ms |      3.209ms |     0.3837ms
+BinaryHeap.ClassElementHeap                             |      2.041ms |      1.672ms |      3.714ms |     0.3809ms
+Framework.ReferenceElementHeap                          |       2.07ms |      1.872ms |      3.943ms |     0.4256ms
+BinaryHeap.ArrayPointerHeap (workaround)                |      2.436ms |      4.697ms |      7.133ms |     0.5238ms
+BinaryHeap.ArrayPointerHeap (@transparent + workaround) |       2.85ms |      4.713ms |      7.563ms |     0.5623ms
+BinaryHeap.ArrayPointerHeap                             |      3.006ms |      5.336ms |      8.341ms |     0.7959ms
+BinaryHeap.ArrayPointerHeap (@transparent)              |      4.234ms |      5.311ms |      9.546ms |     0.6878ms
+BinaryHeap.ClosureUnsafePointerHeap (argument literal)  |      4.005ms |       28.2ms |      32.21ms |      4.109ms
+BinaryHeap.ClosureManagedBufferHeap                     |      3.966ms |      28.81ms |      32.78ms |      4.439ms
+BinaryHeap.ClosureUnsafePointerHeap (argument <)        |      4.649ms |       28.5ms |      33.15ms |      4.196ms
+BinaryHeap.ClosureUnsafePointerHeap (local literal)     |      4.505ms |       28.9ms |       33.4ms |      4.394ms
+Framework.NonCoWHeap                                    |      5.234ms |      30.18ms |      35.41ms |      4.312ms
+Framework.UnsafePointerHeap                             |      4.982ms |      30.74ms |      35.72ms |      4.423ms
+Framework.ClassElementHeap                              |      4.404ms |       32.9ms |       37.3ms |       4.34ms
+Framework.ClosureUnsafePointerHeap (local literal)      |      4.643ms |       32.7ms |      37.34ms |      4.404ms
+Framework.ClosureUnsafePointerHeap (argument <)         |      4.685ms |      32.84ms |      37.53ms |      4.489ms
+Framework.ClosureUnsafePointerHeap (argument literal)   |      5.271ms |      32.79ms |      38.06ms |      4.664ms
+BinaryHeap.ClosureArrayBufferHeap                       |      4.792ms |      37.21ms |         42ms |      4.498ms
+Framework.ClosureArrayBufferHeap                        |      8.173ms |      49.13ms |      57.31ms |       4.94ms
+Framework.ArrayPointerHeap                              |       16.1ms |      48.81ms |       64.9ms |      5.452ms
+Framework.ManagedBufferHeap                             |      21.71ms |      48.08ms |      69.79ms |       4.62ms
+BinaryHeap.ArrayHeap                                    |      6.776ms |      63.98ms |      70.76ms |      5.445ms
+BinaryHeap.ArrayHeap (@transparent)                     |      7.015ms |      63.93ms |      70.95ms |      5.996ms
+Framework.ClosureManagedBufferHeap                      |      22.58ms |      52.92ms |       75.5ms |      5.092ms
+Framework.ArrayHeap                                     |      18.27ms |      169.4ms |      187.7ms |      7.257ms
+-------------------------------------------------------------------------------------------------------------------
+
+ValElement Small                                       |       Insert |       Remove |        Total |            σ
+------------------------------------------------------------------------------------------------------------------
+BinaryHeap.ManagedBufferHeap (workaround)              |     0.2288ms |     0.8215ms |       1.05ms |     0.0665ms
+BinaryHeap.UnsafePointerHeap                           |     0.2347ms |      0.848ms |      1.083ms |    0.05736ms
+BinaryHeap.SmallValueElementHeap                       |     0.2438ms |     0.8629ms |      1.107ms |    0.06138ms
+BinaryHeap.ArrayPointerHeap (workaround)               |     0.2337ms |     0.9742ms |      1.208ms |     0.0838ms
+BinaryHeap.NonCoWHeap                                  |     0.3048ms |     0.9471ms |      1.252ms |    0.07043ms
+BinaryHeap.ManagedBufferHeap                           |     0.3131ms |     0.9398ms |      1.253ms |    0.06253ms
+Framework.SmallValueElementHeap                        |      0.257ms |      1.025ms |      1.282ms |    0.06774ms
+BinaryHeap.ArrayPointerHeap                            |     0.3449ms |      1.149ms |      1.494ms |    0.08224ms
+BinaryHeap.ArrayHeap                                   |     0.2448ms |       1.35ms |      1.595ms |    0.09426ms
+BinaryHeap.ClosureUnsafePointerHeap (argument literal) |     0.3213ms |      3.083ms |      3.404ms |     0.1363ms
+BinaryHeap.ClosureUnsafePointerHeap (local literal)    |     0.3213ms |      3.093ms |      3.414ms |     0.1473ms
+BinaryHeap.ClosureUnsafePointerHeap (argument <)       |     0.3225ms |      3.103ms |      3.426ms |     0.1741ms
+BinaryHeap.ClosureManagedBufferHeap                    |     0.3216ms |      3.122ms |      3.444ms |      0.184ms
+Framework.UnsafePointerHeap                            |     0.8583ms |      5.188ms |      6.047ms |     0.2508ms
+Framework.NonCoWHeap                                   |      1.023ms |      5.179ms |      6.202ms |     0.1796ms
+Framework.ClosureUnsafePointerHeap (argument literal)  |     0.8523ms |      6.325ms |      7.177ms |     0.1845ms
+Framework.ClosureUnsafePointerHeap (argument <)        |     0.8535ms |      7.989ms |      8.843ms |      0.319ms
+Framework.ClosureUnsafePointerHeap (local literal)     |     0.8481ms |      8.025ms |      8.873ms |      0.308ms
+BinaryHeap.ClosureArrayBufferHeap                      |     0.9423ms |      11.06ms |         12ms |     0.5367ms
+Framework.ClosureArrayBufferHeap                       |      4.268ms |      21.75ms |      26.02ms |      0.698ms
+Framework.ArrayPointerHeap                             |      9.914ms |      21.03ms |      30.94ms |     0.9973ms
+Framework.ManagedBufferHeap                            |      16.55ms |      22.54ms |      39.08ms |      1.041ms
+Framework.ClosureManagedBufferHeap                     |       17.6ms |      26.29ms |      43.89ms |      1.046ms
+Framework.ArrayHeap                                    |      12.48ms |      124.2ms |      136.7ms |      5.044ms
+------------------------------------------------------------------------------------------------------------------
+
+ValElement Medium                                      |       Insert |       Remove |        Total |            σ
+------------------------------------------------------------------------------------------------------------------
+BinaryHeap.ManagedBufferHeap (workaround)              |     0.2962ms |      1.038ms |      1.334ms |    0.08225ms
+BinaryHeap.MediumValueElementHeap                      |      0.318ms |      1.072ms |       1.39ms |    0.05378ms
+BinaryHeap.UnsafePointerHeap                           |     0.3173ms |      1.085ms |      1.402ms |    0.07538ms
+BinaryHeap.ArrayPointerHeap (workaround)               |     0.3129ms |      1.183ms |      1.496ms |    0.08524ms
+BinaryHeap.NonCoWHeap                                  |     0.3925ms |      1.145ms |      1.538ms |    0.09696ms
+BinaryHeap.ManagedBufferHeap                           |     0.3901ms |      1.152ms |      1.542ms |    0.06335ms
+Framework.MediumValueElementHeap                       |     0.3445ms |      1.243ms |      1.587ms |    0.09847ms
+BinaryHeap.ArrayPointerHeap                            |     0.4225ms |      1.382ms |      1.804ms |     0.1101ms
+BinaryHeap.ArrayHeap                                   |     0.3309ms |      1.525ms |      1.855ms |     0.1769ms
+BinaryHeap.ClosureUnsafePointerHeap (argument <)       |     0.4215ms |      3.153ms |      3.574ms |     0.1475ms
+BinaryHeap.ClosureUnsafePointerHeap (argument literal) |     0.4263ms |      3.153ms |      3.579ms |     0.1569ms
+BinaryHeap.ClosureUnsafePointerHeap (local literal)    |     0.4275ms |      3.199ms |      3.626ms |     0.2071ms
+BinaryHeap.ClosureManagedBufferHeap                    |      0.389ms |      3.308ms |      3.697ms |     0.1453ms
+BinaryHeap.ClosureArrayBufferHeap                      |      1.046ms |      11.57ms |      12.61ms |     0.4897ms
+Framework.UnsafePointerHeap                            |      5.162ms |      39.52ms |      44.68ms |       1.11ms
+Framework.NonCoWHeap                                   |      5.401ms |      39.47ms |      44.87ms |      1.032ms
+Framework.ClosureUnsafePointerHeap (local literal)     |      5.207ms |       42.3ms |       47.5ms |       1.18ms
+Framework.ClosureUnsafePointerHeap (argument literal)  |      5.238ms |      42.36ms |       47.6ms |      1.348ms
+Framework.ClosureUnsafePointerHeap (argument <)        |      5.254ms |      42.36ms |      47.62ms |       1.13ms
+Framework.ArrayPointerHeap                             |      17.91ms |      58.25ms |      76.17ms |      1.573ms
+Framework.ManagedBufferHeap                            |      21.03ms |      57.56ms |      78.59ms |      1.778ms
+Framework.ClosureManagedBufferHeap                     |      22.08ms |      62.78ms |      84.86ms |      2.175ms
+Framework.ClosureArrayBufferHeap                       |      10.45ms |      75.77ms |      86.22ms |      2.258ms
+Framework.ArrayHeap                                    |      16.93ms |      159.7ms |      176.6ms |       3.98ms
+------------------------------------------------------------------------------------------------------------------
+
+ValElement Large                                       |       Insert |       Remove |        Total |            σ
+------------------------------------------------------------------------------------------------------------------
+BinaryHeap.ManagedBufferHeap (workaround)              |      0.507ms |      1.396ms |      1.902ms |      0.114ms
+BinaryHeap.LargeValueElementHeap                       |     0.5204ms |      1.439ms |      1.959ms |    0.08425ms
+BinaryHeap.UnsafePointerHeap                           |     0.5161ms |      1.453ms |      1.969ms |     0.1099ms
+BinaryHeap.NonCoWHeap                                  |     0.5511ms |       1.48ms |      2.031ms |    0.09551ms
+BinaryHeap.ArrayPointerHeap (workaround)               |     0.5327ms |      1.523ms |      2.056ms |    0.09924ms
+BinaryHeap.ManagedBufferHeap                           |     0.6293ms |       1.52ms |      2.149ms |     0.0971ms
+Framework.LargeValueElementHeap                        |     0.5497ms |       1.61ms |       2.16ms |     0.1024ms
+BinaryHeap.ArrayPointerHeap                            |     0.6192ms |      1.727ms |      2.347ms |     0.1259ms
+BinaryHeap.ArrayHeap                                   |     0.5281ms |      1.858ms |      2.386ms |     0.1347ms
+BinaryHeap.ClosureUnsafePointerHeap (argument literal) |     0.6334ms |      3.565ms |      4.198ms |     0.1582ms
+BinaryHeap.ClosureUnsafePointerHeap (argument <)       |     0.6324ms |      3.568ms |        4.2ms |     0.1909ms
+BinaryHeap.ClosureUnsafePointerHeap (local literal)    |     0.6448ms |      3.598ms |      4.243ms |     0.2206ms
+BinaryHeap.ClosureManagedBufferHeap                    |     0.6358ms |      3.734ms |       4.37ms |     0.1961ms
+BinaryHeap.ClosureArrayBufferHeap                      |      1.312ms |      12.46ms |      13.77ms |     0.3991ms
+Framework.UnsafePointerHeap                            |      5.974ms |      45.08ms |      51.05ms |      1.381ms
+Framework.NonCoWHeap                                   |      6.248ms |      44.89ms |      51.13ms |      1.233ms
+Framework.ClosureUnsafePointerHeap (argument <)        |      6.038ms |      45.84ms |      51.87ms |      1.021ms
+Framework.ClosureUnsafePointerHeap (argument literal)  |       6.04ms |      46.05ms |      52.09ms |      1.256ms
+Framework.ClosureUnsafePointerHeap (local literal)     |      6.062ms |      46.35ms |      52.42ms |      1.324ms
+Framework.ArrayPointerHeap                             |      19.13ms |      64.53ms |      83.66ms |      2.728ms
+Framework.ManagedBufferHeap                            |      21.75ms |       62.4ms |      84.14ms |      1.403ms
+Framework.ClosureManagedBufferHeap                     |      23.14ms |      66.52ms |      89.66ms |       2.44ms
+Framework.ClosureArrayBufferHeap                       |      11.32ms |      80.68ms |      92.01ms |      2.068ms
+Framework.ArrayHeap                                    |      17.62ms |      163.4ms |        181ms |       3.91ms
+------------------------------------------------------------------------------------------------------------------
+
+PointerElement Ref                                     |       Insert |       Remove |        Total |            σ
+------------------------------------------------------------------------------------------------------------------
+BinaryHeap.ManagedBufferHeap (workaround)              |     0.2933ms |      1.538ms |      1.831ms |     0.1022ms
+BinaryHeap.PointerReferenceElementHeap                 |     0.3148ms |      1.539ms |      1.854ms |    0.08246ms
+BinaryHeap.UnsafePointerHeap                           |      0.306ms |      1.554ms |       1.86ms |     0.1035ms
+BinaryHeap.ArrayPointerHeap (workaround)               |      0.303ms |      1.672ms |      1.975ms |     0.1064ms
+BinaryHeap.NonCoWHeap                                  |     0.3636ms |      1.625ms |      1.989ms |     0.1036ms
+Framework.PointerReferenceElementHeap                  |     0.3144ms |      1.701ms |      2.016ms |    0.07042ms
+BinaryHeap.ManagedBufferHeap                           |     0.3728ms |      1.664ms |      2.037ms |    0.08773ms
+BinaryHeap.ArrayPointerHeap                            |     0.4117ms |      1.854ms |      2.266ms |     0.2346ms
+BinaryHeap.ArrayHeap                                   |     0.3093ms |      2.067ms |      2.377ms |      0.141ms
+BinaryHeap.ClosureUnsafePointerHeap (argument literal) |     0.3911ms |      3.392ms |      3.783ms |     0.1726ms
+Framework.ClosureUnsafePointerHeap (argument literal)  |     0.9464ms |      6.724ms |      7.671ms |     0.3008ms
+BinaryHeap.ClosureUnsafePointerHeap (local literal)    |      4.139ms |      31.81ms |      35.95ms |      4.193ms
+BinaryHeap.ClosureManagedBufferHeap                    |      4.128ms |       32.5ms |      36.62ms |      4.399ms
+Framework.NonCoWHeap                                   |      4.975ms |      33.82ms |      38.79ms |      4.283ms
+BinaryHeap.ClosureUnsafePointerHeap (argument <)       |      4.374ms |      34.53ms |      38.91ms |      4.019ms
+Framework.UnsafePointerHeap                            |      4.765ms |       34.4ms |      39.16ms |      4.349ms
+Framework.ClosureUnsafePointerHeap (local literal)     |      4.827ms |      35.26ms |      40.09ms |      4.205ms
+Framework.ClosureUnsafePointerHeap (argument <)        |      4.943ms |      38.65ms |      43.59ms |      4.317ms
+BinaryHeap.ClosureArrayBufferHeap                      |       4.83ms |      40.12ms |      44.95ms |      4.304ms
+Framework.ClosureArrayBufferHeap                       |      8.456ms |      51.78ms |      60.23ms |      4.592ms
+Framework.ArrayPointerHeap                             |       14.1ms |       50.9ms |      64.99ms |      4.991ms
+Framework.ManagedBufferHeap                            |       20.6ms |      52.31ms |      72.91ms |      4.871ms
+Framework.ClosureManagedBufferHeap                     |      21.75ms |      55.73ms |      77.49ms |      4.566ms
+Framework.ArrayHeap                                    |      16.38ms |      152.7ms |      169.1ms |      7.093ms
+------------------------------------------------------------------------------------------------------------------
+
+PointerElement Val                                     |       Insert |       Remove |        Total |            σ
+------------------------------------------------------------------------------------------------------------------
+BinaryHeap.ManagedBufferHeap (workaround)              |      0.285ms |      1.279ms |      1.564ms |    0.07544ms
+BinaryHeap.PointerValueElementHeap                     |     0.2882ms |       1.32ms |      1.608ms |      0.064ms
+BinaryHeap.UnsafePointerHeap                           |     0.2958ms |      1.342ms |      1.638ms |      0.104ms
+BinaryHeap.ArrayPointerHeap (workaround)               |      0.298ms |      1.436ms |      1.734ms |    0.09954ms
+BinaryHeap.NonCoWHeap                                  |     0.3562ms |      1.394ms |      1.751ms |    0.08691ms
+BinaryHeap.ManagedBufferHeap                           |      0.365ms |      1.422ms |      1.787ms |    0.08212ms
+Framework.PointerValueElementHeap                      |     0.3103ms |      1.486ms |      1.796ms |    0.06606ms
+BinaryHeap.ArrayPointerHeap                            |      0.404ms |      1.619ms |      2.023ms |     0.1393ms
+BinaryHeap.ArrayHeap                                   |     0.2969ms |      1.813ms |       2.11ms |     0.1075ms
+BinaryHeap.ClosureUnsafePointerHeap (argument literal) |     0.3903ms |      3.274ms |      3.665ms |     0.1742ms
+Framework.ClosureUnsafePointerHeap (argument literal)  |     0.9454ms |      6.474ms |       7.42ms |     0.1835ms
+BinaryHeap.ClosureUnsafePointerHeap (local literal)    |      3.898ms |      36.29ms |      40.19ms |      1.216ms
+BinaryHeap.ClosureManagedBufferHeap                    |      3.949ms |      37.11ms |      41.06ms |      1.274ms
+Framework.UnsafePointerHeap                            |      4.409ms |      38.62ms |      43.03ms |      0.953ms
+Framework.NonCoWHeap                                   |      4.608ms |      38.58ms |      43.19ms |     0.8495ms
+BinaryHeap.ClosureUnsafePointerHeap (argument <)       |      4.011ms |      39.74ms |      43.75ms |      1.118ms
+Framework.ClosureUnsafePointerHeap (local literal)     |       4.47ms |      39.88ms |      44.35ms |      1.604ms
+Framework.ClosureUnsafePointerHeap (argument <)        |      4.543ms |      43.13ms |      47.68ms |      1.459ms
+BinaryHeap.ClosureArrayBufferHeap                      |      4.628ms |      45.33ms |      49.96ms |       1.53ms
+Framework.ClosureArrayBufferHeap                       |        7.9ms |      56.44ms |      64.34ms |      1.946ms
+Framework.ArrayPointerHeap                             |      13.68ms |      55.18ms |      68.86ms |      2.437ms
+Framework.ManagedBufferHeap                            |      20.08ms |       56.5ms |      76.58ms |      2.298ms
+Framework.ClosureManagedBufferHeap                     |      21.29ms |      59.95ms |      81.24ms |       2.34ms
+Framework.ArrayHeap                                    |      16.08ms |      159.7ms |      175.8ms |      3.865ms
+------------------------------------------------------------------------------------------------------------------
+
+UnmanagedElement                                       |       Insert |       Remove |        Total |            σ
+------------------------------------------------------------------------------------------------------------------
+BinaryHeap.ManagedBufferHeap (workaround)              |      0.256ms |      1.149ms |      1.405ms |     0.0837ms
+BinaryHeap.UnmanagedElementHeap                        |     0.2774ms |      1.159ms |      1.436ms |    0.06965ms
+BinaryHeap.UnsafePointerHeap                           |     0.2701ms |      1.177ms |      1.447ms |    0.09094ms
+BinaryHeap.NonCoWHeap                                  |     0.3321ms |      1.217ms |      1.549ms |    0.06554ms
+BinaryHeap.ArrayPointerHeap (workaround)               |     0.2716ms |      1.281ms |      1.553ms |    0.09937ms
+Framework.UnmanagedElementHeap                         |     0.2844ms |      1.319ms |      1.603ms |    0.08137ms
+BinaryHeap.ManagedBufferHeap                           |      0.343ms |      1.271ms |      1.614ms |    0.09045ms
+BinaryHeap.ArrayPointerHeap                            |     0.3702ms |      1.462ms |      1.832ms |    0.09242ms
+BinaryHeap.ArrayHeap                                   |     0.2717ms |      1.649ms |      1.921ms |    0.09841ms
+BinaryHeap.ClosureUnsafePointerHeap (argument literal) |     0.3517ms |       3.11ms |      3.461ms |     0.1455ms
+Framework.ClosureUnsafePointerHeap (argument literal)  |     0.8929ms |      6.516ms |      7.409ms |     0.2985ms
+BinaryHeap.ClosureUnsafePointerHeap (local literal)    |      3.658ms |      30.47ms |      34.13ms |      4.253ms
+BinaryHeap.ClosureManagedBufferHeap                    |      3.725ms |      31.06ms |      34.78ms |       4.49ms
+Framework.NonCoWHeap                                   |      4.324ms |      32.66ms |      36.98ms |      4.283ms
+Framework.UnsafePointerHeap                            |      4.186ms |      33.14ms |      37.33ms |      4.484ms
+BinaryHeap.ClosureUnsafePointerHeap (argument <)       |      3.874ms |      33.46ms |      37.33ms |      4.407ms
+Framework.ClosureUnsafePointerHeap (local literal)     |      4.252ms |      34.01ms |      38.26ms |      4.074ms
+Framework.ClosureUnsafePointerHeap (argument <)        |      4.443ms |      37.34ms |      41.78ms |      4.059ms
+BinaryHeap.ClosureArrayBufferHeap                      |      4.318ms |       38.3ms |      42.62ms |      4.346ms
+Framework.ClosureArrayBufferHeap                       |      7.818ms |      50.22ms |      58.04ms |      4.549ms
+Framework.ArrayPointerHeap                             |      13.46ms |      49.07ms |      62.52ms |       4.69ms
+Framework.ManagedBufferHeap                            |      20.19ms |      50.67ms |      70.85ms |      4.487ms
+Framework.ClosureManagedBufferHeap                     |      21.26ms |      54.32ms |      75.58ms |      4.375ms
+Framework.ArrayHeap                                    |      15.99ms |      151.1ms |        167ms |      6.005ms
+------------------------------------------------------------------------------------------------------------------
+
