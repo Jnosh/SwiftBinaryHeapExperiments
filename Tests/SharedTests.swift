@@ -10,12 +10,12 @@ import XCTest
 import Framework
 
 
-private func assertEmpty<Heap: _BinaryHeapType>(heap: Heap) {
+func assertEmpty<Heap: _BinaryHeapType>(heap: Heap) {
     XCTAssert(heap.count == 0, "Heap empty")
     XCTAssert(heap.first == nil, "Heap empty")
 }
 
-private func assertInvariants<Heap: _BinaryHeapType where Heap.Element : Comparable>(var heap: Heap) {
+func assertInvariants<Heap: _BinaryHeapType where Heap.Element : Comparable>(inout heap: Heap) {
     XCTAssertEqual(heap.count == 0, heap.isEmpty, "isEmpty iff (count == 0)")
 
     let count = heap.count
@@ -31,7 +31,7 @@ private func assertInvariants<Heap: _BinaryHeapType where Heap.Element : Compara
     XCTAssert(element == heap.first, "first == element")
 }
 
-private func insertElements<Heap: _BinaryHeapType>(inout heap: Heap, elements: [Heap.Element]) {
+func insertElements<Heap: _BinaryHeapType>(inout heap: Heap, elements: [Heap.Element]) {
     for element in elements {
         heap.insert(element)
     }
@@ -41,63 +41,70 @@ private func insertElements<Heap: _BinaryHeapType>(inout heap: Heap, elements: [
 
 // MARK: Tests
 
-
-func runInitTest<Heap: _BinaryHeapType>(heap: Heap) {
+func runInitTest<Heap: BinaryHeapType>(heapType: Heap.Type) -> Heap {
+    let heap = heapType.init()
     assertEmpty(heap)
+    return heap
 }
 
-func runInsertTest<Heap: _BinaryHeapType where Heap.Element : Comparable>(var heap: Heap, element: Heap.Element) {
+func runInsertTest<Heap: BinaryHeapType where Heap.Element : Comparable>(heapType: Heap.Type, element: Heap.Element) {
+    var heap = runInitTest(heapType)
     heap.insert(element)
 
     XCTAssert(heap.count == 1, "Element inserted")
     XCTAssert(heap.first == element, "Element inserted")
 
-    assertInvariants(heap)
+    assertInvariants(&heap)
 }
 
-func runFastInsertTest<Heap: BinaryHeapType_Fast where Heap.Element : Comparable>(var heap: Heap, element: Heap.Element) {
+func runFastInsertTest<Heap: BinaryHeapType_Fast where Heap.Element : Comparable>(heapType: Heap.Type, element: Heap.Element) {
+    var heap = runInitTest(heapType)
     heap.fastInsert(element)
     
     XCTAssert(heap.count == 1, "Element inserted")
     XCTAssert(heap.first == element, "Element inserted")
     
-    assertInvariants(heap)
+    assertInvariants(&heap)
 }
 
-func runRemoveTest<Heap: _BinaryHeapType where Heap.Element : Comparable>(var heap: Heap, element: Heap.Element) {
+func runRemoveTest<Heap: BinaryHeapType where Heap.Element : Comparable>(heapType: Heap.Type, element: Heap.Element) {
+    var heap = runInitTest(heapType)
     heap.insert(element)
     let root = heap.removeFirst()
 
     XCTAssert(element == root, "Element removed")
     assertEmpty(heap)
-    assertInvariants(heap)
+    assertInvariants(&heap)
 }
 
-func runFastRemoveTest<Heap: BinaryHeapType_Fast where Heap.Element : Comparable>(var heap: Heap, element: Heap.Element) {
+func runFastRemoveTest<Heap: BinaryHeapType_Fast where Heap.Element : Comparable>(heapType: Heap.Type, element: Heap.Element) {
+    var heap = runInitTest(heapType)
     heap.fastInsert(element)
     let root = heap.fastRemoveFirst()
     
     XCTAssert(element == root, "Element removed")
     assertEmpty(heap)
-    assertInvariants(heap)
+    assertInvariants(&heap)
 }
 
-func runRemoveAllTest<Heap: _BinaryHeapType where Heap.Element : Comparable>(var heap: Heap, elements: [Heap.Element]) {
+func runRemoveAllTest<Heap: BinaryHeapType where Heap.Element : Comparable>(heapType: Heap.Type, elements: [Heap.Element]) {
+    var heap = runInitTest(heapType)
     insertElements(&heap, elements: elements)
-    assertInvariants(heap)
+    assertInvariants(&heap)
 
     // Remove
     heap.removeAll(keepCapacity: false)
 
     assertEmpty(heap)
-    assertInvariants(heap)
+    assertInvariants(&heap)
 }
 
-func runOrderTest<Heap: _BinaryHeapType, Element : Comparable where Element == Heap.Element>(var heap: Heap, elements: [Element]) {
+func runOrderTest<Heap: BinaryHeapType, Element : Comparable where Element == Heap.Element>(heapType: Heap.Type, elements: [Element]) {
     let sortedElements = elements.sort()
 
+    var heap = runInitTest(heapType)
     insertElements(&heap, elements: elements)
-    assertInvariants(heap)
+    assertInvariants(&heap)
 
     // Remove
     var heapElements = [Element]()
@@ -106,13 +113,14 @@ func runOrderTest<Heap: _BinaryHeapType, Element : Comparable where Element == H
     }
 
     assertEmpty(heap)
-    assertInvariants(heap)
+    assertInvariants(&heap)
     XCTAssert(sortedElements == heapElements, "Correct order")
 }
 
-func runCoWTest<Heap: _BinaryHeapType, Element : Comparable where Element == Heap.Element>(var heap: Heap, elements: [Element]) {
+func runCoWTest<Heap: BinaryHeapType, Element : Comparable where Element == Heap.Element>(heapType: Heap.Type, elements: [Element]) {
+    var heap = runInitTest(heapType)
     insertElements(&heap, elements: elements)
-    assertInvariants(heap)
+    assertInvariants(&heap)
 
     // Copy
     var copy = heap
@@ -126,12 +134,12 @@ func runCoWTest<Heap: _BinaryHeapType, Element : Comparable where Element == Hea
     // TODO: Should also test that other mutating funcs work with CoW (insert, removeAll, popFirst, ...)
 
     assertEmpty(heap)
-    assertInvariants(heap)
+    assertInvariants(&heap)
 
     XCTAssert(heapElements.count == elements.count, "Correct count")
     XCTAssert(copy.count == elements.count, "Elements not removed")
     XCTAssert(copy.first != nil, "Elements not removed")
-    assertInvariants(copy)
+    assertInvariants(&copy)
 
     var copyElements = [Element]()
     while !copy.isEmpty {
@@ -139,66 +147,17 @@ func runCoWTest<Heap: _BinaryHeapType, Element : Comparable where Element == Hea
     }
     
     assertEmpty(copy)
-    assertInvariants(copy)
+    assertInvariants(&copy)
     XCTAssert(heapElements == copyElements, "Same contents")
 }
 
-
 /*
-func testReserveCapacity() {
+func runReserveCapacityTest<Heap: BinaryHeapType>(heapType: Heap.Type) {
+    var heap = runInitTest(heapType)
     heap.reserveCapacity(TestValues.capacity)
     XCTAssert(heap.capacity >= TestValues.capacity, "Heap has capacity")
 
-    XCTAssert(heap.count == 0, "Heap empty")
-    XCTAssert(heap.isEmpty, "Heap empty")
-    XCTAssert(heap.root == nil, "Heap empty")
-    XCTAssert(heap.array.count == 0, "Heap empty")
-    // XCTAssert(heap.reverseSortedArray.count == 0, "Heap empty")
-}
-
-func testInitFromCollection() {
-    heap = ArrayHeap(elements: TestValues.referenceNodes, isOrderedBefore: <)
-
-    XCTAssert(heap.count == TestValues.nodeCount, "Nodes inserted")
-    XCTAssert(!heap.isEmpty, "Nodes inserted")
-
-    // Remove
-    var heapNodes = [ReferenceNode]()
-    while !heap.isEmpty {
-        heapNodes.append(heap.removeRoot())
-    }
-
-    XCTAssert(heap.count == 0, "Nodes removed")
-    XCTAssert(heap.isEmpty, "Nodes removed")
-    XCTAssert(heap.root == nil, "Nodes removed")
-
-    XCTAssert(heapNodes.count == TestValues.nodeCount, "Correct count")
-    XCTAssert(heapNodes == TestValues.sortedReferenceNodes, "Correct order")
-}
-
-func testInitFromSequence() {
-    let sequence = AnySequence(TestValues.referenceNodes)
-    heap = ArrayHeap(elements: sequence, isOrderedBefore: <)
-
-    XCTAssert(heap.count == TestValues.nodeCount, "Nodes inserted")
-    XCTAssert(!heap.isEmpty, "Nodes inserted")
-
-    // Remove
-    var heapNodes = [ReferenceNode]()
-    while !heap.isEmpty {
-        heapNodes.append(heap.removeRoot())
-    }
-
-    XCTAssert(heap.count == 0, "Nodes removed")
-    XCTAssert(heap.isEmpty, "Nodes removed")
-    XCTAssert(heap.root == nil, "Nodes removed")
-
-    XCTAssert(heapNodes.count == TestValues.nodeCount, "Correct count")
-    XCTAssert(heapNodes == TestValues.sortedReferenceNodes, "Correct order")
+    assertEmpty(heap)
+    assertInvariants(heap)
 }
 */
-
-
-
-
-

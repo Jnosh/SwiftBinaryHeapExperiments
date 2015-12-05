@@ -10,46 +10,33 @@ import XCTest
 import Framework
 
 class NonCoWHeap_Tests: XCTestCase {
-    private var refElementHeap: NonCoWHeap<ReferenceElement>!
-    private var valElementHeap: NonCoWHeap<ValueElementSmall>!
-    
     override func setUp() {
         super.setUp()
-        refElementHeap = NonCoWHeap()
-        valElementHeap = NonCoWHeap()
     }
     
     override func tearDown() {
-        refElementHeap = nil
-        valElementHeap = nil
         super.tearDown()
     }
     
     
     // MARK: Tests
-    
-    func testInit() {
-        runInitTest(refElementHeap)
-        runInitTest(valElementHeap)
-    }
-    
     func testInsert() {
-        runInsertTest(refElementHeap, element: TestElements.referenceElements[0])
-        runInsertTest(valElementHeap, element: TestElements.valueElements[0])
+        runInsertTest(NonCoWHeap.self, element: TestElements.referenceElements[0])
+        runInsertTest(NonCoWHeap.self, element: TestElements.valueElements[0])
     }
     
     func testRemove() {
-        runRemoveTest(refElementHeap, element: TestElements.referenceElements[0])
-        runRemoveTest(valElementHeap, element: TestElements.valueElements[0])
+        runRemoveTest(NonCoWHeap.self, element: TestElements.referenceElements[0])
+        runRemoveTest(NonCoWHeap.self, element: TestElements.valueElements[0])
     }
     
     func testRemoveAll() {
-        runRemoveAllTest(refElementHeap, elements: TestElements.referenceElements)
-        runRemoveAllTest(valElementHeap, elements: TestElements.valueElements)
+        runRemoveAllTest(NonCoWHeap.self, elements: TestElements.referenceElements)
+        runRemoveAllTest(NonCoWHeap.self, elements: TestElements.valueElements)
     }
     
     func testOrder() {
-        runOrderTest(refElementHeap, elements: TestElements.referenceElements)
-        runOrderTest(valElementHeap, elements: TestElements.valueElements)
+        runOrderTest(NonCoWHeap.self, elements: TestElements.referenceElements)
+        runOrderTest(NonCoWHeap.self, elements: TestElements.valueElements)
     }
 }

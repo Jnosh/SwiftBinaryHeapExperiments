@@ -10,57 +10,44 @@ import XCTest
 import Framework
 
 class ArrayPointerHeap_Tests: XCTestCase {
-    private var refElementHeap: ArrayPointerHeap<ReferenceElement>!
-    private var valElementHeap: ArrayPointerHeap<ValueElementSmall>!
-
     override func setUp() {
         super.setUp()
-        refElementHeap = ArrayPointerHeap()
-        valElementHeap = ArrayPointerHeap()
     }
 
     override func tearDown() {
-        refElementHeap = nil
-        valElementHeap = nil
         super.tearDown()
     }
 
 
     // MARK: Tests
-
-    func testInit() {
-        runInitTest(refElementHeap)
-        runInitTest(valElementHeap)
-    }
-
     func testInsert() {
-        runInsertTest(refElementHeap, element: TestElements.referenceElements[0])
-        runInsertTest(valElementHeap, element: TestElements.valueElements[0])
+        runInsertTest(ArrayPointerHeap.self, element: TestElements.referenceElements[0])
+        runInsertTest(ArrayPointerHeap.self, element: TestElements.valueElements[0])
         
-        runFastInsertTest(refElementHeap, element: TestElements.referenceElements[0])
-        runFastInsertTest(valElementHeap, element: TestElements.valueElements[0])
+        runFastInsertTest(ArrayPointerHeap.self, element: TestElements.referenceElements[0])
+        runFastInsertTest(ArrayPointerHeap.self, element: TestElements.valueElements[0])
     }
     
     func testRemove() {
-        runRemoveTest(refElementHeap, element: TestElements.referenceElements[0])
-        runRemoveTest(valElementHeap, element: TestElements.valueElements[0])
+        runRemoveTest(ArrayPointerHeap.self, element: TestElements.referenceElements[0])
+        runRemoveTest(ArrayPointerHeap.self, element: TestElements.valueElements[0])
         
-        runFastRemoveTest(refElementHeap, element: TestElements.referenceElements[0])
-        runFastRemoveTest(valElementHeap, element: TestElements.valueElements[0])
+        runFastRemoveTest(ArrayPointerHeap.self, element: TestElements.referenceElements[0])
+        runFastRemoveTest(ArrayPointerHeap.self, element: TestElements.valueElements[0])
     }
 
     func testRemoveAll() {
-        runRemoveAllTest(refElementHeap, elements: TestElements.referenceElements)
-        runRemoveAllTest(valElementHeap, elements: TestElements.valueElements)
+        runRemoveAllTest(ArrayPointerHeap.self, elements: TestElements.referenceElements)
+        runRemoveAllTest(ArrayPointerHeap.self, elements: TestElements.valueElements)
     }
 
     func testOrder() {
-        runOrderTest(refElementHeap, elements: TestElements.referenceElements)
-        runOrderTest(valElementHeap, elements: TestElements.valueElements)
+        runOrderTest(ArrayPointerHeap.self, elements: TestElements.referenceElements)
+        runOrderTest(ArrayPointerHeap.self, elements: TestElements.valueElements)
     }
 
     func testCoW() {
-        runCoWTest(refElementHeap, elements: TestElements.referenceElements)
-        runCoWTest(valElementHeap, elements: TestElements.valueElements)
+        runCoWTest(ArrayPointerHeap.self, elements: TestElements.referenceElements)
+        runCoWTest(ArrayPointerHeap.self, elements: TestElements.valueElements)
     }
 }

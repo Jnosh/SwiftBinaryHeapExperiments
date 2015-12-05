@@ -10,57 +10,44 @@ import XCTest
 import Framework
 
 class ManagedBufferHeap_Tests: XCTestCase {
-    private var refElementHeap: ManagedBufferHeap<ReferenceElement>!
-    private var valElementHeap: ManagedBufferHeap<ValueElementSmall>!
-
     override func setUp() {
         super.setUp()
-        refElementHeap = ManagedBufferHeap()
-        valElementHeap = ManagedBufferHeap()
     }
 
     override func tearDown() {
-        refElementHeap = nil
-        valElementHeap = nil
         super.tearDown()
     }
 
 
     // MARK: Tests
-
-    func testInit() {
-        runInitTest(refElementHeap)
-        runInitTest(valElementHeap)
-    }
-
     func testInsert() {
-        runInsertTest(refElementHeap, element: TestElements.referenceElements[0])
-        runInsertTest(valElementHeap, element: TestElements.valueElements[0])
+        runInsertTest(ManagedBufferHeap.self, element: TestElements.referenceElements[0])
+        runInsertTest(ManagedBufferHeap.self, element: TestElements.valueElements[0])
         
-        runFastInsertTest(refElementHeap, element: TestElements.referenceElements[0])
-        runFastInsertTest(valElementHeap, element: TestElements.valueElements[0])
+        runFastInsertTest(ManagedBufferHeap.self, element: TestElements.referenceElements[0])
+        runFastInsertTest(ManagedBufferHeap.self, element: TestElements.valueElements[0])
     }
 
     func testRemove() {
-        runRemoveTest(refElementHeap, element: TestElements.referenceElements[0])
-        runRemoveTest(valElementHeap, element: TestElements.valueElements[0])
+        runRemoveTest(ManagedBufferHeap.self, element: TestElements.referenceElements[0])
+        runRemoveTest(ManagedBufferHeap.self, element: TestElements.valueElements[0])
         
-        runFastRemoveTest(refElementHeap, element: TestElements.referenceElements[0])
-        runFastRemoveTest(valElementHeap, element: TestElements.valueElements[0])
+        runFastRemoveTest(ManagedBufferHeap.self, element: TestElements.referenceElements[0])
+        runFastRemoveTest(ManagedBufferHeap.self, element: TestElements.valueElements[0])
     }
 
     func testRemoveAll() {
-        runRemoveAllTest(refElementHeap, elements: TestElements.referenceElements)
-        runRemoveAllTest(valElementHeap, elements: TestElements.valueElements)
+        runRemoveAllTest(ManagedBufferHeap.self, elements: TestElements.referenceElements)
+        runRemoveAllTest(ManagedBufferHeap.self, elements: TestElements.valueElements)
     }
 
     func testOrder() {
-        runOrderTest(refElementHeap, elements: TestElements.referenceElements)
-        runOrderTest(valElementHeap, elements: TestElements.valueElements)
+        runOrderTest(ManagedBufferHeap.self, elements: TestElements.referenceElements)
+        runOrderTest(ManagedBufferHeap.self, elements: TestElements.valueElements)
     }
 
     func testCoW() {
-        runCoWTest(refElementHeap, elements: TestElements.referenceElements)
-        runCoWTest(valElementHeap, elements: TestElements.valueElements)
+        runCoWTest(ManagedBufferHeap.self, elements: TestElements.referenceElements)
+        runCoWTest(ManagedBufferHeap.self, elements: TestElements.valueElements)
     }
 }
