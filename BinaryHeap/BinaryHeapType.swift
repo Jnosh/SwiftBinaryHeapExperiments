@@ -39,6 +39,10 @@ public protocol _BinaryHeapType  {
 
     /// Remove all elements.
     mutating func removeAll(keepCapacity keepCapacity: Bool)
+    
+    // Supported by all except CFBinaryHeapWrapper
+    // var capacity: Int { get }
+    // mutating func reserveCapacity(minimumCapacity: Int)
 }
 
 // Default implementations
@@ -80,22 +84,13 @@ public protocol BinaryHeapType : _BinaryHeapType {
 }
 
 public protocol ClosureBinaryHeapType : _BinaryHeapType {
-    // Alternatively, could use closure for comparsion instead of Comparable
-    //
-    // we'd like to have both versions i.e. init with comparable element or with comparison func
-    // however this is hard to really support "well" in the same protocol/type
-    //
-    // We cannot easily build closure variant based on Comparable variant
-    // and while doing the reverse is pretty easy, it is slower in many cases than doing
-    // 'native' Comparable-based implementations
-    //
-    // And "specializing" for each case at compile time isn't really possible in Swift
-    // i.e. specialized generics
+    /// Initialize an empty heap
     init(isOrderedBefore: (Element, Element) -> Bool)
 }
 
 extension ClosureBinaryHeapType where Element : Comparable {
-    init() {
+    /// Initialize an empty heap
+    public init() {
         self.init(isOrderedBefore: <)
     }
 }

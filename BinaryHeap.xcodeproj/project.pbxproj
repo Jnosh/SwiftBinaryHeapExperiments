@@ -14,8 +14,6 @@
 		D846200C1BE5503C0086DBDF /* BinaryHeapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FF7DB41BA98500003D6F18 /* BinaryHeapType.swift */; };
 		D846200D1BE550620086DBDF /* BinaryHeapType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FF7DB41BA98500003D6F18 /* BinaryHeapType.swift */; };
 		D84B83631BED58760009DC50 /* MeasurementPrinting.swift in Sources */ = {isa = PBXBuildFile; fileRef = D84B83621BED58760009DC50 /* MeasurementPrinting.swift */; };
-		D88D292C1BFD463E0032FBC0 /* ClosureArrayBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88D292B1BFD463E0032FBC0 /* ClosureArrayBuffer.swift */; };
-		D88D292D1BFD463E0032FBC0 /* ClosureArrayBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88D292B1BFD463E0032FBC0 /* ClosureArrayBuffer.swift */; };
 		D88D29351BFDF73F0032FBC0 /* ClosureArrayBufferHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88D29301BFD48060032FBC0 /* ClosureArrayBufferHeap.swift */; };
 		D88D29361BFDF7400032FBC0 /* ClosureArrayBufferHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88D29301BFD48060032FBC0 /* ClosureArrayBufferHeap.swift */; };
 		D88D29371BFDFAD30032FBC0 /* ClosureUnsafePointerHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D898F9D41BF7EF9300FC17E1 /* ClosureUnsafePointerHeap.swift */; };
@@ -24,8 +22,18 @@
 		D88D293A1BFDFAD70032FBC0 /* ClosureManagedBufferHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88D29281BFD407E0032FBC0 /* ClosureManagedBufferHeap.swift */; };
 		D88D293E1BFDFFD30032FBC0 /* ClosureHeapTestsNonGeneric.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88D293D1BFDFFD30032FBC0 /* ClosureHeapTestsNonGeneric.swift */; };
 		D88D29411BFE00450032FBC0 /* CFBinaryHeapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88D29401BFE00450032FBC0 /* CFBinaryHeapTests.swift */; };
-		D88D29441BFE00740032FBC0 /* PtrElementHeapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88D29431BFE00740032FBC0 /* PtrElementHeapTests.swift */; };
 		D88D294D1BFE0A300032FBC0 /* ClosureHeapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D88D294C1BFE0A300032FBC0 /* ClosureHeapTests.swift */; };
+		D891B0061C027ACA00F486F5 /* NonGenericHeaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = D891B0051C027ACA00F486F5 /* NonGenericHeaps.swift */; };
+		D891B0071C027ACA00F486F5 /* NonGenericHeaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = D891B0051C027ACA00F486F5 /* NonGenericHeaps.swift */; };
+		D891B0091C027BF300F486F5 /* NonGenericHeapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D891B0081C027BF300F486F5 /* NonGenericHeapTests.swift */; };
+		D891B0121C0368AD00F486F5 /* RefElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255CC1BB051D1002ED631 /* RefElement.swift */; };
+		D891B0131C0368AD00F486F5 /* ValElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255CE1BB0520C002ED631 /* ValElement.swift */; };
+		D891B0141C0368AD00F486F5 /* PtrElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255D21BB05A45002ED631 /* PtrElement.swift */; };
+		D891B0151C0368AD00F486F5 /* UnmanagedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255D41BB06178002ED631 /* UnmanagedElement.swift */; };
+		D891B0161C036E6E00F486F5 /* RefElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255CC1BB051D1002ED631 /* RefElement.swift */; };
+		D891B0171C036E6E00F486F5 /* ValElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255CE1BB0520C002ED631 /* ValElement.swift */; };
+		D891B0181C036E6E00F486F5 /* PtrElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255D21BB05A45002ED631 /* PtrElement.swift */; };
+		D891B0191C036E6E00F486F5 /* UnmanagedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255D41BB06178002ED631 /* UnmanagedElement.swift */; };
 		D8937AA81BD403700041999A /* MeasurementCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8937AA71BD403700041999A /* MeasurementCollection.swift */; };
 		D898F9CF1BF7BE6000FC17E1 /* ClassElementHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D898F9CE1BF7BE6000FC17E1 /* ClassElementHeap.swift */; };
 		D898F9D01BF7BE6000FC17E1 /* ClassElementHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D898F9CE1BF7BE6000FC17E1 /* ClassElementHeap.swift */; };
@@ -41,20 +49,14 @@
 		D8B256041BB0860C002ED631 /* Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B255DB1BB06BF9002ED631 /* Framework.framework */; };
 		D8B256051BB086C6002ED631 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF8D311B9B2DA6003B0B37 /* main.swift */; };
 		D8B256071BB086C6002ED631 /* GeneralTestFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF8D6A1B9B6F28003B0B37 /* GeneralTestFunctions.swift */; };
-		D8B256091BB086C9002ED631 /* RefElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255CC1BB051D1002ED631 /* RefElement.swift */; };
-		D8B2560A1BB086C9002ED631 /* ValElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255CE1BB0520C002ED631 /* ValElement.swift */; };
-		D8B2560B1BB086C9002ED631 /* PtrElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255D21BB05A45002ED631 /* PtrElement.swift */; };
-		D8B2560C1BB086C9002ED631 /* UnmanagedElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255D41BB06178002ED631 /* UnmanagedElement.swift */; };
 		D8B256101BB086D4002ED631 /* ArrayHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8FF7DCF1BA9D9C2003D6F18 /* ArrayHeap.swift */; };
 		D8B256111BB086D4002ED631 /* ArrayPointerHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C21BB014A1002ED631 /* ArrayPointerHeap.swift */; };
 		D8B256121BB086D4002ED631 /* ManagedBufferHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C31BB014A1002ED631 /* ManagedBufferHeap.swift */; };
 		D8B256131BB086D4002ED631 /* UnsafePointerHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B255C41BB014A1002ED631 /* UnsafePointerHeap.swift */; };
-		D8D191161BD2795F0069D9EF /* Chronos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D191151BD2795F0069D9EF /* Chronos.framework */; };
-		D8D191171BD2795F0069D9EF /* Chronos.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8D191151BD2795F0069D9EF /* Chronos.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D8CBE5811C1287B200752F55 /* Chronos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8CBE5801C1287B200752F55 /* Chronos.framework */; };
+		D8CBE5821C1287B200752F55 /* Chronos.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8CBE5801C1287B200752F55 /* Chronos.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8D191661BD2BC9B0069D9EF /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D191651BD2BC9B0069D9EF /* Shared.swift */; };
 		D8D191671BD2BC9B0069D9EF /* Shared.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D191651BD2BC9B0069D9EF /* Shared.swift */; };
-		D8EF16271BDC1CE900B3A52C /* PtrElementHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF16261BDC1CE900B3A52C /* PtrElementHeap.swift */; };
-		D8EF16281BDC1CE900B3A52C /* PtrElementHeap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF16261BDC1CE900B3A52C /* PtrElementHeap.swift */; };
 		D8EF163E1BDD679200B3A52C /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF163D1BDD679200B3A52C /* Elements.swift */; };
 		D8EF16401BDD685900B3A52C /* GeneralTestGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF163F1BDD685900B3A52C /* GeneralTestGroups.swift */; };
 /* End PBXBuildFile section */
@@ -70,13 +72,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D8D191181BD279600069D9EF /* Embed Frameworks */ = {
+		D8CBE5831C1287B300752F55 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D8D191171BD2795F0069D9EF /* Chronos.framework in Embed Frameworks */,
+				D8CBE5821C1287B200752F55 /* Chronos.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,12 +90,12 @@
 		D83AF00C1BFFC4C6007E34B0 /* NonCoWHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonCoWHeap.swift; sourceTree = "<group>"; };
 		D84B83621BED58760009DC50 /* MeasurementPrinting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementPrinting.swift; sourceTree = "<group>"; };
 		D88D29281BFD407E0032FBC0 /* ClosureManagedBufferHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureManagedBufferHeap.swift; sourceTree = "<group>"; };
-		D88D292B1BFD463E0032FBC0 /* ClosureArrayBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureArrayBuffer.swift; sourceTree = "<group>"; };
 		D88D29301BFD48060032FBC0 /* ClosureArrayBufferHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureArrayBufferHeap.swift; sourceTree = "<group>"; };
 		D88D293D1BFDFFD30032FBC0 /* ClosureHeapTestsNonGeneric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureHeapTestsNonGeneric.swift; sourceTree = "<group>"; };
 		D88D29401BFE00450032FBC0 /* CFBinaryHeapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFBinaryHeapTests.swift; sourceTree = "<group>"; };
-		D88D29431BFE00740032FBC0 /* PtrElementHeapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PtrElementHeapTests.swift; sourceTree = "<group>"; };
 		D88D294C1BFE0A300032FBC0 /* ClosureHeapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureHeapTests.swift; sourceTree = "<group>"; };
+		D891B0051C027ACA00F486F5 /* NonGenericHeaps.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonGenericHeaps.swift; sourceTree = "<group>"; };
+		D891B0081C027BF300F486F5 /* NonGenericHeapTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonGenericHeapTests.swift; sourceTree = "<group>"; };
 		D8937AA71BD403700041999A /* MeasurementCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementCollection.swift; sourceTree = "<group>"; };
 		D898F9CE1BF7BE6000FC17E1 /* ClassElementHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassElementHeap.swift; sourceTree = "<group>"; };
 		D898F9D41BF7EF9300FC17E1 /* ClosureUnsafePointerHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureUnsafePointerHeap.swift; sourceTree = "<group>"; };
@@ -111,7 +113,7 @@
 		D8B255DF1BB06BF9002ED631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8B255F31BB08605002ED631 /* BinaryHeap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BinaryHeap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8B255FE1BB08605002ED631 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D8D191151BD2795F0069D9EF /* Chronos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chronos.framework; path = Carthage/Build/Mac/Chronos.framework; sourceTree = "<group>"; };
+		D8CBE5801C1287B200752F55 /* Chronos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chronos.framework; path = Carthage/Build/Mac/Chronos.framework; sourceTree = "<group>"; };
 		D8D1913A1BD27B400069D9EF /* Common.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Common.xcconfig; sourceTree = "<group>"; };
 		D8D1913C1BD27B400069D9EF /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		D8D1913D1BD27B400069D9EF /* Profile.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Profile.xcconfig; sourceTree = "<group>"; };
@@ -146,7 +148,6 @@
 		D8D191631BD27B400069D9EF /* watchOS-Framework.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-Framework.xcconfig"; sourceTree = "<group>"; };
 		D8D191641BD27B400069D9EF /* watchOS-StaticLibrary.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "watchOS-StaticLibrary.xcconfig"; sourceTree = "<group>"; };
 		D8D191651BD2BC9B0069D9EF /* Shared.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shared.swift; sourceTree = "<group>"; };
-		D8EF16261BDC1CE900B3A52C /* PtrElementHeap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PtrElementHeap.swift; sourceTree = "<group>"; };
 		D8EF163D1BDD679200B3A52C /* Elements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
 		D8EF163F1BDD685900B3A52C /* GeneralTestGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralTestGroups.swift; sourceTree = "<group>"; };
 		D8EF8D311B9B2DA6003B0B37 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -168,7 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8B256041BB0860C002ED631 /* Framework.framework in Frameworks */,
-				D8D191161BD2795F0069D9EF /* Chronos.framework in Frameworks */,
+				D8CBE5811C1287B200752F55 /* Chronos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,19 +193,19 @@
 				D88D294C1BFE0A300032FBC0 /* ClosureHeapTests.swift */,
 				D88D293D1BFDFFD30032FBC0 /* ClosureHeapTestsNonGeneric.swift */,
 				D88D29401BFE00450032FBC0 /* CFBinaryHeapTests.swift */,
-				D88D29431BFE00740032FBC0 /* PtrElementHeapTests.swift */,
+				D891B0081C027BF300F486F5 /* NonGenericHeapTests.swift */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
 		};
-		D88D29501BFE21CB0032FBC0 /* Closure Heap */ = {
+		D88D29501BFE21CB0032FBC0 /* Closure heaps */ = {
 			isa = PBXGroup;
 			children = (
 				D898F9D41BF7EF9300FC17E1 /* ClosureUnsafePointerHeap.swift */,
-				D88D29281BFD407E0032FBC0 /* ClosureManagedBufferHeap.swift */,
 				D88D29301BFD48060032FBC0 /* ClosureArrayBufferHeap.swift */,
+				D88D29281BFD407E0032FBC0 /* ClosureManagedBufferHeap.swift */,
 			);
-			name = "Closure Heap";
+			name = "Closure heaps";
 			sourceTree = "<group>";
 		};
 		D8B255CB1BB051AD002ED631 /* Element Types */ = {
@@ -232,7 +233,7 @@
 		D8D191191BD279710069D9EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D8D191151BD2795F0069D9EF /* Chronos.framework */,
+				D8CBE5801C1287B200752F55 /* Chronos.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -366,14 +367,14 @@
 			path = watchOS;
 			sourceTree = "<group>";
 		};
-		D8EF16331BDCEE1300B3A52C /* Special */ = {
+		D8EF16331BDCEE1300B3A52C /* Other heaps */ = {
 			isa = PBXGroup;
 			children = (
-				D8EF16261BDC1CE900B3A52C /* PtrElementHeap.swift */,
 				D898F9CE1BF7BE6000FC17E1 /* ClassElementHeap.swift */,
 				D83AF00C1BFFC4C6007E34B0 /* NonCoWHeap.swift */,
+				D891B0051C027ACA00F486F5 /* NonGenericHeaps.swift */,
 			);
-			name = Special;
+			name = "Other heaps";
 			sourceTree = "<group>";
 		};
 		D8EF8D251B9B2DA6003B0B37 = {
@@ -417,11 +418,10 @@
 				D8D191651BD2BC9B0069D9EF /* Shared.swift */,
 				D8AEF43C1BF6161400D5F781 /* ArrayBuffer.swift */,
 				D8AEF4391BF5351600D5F781 /* ManagedArrayBuffer.swift */,
-				D88D292B1BFD463E0032FBC0 /* ClosureArrayBuffer.swift */,
 				D8EF8D651B9B2EF4003B0B37 /* CFBinaryHeap Wrapper */,
-				D8FF7DB31BA984B1003D6F18 /* Standard */,
-				D88D29501BFE21CB0032FBC0 /* Closure Heap */,
-				D8EF16331BDCEE1300B3A52C /* Special */,
+				D8FF7DB31BA984B1003D6F18 /* Basic heaps */,
+				D88D29501BFE21CB0032FBC0 /* Closure heaps */,
+				D8EF16331BDCEE1300B3A52C /* Other heaps */,
 			);
 			name = "BinaryHeap Variants";
 			path = BinaryHeap;
@@ -435,7 +435,7 @@
 			name = "CFBinaryHeap Wrapper";
 			sourceTree = "<group>";
 		};
-		D8FF7DB31BA984B1003D6F18 /* Standard */ = {
+		D8FF7DB31BA984B1003D6F18 /* Basic heaps */ = {
 			isa = PBXGroup;
 			children = (
 				D8FF7DCF1BA9D9C2003D6F18 /* ArrayHeap.swift */,
@@ -443,7 +443,7 @@
 				D8B255C41BB014A1002ED631 /* UnsafePointerHeap.swift */,
 				D8B255C31BB014A1002ED631 /* ManagedBufferHeap.swift */,
 			);
-			name = Standard;
+			name = "Basic heaps";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,7 +485,7 @@
 				D8B255EF1BB08605002ED631 /* Sources */,
 				D8B255F01BB08605002ED631 /* Frameworks */,
 				D8B255F11BB08605002ED631 /* Resources */,
-				D8D191181BD279600069D9EF /* Embed Frameworks */,
+				D8CBE5831C1287B300752F55 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -562,16 +562,19 @@
 				D8B255E91BB06CC6002ED631 /* ArrayPointerHeap.swift in Sources */,
 				D8B255EA1BB06CC8002ED631 /* ManagedBufferHeap.swift in Sources */,
 				D8AEF43E1BF6161400D5F781 /* ArrayBuffer.swift in Sources */,
+				D891B0141C0368AD00F486F5 /* PtrElement.swift in Sources */,
 				D846200C1BE5503C0086DBDF /* BinaryHeapType.swift in Sources */,
 				D8B255EB1BB06CCB002ED631 /* UnsafePointerHeap.swift in Sources */,
 				D898F9D01BF7BE6000FC17E1 /* ClassElementHeap.swift in Sources */,
+				D891B0121C0368AD00F486F5 /* RefElement.swift in Sources */,
+				D891B0131C0368AD00F486F5 /* ValElement.swift in Sources */,
 				D88D29381BFDFAD40032FBC0 /* ClosureUnsafePointerHeap.swift in Sources */,
-				D8EF16281BDC1CE900B3A52C /* PtrElementHeap.swift in Sources */,
+				D891B0071C027ACA00F486F5 /* NonGenericHeaps.swift in Sources */,
 				D88D29361BFDF7400032FBC0 /* ClosureArrayBufferHeap.swift in Sources */,
 				D8B255E81BB06CC3002ED631 /* ArrayHeap.swift in Sources */,
-				D88D292D1BFD463E0032FBC0 /* ClosureArrayBuffer.swift in Sources */,
 				D83AF00E1BFFC4C7007E34B0 /* NonCoWHeap.swift in Sources */,
 				D88D293A1BFDFAD70032FBC0 /* ClosureManagedBufferHeap.swift in Sources */,
+				D891B0151C0368AD00F486F5 /* UnmanagedElement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,17 +589,16 @@
 				D846200D1BE550620086DBDF /* BinaryHeapType.swift in Sources */,
 				D88D29411BFE00450032FBC0 /* CFBinaryHeapTests.swift in Sources */,
 				D88D29391BFDFAD60032FBC0 /* ClosureManagedBufferHeap.swift in Sources */,
+				D891B0181C036E6E00F486F5 /* PtrElement.swift in Sources */,
+				D891B0061C027ACA00F486F5 /* NonGenericHeaps.swift in Sources */,
 				D8EF16401BDD685900B3A52C /* GeneralTestGroups.swift in Sources */,
 				D8B256051BB086C6002ED631 /* main.swift in Sources */,
 				D8AEF43A1BF5351600D5F781 /* ManagedArrayBuffer.swift in Sources */,
-				D8B256091BB086C9002ED631 /* RefElement.swift in Sources */,
 				D8B256111BB086D4002ED631 /* ArrayPointerHeap.swift in Sources */,
 				D88D29351BFDF73F0032FBC0 /* ClosureArrayBufferHeap.swift in Sources */,
-				D8B2560C1BB086C9002ED631 /* UnmanagedElement.swift in Sources */,
-				D8EF16271BDC1CE900B3A52C /* PtrElementHeap.swift in Sources */,
 				D8B256131BB086D4002ED631 /* UnsafePointerHeap.swift in Sources */,
 				D83AF00D1BFFC4C7007E34B0 /* NonCoWHeap.swift in Sources */,
-				D88D29441BFE00740032FBC0 /* PtrElementHeapTests.swift in Sources */,
+				D891B0161C036E6E00F486F5 /* RefElement.swift in Sources */,
 				D8AEF43D1BF6161400D5F781 /* ArrayBuffer.swift in Sources */,
 				D88D294D1BFE0A300032FBC0 /* ClosureHeapTests.swift in Sources */,
 				D88D29371BFDFAD30032FBC0 /* ClosureUnsafePointerHeap.swift in Sources */,
@@ -604,11 +606,11 @@
 				D8937AA81BD403700041999A /* MeasurementCollection.swift in Sources */,
 				D83AF00A1BFFC3C1007E34B0 /* CFBinaryHeapWrapper.swift in Sources */,
 				D8B256071BB086C6002ED631 /* GeneralTestFunctions.swift in Sources */,
-				D8B2560A1BB086C9002ED631 /* ValElement.swift in Sources */,
+				D891B0091C027BF300F486F5 /* NonGenericHeapTests.swift in Sources */,
+				D891B0171C036E6E00F486F5 /* ValElement.swift in Sources */,
 				D8B256121BB086D4002ED631 /* ManagedBufferHeap.swift in Sources */,
-				D8B2560B1BB086C9002ED631 /* PtrElement.swift in Sources */,
 				D8B256101BB086D4002ED631 /* ArrayHeap.swift in Sources */,
-				D88D292C1BFD463E0032FBC0 /* ClosureArrayBuffer.swift in Sources */,
+				D891B0191C036E6E00F486F5 /* UnmanagedElement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,6 +730,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BinaryHeap/Info.plist";
@@ -747,6 +750,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BinaryHeap/Info.plist";
@@ -766,6 +770,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BinaryHeap/Info.plist";
@@ -785,6 +790,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BinaryHeap/Info.plist";
@@ -835,7 +841,6 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -915,7 +920,6 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Test;
 		};

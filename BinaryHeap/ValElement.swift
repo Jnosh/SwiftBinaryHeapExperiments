@@ -9,38 +9,46 @@
 import Foundation
 
 /// A small value type element
-struct ValElementSmall : Comparable {
-    var value: Int = Int(arc4random())
+public struct ValueElementSmall : Comparable {
+    var value: Int
+    
+    public init(_ value: Int) {
+        self.value = value
+    }
 }
 
-func ==(lhs: ValElementSmall, rhs: ValElementSmall) -> Bool {
+public func ==(lhs: ValueElementSmall, rhs: ValueElementSmall) -> Bool {
     return lhs.value == rhs.value
 }
 
-func <(lhs: ValElementSmall, rhs: ValElementSmall) -> Bool {
+public func <(lhs: ValueElementSmall, rhs: ValueElementSmall) -> Bool {
     return lhs.value < rhs.value
 }
 
 /// A medium value type element
-struct ValElementMedium : Comparable {
-    var value: Int = Int(arc4random())
+public struct ValueElementMedium : Comparable {
+    var value: Int
     
     let padding_0 = 0
     let padding_1 = 0
     let padding_2 = 0
+    
+    public init(_ value: Int) {
+        self.value = value
+    }
 }
 
-func ==(lhs: ValElementMedium, rhs: ValElementMedium) -> Bool {
+public func ==(lhs: ValueElementMedium, rhs: ValueElementMedium) -> Bool {
     return lhs.value == rhs.value
 }
 
-func <(lhs: ValElementMedium, rhs: ValElementMedium) -> Bool {
+public func <(lhs: ValueElementMedium, rhs: ValueElementMedium) -> Bool {
     return lhs.value < rhs.value
 }
 
 /// A large value type element
-struct ValElementLarge : Comparable {
-    var value: Int = Int(arc4random())
+public struct ValueElementLarge : Comparable {
+    var value: Int
     
     let padding_0 = 0
     let padding_1 = 0
@@ -53,12 +61,16 @@ struct ValElementLarge : Comparable {
     let padding_8 = 0
     let padding_9 = 0
     let padding_10 = 0
+    
+    public init(_ value: Int) {
+        self.value = value
+    }
 }
 
-func ==(lhs: ValElementLarge, rhs: ValElementLarge) -> Bool {
+public func ==(lhs: ValueElementLarge, rhs: ValueElementLarge) -> Bool {
     return lhs.value == rhs.value
 }
 
-func <(lhs: ValElementLarge, rhs: ValElementLarge) -> Bool {
+public func <(lhs: ValueElementLarge, rhs: ValueElementLarge) -> Bool {
     return lhs.value < rhs.value
 }

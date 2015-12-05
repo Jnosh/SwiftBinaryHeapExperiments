@@ -7,27 +7,30 @@
 //
 
 import Foundation
-import Framework
 
 /// A reference type element
-final class RefElement: NSObject {
-    var value: Int = Int(arc4random())
+public final class ReferenceElement: NSObject {
+    var value: Int
+    
+    public init(_ value: Int) {
+        self.value = value
+    }
 }
 
-extension RefElement: Comparable {
+extension ReferenceElement: Comparable {
 }
 
-func ==(lhs: RefElement, rhs: RefElement) -> Bool {
+public func ==(lhs: ReferenceElement, rhs: ReferenceElement) -> Bool {
     return lhs.value == rhs.value
 }
 
-func <(lhs: RefElement, rhs: RefElement) -> Bool {
+public func <(lhs: ReferenceElement, rhs: ReferenceElement) -> Bool {
     return lhs.value < rhs.value
 }
 
-extension RefElement: CFComparable {
-    @objc func compare(other: AnyObject) -> CFComparisonResult {
-        let rhs: RefElement = unsafeDowncast(other)
+extension ReferenceElement: CFComparable {
+    @objc public func compare(other: AnyObject) -> CFComparisonResult {
+        let rhs: ReferenceElement = unsafeDowncast(other)
         
         if value < rhs.value {
             return .CompareLessThan
@@ -38,7 +41,3 @@ extension RefElement: CFComparable {
         }
     }
 }
-
-extension RefElement : Framework.CFComparable {
-}
-
