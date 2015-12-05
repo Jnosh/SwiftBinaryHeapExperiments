@@ -11,7 +11,7 @@
 /// - The closure is stored in the buffer wrapper class
 /// - Backed by an UnsafeMutablePointer to a buffer
 public struct ClosureArrayBufferHeap<Element> {
-    private var buffer: ClosureArrayBuffer<Element>
+    private var buffer: ArrayBuffer<Element>
     
     private mutating func reserveCapacity(minimumCapacity: Int) {
         buffer.reserveCapacity(minimumCapacity)
@@ -21,7 +21,7 @@ public struct ClosureArrayBufferHeap<Element> {
 // MARK: BinaryHeapType conformance
 extension ClosureArrayBufferHeap : ClosureBinaryHeapType {
     public init(isOrderedBefore: (Element, Element) -> Bool) {
-        buffer = ClosureArrayBuffer(isOrderedBefore: isOrderedBefore)
+        buffer = ArrayBuffer(isOrderedBefore: isOrderedBefore)
     }
 
     /// Returns true iff `self` is empty.

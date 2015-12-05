@@ -7,6 +7,11 @@
 //
 
 /// Storage class backing `ArrayBuffer` used to implement CoW behaviour.
+///
+/// - Todo: Should ideally have a second generic parameter for extra storage elements.
+///         Use that to add `isOrderedBefore` or () in the default case.
+///         But optimizer is a unhappy with that much genericity, producing measurably slower code.
+///         Might also be useful for `retainElementsOnCopy` to replace with a generic copy-callback.
 private final class ArrayBufferStorage<Element> {
     /// The pointer to the elements.
     private var elements: UnsafeMutablePointer<Element>
@@ -14,18 +19,30 @@ private final class ArrayBufferStorage<Element> {
     private var capacity: Int
     /// The number of elements that the buffer stores.
     private var count: Int
-    
-    private init() {
+
+    /// Optional closure for comparisons.
+    private let isOrderedBefore: ((Element, Element) -> Bool)?
+
+    /// Do we need to retain the elements when they are copied?
+    ///
+    /// This is a hack to support ClassElementHeap.
+    private let retainElementsOnCopy: Bool
+
+    private init(retainElementsOnCopy: Bool = false, isOrderedBefore: ((Element, Element) -> Bool)? = nil) {
         elements = nil
         count = 0
         capacity = 0
+        self.isOrderedBefore = isOrderedBefore
+        self.retainElementsOnCopy = retainElementsOnCopy
     }
-    
+
     private init(capacity: Int, sourceBuffer buffer: ArrayBufferStorage<Element>, destroySourceContents: Bool = false) {
         // Allocate a new buffer
         elements = UnsafeMutablePointer<Element>.alloc(capacity)
         count = buffer.count
         self.capacity = capacity
+        isOrderedBefore = buffer.isOrderedBefore
+        retainElementsOnCopy = buffer.retainElementsOnCopy
 
         // Copy the contents to the new buffer, destroying the contents of buffer if
         // destroySourceContents is set
@@ -33,6 +50,13 @@ private final class ArrayBufferStorage<Element> {
             elements.moveInitializeFrom(buffer.elements, count: count)
             buffer.count = 0
         } else {
+            if (retainElementsOnCopy) {
+                // HACK: Treat the elements as AnyObjects and retain them
+                for ptr in stride(from: elements, to: elements.advancedBy(count), by: 1) {
+                    unsafeBitCast(ptr, UnsafePointer<Unmanaged<AnyObject>>.self).memory.retain()
+                }
+            }
+
             elements.initializeFrom(buffer.elements, count: count)
         }
     }
@@ -81,10 +105,18 @@ internal struct ArrayBuffer<Element> {
     var elements: UnsafeMutablePointer<Element> {
         return storage.elements
     }
-    
+
+    /// The optional comparison closure.
+    ///
+    /// - Warning: Accessing the closure when it has not been set during initilization will result
+    ///            in a runtime error.
+    var isOrderedBefore: (Element, Element) -> Bool {
+        return storage.isOrderedBefore!
+    }
+
     /// Create an empty `ArrayBuffer` that can store at least `minimumCapacity` elements.
-    init(minimumCapacity: Int = 0) {
-        storage = ArrayBufferStorage()
+    init(minimumCapacity: Int = 0, retainElementsOnCopy: Bool = false, isOrderedBefore: ((Element, Element) -> Bool)? = nil) {
+        storage = ArrayBufferStorage(retainElementsOnCopy: retainElementsOnCopy, isOrderedBefore: isOrderedBefore)
         reserveCapacity(minimumCapacity)
     }
 
@@ -175,7 +207,8 @@ internal struct ArrayBuffer<Element> {
             // Create new empty storage
             let currentCapacity = capacity
             
-            storage = ArrayBufferStorage()
+            storage = ArrayBufferStorage(retainElementsOnCopy: storage.retainElementsOnCopy,
+                                        isOrderedBefore: storage.isOrderedBefore)
             if (keepCapacity) {
                 reserveCapacity(currentCapacity)
             }

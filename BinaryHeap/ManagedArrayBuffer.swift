@@ -18,7 +18,7 @@ private struct ValueWrapper {
 /// runtime data, `value` and elements.
 ///
 ///     <object> <padding> <value> <padding> <elements>
-private final class ManagedArrayBufferStorage<Element>: ManagedBuffer<ValueWrapper, Element> {
+private final class ManagedArrayBufferStorage<Element> : ManagedBuffer<ValueWrapper, Element> {
     static func createManagedArrayBuffer(minimumCapacity: Int) -> ManagedArrayBufferStorage<Element> {
         let buffer = ManagedArrayBufferStorage.create(minimumCapacity) {
             return ValueWrapper(count: 0, capacity: $0.allocatedElementCount)

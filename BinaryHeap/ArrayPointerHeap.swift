@@ -8,8 +8,6 @@
 
 /// Binary heap backed by an array but accessing the contents using `withUnsafeMutableBufferPointer`
 public struct ArrayPointerHeap<Element : Comparable> {
-    // MARK: Instance variables
-
     /// Heap is stored in an array
     /// We reuse CoW ability of underlying array
     private var storage: [Element]
@@ -105,7 +103,6 @@ extension ArrayPointerHeap : BinaryHeapType, BinaryHeapType_Fast {
         
         return storage.removeLast()
     }
-
 
     public mutating func removeAll(keepCapacity keepCapacity: Bool = false) {
         storage.removeAll(keepCapacity: keepCapacity)

@@ -83,13 +83,3 @@ extension UnsafePointerHeap : BinaryHeapType {
     }
 }
 
-extension UnsafePointerHeap {
-    internal mutating func forEach(@noescape body: (Element) -> Void) {
-        buffer.ensureHoldsUniqueReference()
-        
-        for element in UnsafeBufferPointer(start: buffer.elements, count: count) {
-            body(element)
-        }
-    }
-}
-
