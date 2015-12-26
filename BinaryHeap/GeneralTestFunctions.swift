@@ -38,7 +38,7 @@ func timeHeap<Heap : BinaryHeapType, Element where Heap.Element == Element>(heap
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-@transparent func timeHeapTransparent<Heap : BinaryHeapType, Element where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
+@_transparent func timeHeapTransparent<Heap : BinaryHeapType, Element where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
     var heap = heapType.init()
 
     // Add the elements
@@ -80,7 +80,7 @@ func timeHeapFast<Heap : BinaryHeapType_Fast, Element where Heap.Element == Elem
     resultGroup[name].addMeasurement(insertTime, remove: removeTime)
 }
 
-@transparent func timeHeapFastTransparent<Heap : BinaryHeapType_Fast, Element where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
+@_transparent func timeHeapFastTransparent<Heap : BinaryHeapType_Fast, Element where Heap.Element == Element>(heapType: Heap.Type, resultGroup: MeasurementGroup, elements: [Element]) {
     var heap = heapType.init()
     
     // Add the elements

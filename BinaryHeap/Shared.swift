@@ -24,19 +24,19 @@ extension UnsafeMutablePointer {
 }
 
 /// Returns the index for the left child of the given index
-@transparent internal func leftChildIndex(index: Int) -> Int {
+@_transparent internal func leftChildIndex(index: Int) -> Int {
     assert(index >= 0)
     return 2 * index + 1
 }
 
 /// Returns the index for the right child of the given index
-@transparent internal func rightChildIndex(index: Int) -> Int {
+@_transparent internal func rightChildIndex(index: Int) -> Int {
     assert(index >= 0)
     return 2 * index + 2
 }
 
 /// Returns the index for the parent of the given index
-@transparent internal func parentIndex(index: Int) -> Int {
+@_transparent internal func parentIndex(index: Int) -> Int {
     assert(index > 0)
     return (index - 1) / 2
 }

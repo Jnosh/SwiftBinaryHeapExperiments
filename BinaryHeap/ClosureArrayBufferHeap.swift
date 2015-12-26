@@ -42,7 +42,7 @@ extension ClosureArrayBufferHeap : ClosureBinaryHeapType {
         }
         
         buffer.elements.advancedBy(count).initialize(value)
-        buffer.count++
+        buffer.count += 1
         
         var index = count - 1
         while index > 0 && buffer.isOrderedBefore(value, buffer.elements[parentIndex(index)]) {

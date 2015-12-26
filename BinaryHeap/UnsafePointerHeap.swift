@@ -40,7 +40,7 @@ extension UnsafePointerHeap : BinaryHeapType {
         }
 
         buffer.elements.advancedBy(count).initialize(value)
-        buffer.count++
+        buffer.count += 1
 
         var index = count - 1
         while index > 0 && (value < buffer.elements[parentIndex(index)]) {

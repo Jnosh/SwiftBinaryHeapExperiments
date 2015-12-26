@@ -50,7 +50,7 @@ extension NonCoWHeap : BinaryHeapType {
         }
 
         elements.advancedBy(count).initialize(value)
-        count++
+        count += 1
 
         var index = count - 1
         while index > 0 && (value < elements[parentIndex(index)]) {
