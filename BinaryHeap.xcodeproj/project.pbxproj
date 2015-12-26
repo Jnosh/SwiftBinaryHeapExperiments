@@ -69,8 +69,8 @@
 		D8D191811BD2DC9B0069D9EF /* CFBinaryHeapWrapper_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D191801BD2DC9B0069D9EF /* CFBinaryHeapWrapper_Tests.swift */; };
 		D8D191831BD2DC9B0069D9EF /* Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B255DB1BB06BF9002ED631 /* Framework.framework */; };
 		D8D191901BD2E0A80069D9EF /* TestElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D1918F1BD2E0A80069D9EF /* TestElements.swift */; };
-		D8DD46091C02286600A80E15 /* Chronos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8DD46081C02286600A80E15 /* Chronos.framework */; };
-		D8DD460A1C02286600A80E15 /* Chronos.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8DD46081C02286600A80E15 /* Chronos.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D8D33B271C27338A00001210 /* Chronos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8D33B261C27338A00001210 /* Chronos.framework */; };
+		D8D33B281C27338A00001210 /* Chronos.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D8D33B261C27338A00001210 /* Chronos.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D8EF163E1BDD679200B3A52C /* Elements.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF163D1BDD679200B3A52C /* Elements.swift */; };
 		D8EF16401BDD685900B3A52C /* GeneralTestGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8EF163F1BDD685900B3A52C /* GeneralTestGroups.swift */; };
 /* End PBXBuildFile section */
@@ -93,13 +93,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D8DD460B1C02286700A80E15 /* Embed Frameworks */ = {
+		D8D33B291C27338A00001210 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D8DD460A1C02286600A80E15 /* Chronos.framework in Embed Frameworks */,
+				D8D33B281C27338A00001210 /* Chronos.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -183,7 +183,7 @@
 		D8D191801BD2DC9B0069D9EF /* CFBinaryHeapWrapper_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CFBinaryHeapWrapper_Tests.swift; sourceTree = "<group>"; };
 		D8D191821BD2DC9B0069D9EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8D1918F1BD2E0A80069D9EF /* TestElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestElements.swift; sourceTree = "<group>"; };
-		D8DD46081C02286600A80E15 /* Chronos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chronos.framework; path = Carthage/Build/Chronos.framework; sourceTree = "<group>"; };
+		D8D33B261C27338A00001210 /* Chronos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Chronos.framework; path = Carthage/Build/Mac/Chronos.framework; sourceTree = "<group>"; };
 		D8EF163D1BDD679200B3A52C /* Elements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Elements.swift; sourceTree = "<group>"; };
 		D8EF163F1BDD685900B3A52C /* GeneralTestGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeneralTestGroups.swift; sourceTree = "<group>"; };
 		D8EF8D311B9B2DA6003B0B37 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -205,7 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8B256041BB0860C002ED631 /* Framework.framework in Frameworks */,
-				D8DD46091C02286600A80E15 /* Chronos.framework in Frameworks */,
+				D8D33B271C27338A00001210 /* Chronos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +307,7 @@
 		D8D191191BD279710069D9EF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D8DD46081C02286600A80E15 /* Chronos.framework */,
+				D8D33B261C27338A00001210 /* Chronos.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -576,7 +576,7 @@
 				D8B255EF1BB08605002ED631 /* Sources */,
 				D8B255F01BB08605002ED631 /* Frameworks */,
 				D8B255F11BB08605002ED631 /* Resources */,
-				D8DD460B1C02286700A80E15 /* Embed Frameworks */,
+				D8D33B291C27338A00001210 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -876,6 +876,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BinaryHeap/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -895,6 +896,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BinaryHeap/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -914,6 +916,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BinaryHeap/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -933,6 +936,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/BinaryHeap/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
