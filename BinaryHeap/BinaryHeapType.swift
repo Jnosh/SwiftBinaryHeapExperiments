@@ -23,7 +23,7 @@
 public protocol _BinaryHeapType  {
     // FIXME: SequenceType -> http://www.openradar.me/22720220 & http://www.openradar.me/22720512
 
-    typealias Element
+    associatedtype Element
 
     /// The number of values contained in this heap
     var count: Int { get }
